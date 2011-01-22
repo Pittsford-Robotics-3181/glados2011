@@ -1,0 +1,7 @@
+MIDlet-Name: GLaDOS2011
+MIDlet-Version: 1.0.0
+MIDlet-Vendor: FIRST
+MIDlet-1: GLaDOS2011, , GLaDOS2011.GLaDOS2011
+MicroEdition-Profile: IMP-1.0
+MicroEdition-Configuration: CLDC-1.1
+
