@@ -11,6 +11,11 @@ public class Lifter {
    static double lifterSpeed = 0.3;
    static final double HEIGHT_RANGE = 0.2;
 
+   private static int lifterZone;
+   private static final int ZONE_THREE = 3;
+   private static final int ZONE_TWO = 2;
+   private static final int ZONE_ONE = 1;
+
    private static final int MANUAL_MODE = 0;
    private static final int AUTO_FLOOR = 1;
    private static final int AUTO_FIRST_PEG = 2;
@@ -52,7 +57,7 @@ public class Lifter {
      * If button seven is pressed the lift motor is set to stop
      */
     private static void abort() {
-        if (Hardware.checkButton(7)) {
+        if (Hardware.checkButton(4)) {
             Hardware.lifter.set(0.0);
         }
     }
@@ -67,23 +72,12 @@ public class Lifter {
    public static void controlLifter() {
       switch(lifterState) {
           case MANUAL_MODE:
-              if(Hardware.checkButton(7))
+              if(Hardware.checkButton(3))
                   goToHeight(9.0);
-              
-              else if(Hardware.checkButton(8))
+
+              else if(Hardware.checkButton(2))
                   goToHeight(0.2);
 
-              else if(Hardware.checkButton(9))
-                  lifterState = AUTO_FLOOR;
-
-              else if(Hardware.checkButton(10))
-                  lifterState = AUTO_FIRST_PEG;
-
-              else if(Hardware.checkButton(11))
-                  lifterState = AUTO_SECOND_PEG;
-
-              else if(Hardware.checkButton(12))
-                  lifterState = AUTO_THIRD_PEG;
 
               else
                   Hardware.lifter.set(0.0);
@@ -108,6 +102,28 @@ public class Lifter {
               break;
 
       }
+   }
+
+   private static void checkZone()
+   {
+       if(heightSensor > 6.0 && heightSensor < 9.0 )
+           lifterZone = ZONE_THREE;
+       if(heightSensor > 3.0 && heightSensor < 6.0)
+           lifterZone = ZONE_TWO;
+       if (heightSensor > 0.0 && heightSensor < 3.0)
+           lifterZone = ZONE_ONE;
+   }
+
+   private static void lifterAuto()
+   {
+       switch(lifterZone)
+       {
+           case ZONE_THREE:
+               if(Hardware.checkButton(6))
+               {
+                   
+               }
+       }
    }
    // </editor-fold>
 }
