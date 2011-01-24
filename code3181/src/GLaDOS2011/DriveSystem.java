@@ -34,7 +34,7 @@ public class DriveSystem {
      * @param rightSpeed The target right speed
      */
     public void driveAtSpeed(double leftSpeed, double rightSpeed) {
-        // Temporary change (maybe)
+        // PID doesn't work right now
         if (!linear) {
             Hardware.leftJag.set(PIDOutput(leftSpeed, Hardware.LEFT));
             Hardware.rightJag.set(PIDOutput(rightSpeed, Hardware.RIGHT));
@@ -52,8 +52,10 @@ public class DriveSystem {
                 rightDelta = ((rightDelta < 0) ? -1 : 1) * RAMPING_CONSTANT;
             }
             lastRightSpeed += rightDelta;
+
+            // Right motor reversed
             Hardware.leftJag.set(lastLeftSpeed);
-            Hardware.rightJag.set(lastRightSpeed);
+            Hardware.rightJag.set(-lastRightSpeed);
         }
     }
     // </editor-fold>

@@ -15,6 +15,8 @@ public class PANJaguar {
     private CANJaguar CANJag;
     // The channel and device number
     public int location;
+    // Whether or not can is working
+    public boolean CANEnabled = false;
     // The maximum allowed voltage
     public final double MAX_VOLTAGE = 1.0;
     // The time the Jaguar waits before recovering from a fault
@@ -29,14 +31,15 @@ public class PANJaguar {
     public PANJaguar(int jagNumber) {
         location = jagNumber;
         PWMJag = new Jaguar(4, jagNumber);
-        /* CAN not currently implemented
-         try {
-            CANJag = new CANJaguar(jagNumber);
-            CANJag.configMaxOutputVoltage(MAX_VOLTAGE);
-            CANJag.configFaultTime(FAULT_TIME);
-        } catch (CANTimeoutException e) {
-            printError();
-        }*/
+        if(CANEnabled){
+            try {
+                CANJag = new CANJaguar(jagNumber);
+                CANJag.configMaxOutputVoltage(MAX_VOLTAGE);
+                CANJag.configFaultTime(FAULT_TIME);
+            } catch (CANTimeoutException e) {
+                printError();
+            }
+        }
     }
     // </editor-fold>
 
@@ -47,15 +50,16 @@ public class PANJaguar {
      */
     public void set(double value) {
         PWMJag.set(value);
-        /* CAN not currently implemented
-        if (CANJag == null){
-            return;
+        if(CANEnabled){
+            if (CANJag == null){
+                return;
+            }
+            try {
+                CANJag.setX(value);
+            } catch (CANTimeoutException e) {
+                printError();
+            }
         }
-        try {
-            CANJag.setX(value);
-        } catch (CANTimeoutException e) {
-            printError();
-        }*/
     }
     // </editor-fold>
 
