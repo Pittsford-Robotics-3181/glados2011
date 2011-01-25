@@ -69,7 +69,29 @@ public class Lifter {
     * to MAUNUAL_MODE. Button one and two move the robot up and down. Buttons
     * three through six move the lifter to a designated height.
     */
-   public static void controlLifter() {
+
+    /**SAVE FOR LATER
+     * public static void Lifter()
+    {
+        if(lifterState != MANUAL_MODE)
+        {
+            if(Hardware.checkButton(6))
+                lifterState = lifterState + 1;
+            else if(Hardware.checkButton(7))
+                lifterState = lifterState - 1;
+            else if(Hardware.checkButton(2) || Hardware.checkButton(3))
+                lifterState = MANUAL_MODE;
+            controlLifter();
+        }
+        else
+        {
+            checkZone();
+            lifterAuto();
+            controlLifter();
+        }
+    }*/
+
+    public static void controlLifter() {
       switch(lifterState) {
           case MANUAL_MODE:
               if(Hardware.checkButton(3))
@@ -77,7 +99,6 @@ public class Lifter {
 
               else if(Hardware.checkButton(2))
                   goToHeight(0.2);
-
 
               else
                   Hardware.lifter.set(0.0);
@@ -114,16 +135,34 @@ public class Lifter {
            lifterZone = ZONE_ONE;
    }
 
-   private static void lifterAuto()
+   /*SAVE FOR LATER
+    private static void lifterAuto()
    {
        switch(lifterZone)
        {
            case ZONE_THREE:
                if(Hardware.checkButton(6))
-               {
-                   
-               }
+                   lifterState = AUTO_THIRD_PEG;
+               else if(Hardware.checkButton(7))
+                   lifterState = AUTO_SECOND_PEG;
+               break;
+
+           case ZONE_TWO:
+               if(Hardware.checkButton(6))
+                   lifterState = AUTO_SECOND_PEG;
+               else if(Hardware.checkButton(7))
+                   lifterState = AUTO_FIRST_PEG;
+               break;
+
+           case ZONE_ONE:
+               if(Hardware.checkButton(6))
+                   lifterState = AUTO_FIRST_PEG;
+               else if(Hardware.checkButton(7))
+                   lifterState = AUTO_FLOOR;
+               break;
+
+
        }
-   }
+   }*/
    // </editor-fold>
 }
