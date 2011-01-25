@@ -35,15 +35,14 @@ public class DriveSystem {
      * @param rightSpeed The target right speed
      */
     public void driveAtSpeed(double leftSpeed, double rightSpeed) {
-        // It's unknown whether PID is functional
+        // It's unknown whether PIDOutput is functional
         if (!linear) {
             Hardware.leftJag.set(PIDOutput(leftSpeed, Hardware.LEFT));
             Hardware.rightJag.set(PIDOutput(rightSpeed, Hardware.RIGHT));
         } else {
             lastLeftSpeed = Hardware.ramping(leftSpeed, lastLeftSpeed);
             lastRightSpeed = Hardware.ramping(rightSpeed, lastRightSpeed);
-
-            // Right motor reversed
+            // Right motor is reversed
             Hardware.leftJag.set(lastLeftSpeed);
             Hardware.rightJag.set(-lastRightSpeed);
         }

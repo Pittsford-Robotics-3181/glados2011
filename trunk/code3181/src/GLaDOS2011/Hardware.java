@@ -39,8 +39,8 @@ public class Hardware {
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="Joysticks">
-    public static Joystick leftJoystick = new Joystick(1);
-    public static Joystick rightJoystick = new Joystick(2);
+    public static Joystick leftJoystick = new Joystick(2);
+    public static Joystick rightJoystick = new Joystick(1);
     // </editor-fold>
     // </editor-fold>
 
@@ -56,9 +56,8 @@ public class Hardware {
      * @return Whether or not one of the buttons is pushed
      */
     public static boolean checkButton(int button) {
-        if (leftJoystick.getRawButton(button) || rightJoystick.getRawButton(button)) {
+        if (leftJoystick.getRawButton(button) || rightJoystick.getRawButton(button))
             return true;
-        }
         return false;
     }
     // </editor-fold>
