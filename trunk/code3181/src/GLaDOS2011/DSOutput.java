@@ -40,22 +40,22 @@ public class DSOutput {
 
         }
         switch (ln) {
-            case (6):
+            case (1):
                 output.println(DriverStationLCD.Line.kMain6, 1, msg);
                 break;
-            case (5):
+            case (2):
                 output.println(DriverStationLCD.Line.kUser2, 1, msg);
                 break;
-            case (4):
+            case (3):
                 output.println(DriverStationLCD.Line.kUser3, 1, msg);
                 break;
-            case (3):
+            case (4):
                 output.println(DriverStationLCD.Line.kUser4, 1, msg);
                 break;
-            case (2):
+            case (5):
                 output.println(DriverStationLCD.Line.kUser5, 1, msg);
                 break;
-            case (1):
+            case (6):
                 output.println(DriverStationLCD.Line.kUser6, 1, msg);
                 break;
         }
