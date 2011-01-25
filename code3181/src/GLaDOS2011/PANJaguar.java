@@ -38,6 +38,7 @@ public class PANJaguar {
         if(CANEnabled){
             try {
                 CANJag = new CANJaguar(jagNumber);
+                // Set various CAN values
                 CANJag.setPID(Kp, Ki, Kd);
                 CANJag.configMaxOutputVoltage(MAX_VOLTAGE);
                 CANJag.configFaultTime(FAULT_TIME);
