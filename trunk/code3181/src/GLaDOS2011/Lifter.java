@@ -71,7 +71,8 @@ public class Lifter {
     * three through six move the lifter to a designated height.
     */
 
-    /* SAVE FOR LATER
+    /**SAVE FOR LATER... change name of method
+
      * public static void Lifter()
     {
         if(lifterState != MANUAL_MODE)
