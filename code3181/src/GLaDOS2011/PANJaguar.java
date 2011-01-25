@@ -68,6 +68,22 @@ public class PANJaguar {
     }
     // </editor-fold>
 
+    /**
+     * Gets the current speed
+     * @return The current speed
+     */
+    public double getX() {
+        double returnVal = PWMJag.get();
+        if(CANEnabled && CANJag != null){
+            try {
+                returnVal = CANJag.getX();
+            } catch (CANTimeoutException e) {
+                printError();
+            }
+        }
+        return returnVal;
+    }
+
     // <editor-fold defaultstate="collapsed" desc="public double PANJaguar.getOutputCurrent()">
     /**
      * Gets the current from the CANJaguar.
