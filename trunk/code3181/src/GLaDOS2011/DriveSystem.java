@@ -10,21 +10,22 @@ public class DriveSystem {
     // Are we using linear ramping?
     boolean linear = true;
 
-    //PID variables
-    static final double Kp = .05; // proportional constant
-    static final double Ki = 0; //integral constant
-    static final double Kd = 0; // derivative constant
+    //PID constants
+    public static final double Kp = .05; // proportional constant
+    public static final double Ki = 0; //integral constant
+    public static final double Kd = 0; // derivative constant
+
     // Arrays that contain values for left and right
     double[] previousError = {0, 0};
     double[] integral = {0, 0};
     double[] currentSpeed = {0, 0};
+    
     // Time between calls of periodic functions
     double deltat = .005;
 
-    // Linear ramping
+    // Placeholder speed values
     double lastLeftSpeed = 0.0;
     double lastRightSpeed = 0.0;
-    double RAMPING_CONSTANT = .015;
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="public void DriveSystem.driveAtSpeed(double leftSpeed, double rightSpeed)">
@@ -34,24 +35,13 @@ public class DriveSystem {
      * @param rightSpeed The target right speed
      */
     public void driveAtSpeed(double leftSpeed, double rightSpeed) {
-        // PID doesn't work right now
+        // It's unknown whether PID is functional
         if (!linear) {
             Hardware.leftJag.set(PIDOutput(leftSpeed, Hardware.LEFT));
             Hardware.rightJag.set(PIDOutput(rightSpeed, Hardware.RIGHT));
         } else {
-            // Left
-            double leftDelta = leftSpeed - lastLeftSpeed;
-            if (Math.abs(leftDelta) > RAMPING_CONSTANT) {
-                leftDelta = ((leftDelta < 0) ? -1 : 1) * RAMPING_CONSTANT;
-            }
-            lastLeftSpeed += leftDelta;
-
-            // Right
-            double rightDelta = rightSpeed - lastRightSpeed;
-            if (Math.abs(rightDelta) > RAMPING_CONSTANT) {
-                rightDelta = ((rightDelta < 0) ? -1 : 1) * RAMPING_CONSTANT;
-            }
-            lastRightSpeed += rightDelta;
+            lastLeftSpeed = Hardware.ramping(leftSpeed, lastLeftSpeed);
+            lastRightSpeed = Hardware.ramping(rightSpeed, lastRightSpeed);
 
             // Right motor reversed
             Hardware.leftJag.set(lastLeftSpeed);
