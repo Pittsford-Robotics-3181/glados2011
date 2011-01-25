@@ -99,25 +99,33 @@ public class GLaDOS2011 extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
-        // If 70% speed button is pushed, go at 70% power
+        // Drive
         if(Hardware.checkButton(2, Hardware.LEFT)){
+            // Low speed button for testing
             Hardware.drive.driveAtSpeed(LOW_SPEED, 0);
             Hardware.txtout.say(4, "Low speed left        ");
-        } else if(Hardware.checkButton(2, Hardware.RIGHT)){
+        }
+        if(Hardware.checkButton(2, Hardware.RIGHT)){
+            // Low speed button for testing
             Hardware.drive.driveAtSpeed(0, LOW_SPEED);
             Hardware.txtout.say(4, "Low speed right       ");
-        } else if(Hardware.checkButton(1)){
+        }
+        if(Hardware.checkButton(1)){
+            // 70% speed button
             Hardware.drive.driveAtSpeed(Hardware.leftJoystick.getY() * .7, Hardware.rightJoystick.getY() * .7);
             Hardware.txtout.say(4, "70% speed             ");
         } else {
+            // Regular speed
             Hardware.drive.driveAtSpeed(Hardware.leftJoystick.getY(), Hardware.rightJoystick.getY());
             Hardware.txtout.say(4, "Regular drive         ");
         }
-        // Calls method from lifter that controls the the forklift
-        Lifter.controlLifter();
         if(Hardware.checkButton(3)){
+            // Stop button
             Hardware.drive.stop();
         }
+
+        // Calls method from lifter that controls the the forklift
+        Lifter.controlLifter();
     }
     // </editor-fold>
     // </editor-fold>
