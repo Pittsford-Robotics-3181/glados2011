@@ -66,6 +66,7 @@ public class Hardware {
     /**
      * Checks if a specific button is pressed on one specified joystick
      * @param button The button number to check
+     * @param joystick Which joystick to check
      * @return Whether or not one of the buttons is pushed
      */
     public static boolean checkButton(int button, int joystick){

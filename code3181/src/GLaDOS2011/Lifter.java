@@ -7,9 +7,9 @@ package GLaDOS2011;
  */
 public class Lifter {
    // <editor-fold defaultstate="collapsed" desc="Variables">
-   public static double heightSensor;
+   public static double heightSensor; // temporary
    static double lifterSpeed = 0.3;
-   static final double HEIGHT_RANGE = 0.2;
+   static final double HEIGHT_TOLERANCE = 0.1;
 
    private static int lifterZone;
    private static final int ZONE_THREE = 3;
@@ -30,8 +30,9 @@ public class Lifter {
      * these values.
      * @param heightUpper The target height
      */
-    private static void goToHeight(double heightUpper) {
-        double heightLower = heightUpper - HEIGHT_RANGE;
+    private static void goToHeight(double heightTarget) {
+        double heightUpper = heightTarget + HEIGHT_TOLERANCE;
+        double heightLower = heightTarget - HEIGHT_TOLERANCE;
 
         //Checks if the the height of the lifter is greater than the largest
         //destination value. If so the motor is set to a negative value which
@@ -70,7 +71,7 @@ public class Lifter {
     * three through six move the lifter to a designated height.
     */
 
-    /**SAVE FOR LATER
+    /* SAVE FOR LATER
      * public static void Lifter()
     {
         if(lifterState != MANUAL_MODE)
@@ -79,7 +80,7 @@ public class Lifter {
                 lifterState = lifterState + 1;
             else if(Hardware.checkButton(7))
                 lifterState = lifterState - 1;
-            else if(Hardware.checkButton(2) || Hardware.checkButton(3))
+            else if(Hardware.checkButton(11) || Hardware.checkButton(10))
                 lifterState = MANUAL_MODE;
             controlLifter();
         }
@@ -94,10 +95,10 @@ public class Lifter {
     public static void controlLifter() {
       switch(lifterState) {
           case MANUAL_MODE:
-              if(Hardware.checkButton(3))
+              if(Hardware.checkButton(11))
                   goToHeight(9.0);
 
-              else if(Hardware.checkButton(2))
+              else if(Hardware.checkButton(10))
                   goToHeight(0.2);
 
               else
@@ -135,7 +136,7 @@ public class Lifter {
            lifterZone = ZONE_ONE;
    }
 
-   /*SAVE FOR LATER
+   /* SAVE FOR LATER
     private static void lifterAuto()
    {
        switch(lifterZone)

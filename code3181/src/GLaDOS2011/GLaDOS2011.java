@@ -5,20 +5,6 @@ import edu.wpi.first.wpilibj.DriverStation;
 import GLaDOS2011.autono.*; // autonomous files
 import GLaDOS2011.util.*; // useful utilities
 
-// <editor-fold defaultstate="collapsed" desc="DSOutput Note">
-/*
- * DSOutput Lines & their usage:
- *
- * Line | Usage
- *  1   | State
- *  2   | Lifter State
- *  3   | Sensors LSR
- *  4   | **********
- *  5   | Errors
- *  6   | Errors
- */
-// </editor-fold>
-
 /**
  * The main class for our robot
  * @author Chris Cheng
@@ -31,6 +17,8 @@ public class GLaDOS2011 extends IterativeRobot {
     int autonoMode = 0;
     // Driver station
     DriverStation driverStation;
+    // Low speed for testing
+    final double LOW_SPEED = .1;
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="public void robotInit()">
@@ -110,13 +98,20 @@ public class GLaDOS2011 extends IterativeRobot {
     /**
      * This function is called periodically during operator control
      */
-    public void teleopPeriodic()
-    {
+    public void teleopPeriodic() {
         // If 70% speed button is pushed, go at 70% power
-        if(Hardware.checkButton(1)){
+        if(Hardware.checkButton(2, Hardware.LEFT)){
+            Hardware.drive.driveAtSpeed(LOW_SPEED, 0);
+            Hardware.txtout.say(4, "Low speed left        ");
+        } else if(Hardware.checkButton(2, Hardware.RIGHT)){
+            Hardware.drive.driveAtSpeed(0, LOW_SPEED);
+            Hardware.txtout.say(4, "Low speed right       ");
+        } else if(Hardware.checkButton(1)){
             Hardware.drive.driveAtSpeed(Hardware.leftJoystick.getY() * .7, Hardware.rightJoystick.getY() * .7);
+            Hardware.txtout.say(4, "70% speed             ");
         } else {
             Hardware.drive.driveAtSpeed(Hardware.leftJoystick.getY(), Hardware.rightJoystick.getY());
+            Hardware.txtout.say(4, "Regular drive         ");
         }
         // Calls method from lifter that controls the the forklift
         Lifter.controlLifter();
