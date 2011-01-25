@@ -2,6 +2,7 @@ package GLaDOS2011;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Victor;
 
 /**
  * This is the hardware wrapper for our bot.
@@ -30,6 +31,9 @@ public class Hardware {
     public static PANJaguar rightJag = new PANJaguar(2);
     public static PANJaguar arm = new PANJaguar(4);
     public static PANJaguar lifter = new PANJaguar(5);
+
+    public static Victor topClaw = new Victor(4,7);
+    public static Victor bottomClaw = new Victor(4,8);
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="Autonomous Switches">
