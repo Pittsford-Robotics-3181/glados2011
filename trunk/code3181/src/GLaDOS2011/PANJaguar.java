@@ -15,7 +15,7 @@ public class PANJaguar {
     private CANJaguar CANJag;
     // The channel and device number
     public int location;
-    // Whether or not can is working
+    // Whether or not CAN is working
     public boolean CANEnabled = false;
     // The maximum allowed voltage
     public final double MAX_VOLTAGE = 1.0;
