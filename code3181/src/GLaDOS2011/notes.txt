@@ -1,35 +1,24 @@
-package GLaDOS2011;
+*--------BUTTONS--------*
+  1: 70% speed
+  2: drive slowly
+  3: stop the drive
+  4: lifter abort
+  5: ************
+  6: go up a lifter state
+  7: go down a lifter state
+  8: ************
+  9: ************
+  10: go to .2 meters
+  11: go to 9 meters
 
-/**
- * Notes for stuff
- * @author Ben
- *
- * 
- *--------BUTTONS--------*
- * 1: 70% speed
- * 2: drive slowly
- * 3: stop the drive
- * 4: lifter abort
- * 5: ************
- * 6: go up a lifter state
- * 7: go down a lifter state
- * 8: ************
- * 9: ************
- * 10: go to .2 meters
- * 11: go to 9 meters
- *
- *
- * 
- *--------DSOutput lines & their usage--------*
- *
- * Line | Usage
- *  1   | Robot state
- *  2   | Lifter state
- *  3   | Tape sensors
- *  4   | Current drive
- *  5   | Errors
- *  6   | Errors
- *
- *
- */
-public class Notes {}
+
+ 
+*--------DSOutput lines & their usage--------*
+
+  Line | Usage
+   1   | Robot state
+   2   | Lifter state
+   3   | Tape sensors
+   4   | Current drive
+   5   | Errors
+   6   | Errors
