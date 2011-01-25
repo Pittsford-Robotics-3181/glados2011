@@ -21,6 +21,10 @@ public class PANJaguar {
     public final double MAX_VOLTAGE = 1.0;
     // The time the Jaguar waits before recovering from a fault
     public final double FAULT_TIME = 0.5;
+    //PID constants
+    public static final double Kp = .05; // proportional constant
+    public static final double Ki = 0; //integral constant
+    public static final double Kd = 0; // derivative constant
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="Constructor">
@@ -34,6 +38,7 @@ public class PANJaguar {
         if(CANEnabled){
             try {
                 CANJag = new CANJaguar(jagNumber);
+                CANJag.setPID(Kp, Ki, Kd);
                 CANJag.configMaxOutputVoltage(MAX_VOLTAGE);
                 CANJag.configFaultTime(FAULT_TIME);
             } catch (CANTimeoutException e) {

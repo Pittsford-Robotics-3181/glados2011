@@ -15,6 +15,7 @@ public class Hardware {
     // <editor-fold defaultstate="collapsed" desc="Constants">
     static final int LEFT = 0;
     static final int RIGHT = 1;
+    static final double RAMPING_CONSTANT = .015;
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="Tangible Hardware">
@@ -75,4 +76,35 @@ public class Hardware {
         return false;
     }
     // </editor-fold>
+
+    /**
+     * Ramps a given speed toward a target speed.
+     * @param targetSpeed The target speed
+     * @param currentSpeed The current speed
+     * @return The speed to be set
+     */
+    public static double ramping(double targetSpeed, double currentSpeed) {
+        double delta = targetSpeed - currentSpeed;
+        if (Math.abs(delta) > RAMPING_CONSTANT) {
+            delta = ((delta < 0) ? -1 : 1) * RAMPING_CONSTANT;
+        }
+        currentSpeed += delta;
+        return currentSpeed;
+    }
+
+    /**
+     * Ramps a given speed toward a target speed.
+     * @param targetSpeed The target speed
+     * @param currentSpeed The current speed
+     * @param maxGain The maximum allowed gain
+     * @return The speed to be set
+     */
+    public static double ramping(double targetSpeed, double currentSpeed, double maxGain) {
+        double delta = targetSpeed - currentSpeed;
+        if (Math.abs(delta) > maxGain) {
+            delta = ((delta < 0) ? -1 : 1) * maxGain;
+        }
+        currentSpeed += delta;
+        return currentSpeed;
+    }
 }
