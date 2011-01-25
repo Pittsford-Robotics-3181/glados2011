@@ -19,7 +19,7 @@ public class FileActions {
      * This method formats data from the sensors in preparation for writing to a log file.
      * It is obviously not functional right now.
      * @param data The data from the sensors
-     * @return The formated data
+     * @return The formatted data
      */
     public static String formatData(String data) {
         return "";

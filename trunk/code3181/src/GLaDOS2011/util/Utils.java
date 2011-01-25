@@ -1,7 +1,7 @@
 package GLaDOS2011.util;
 
 /**
- * Contains useful functions that don't fit anywhere else.
+ * Contains a useful function that doesn't fit anywhere else.
  * @author Ben
  */
 public class Utils {

@@ -60,7 +60,7 @@ public class GLaDOS2011 extends IterativeRobot {
      * selected autonomous mode.
      */
     public void autonomousPeriodic() {
-        //Run the autonomous mode that was selected
+        // Run the selected autonomous mode
         switch (autonoMode) {
             case 0:
                 Autono0.run();
@@ -100,6 +100,7 @@ public class GLaDOS2011 extends IterativeRobot {
      */
     public void teleopPeriodic() {
         // Drive
+        // The low speed buttons will probably be removed soon
         if(Hardware.checkButton(2, Hardware.LEFT)){
             // Low speed button for testing
             Hardware.drive.driveAtSpeed(LOW_SPEED, 0);
@@ -114,13 +115,14 @@ public class GLaDOS2011 extends IterativeRobot {
             // 70% speed button
             Hardware.drive.driveAtSpeed(Hardware.leftJoystick.getY() * .7, Hardware.rightJoystick.getY() * .7);
             Hardware.txtout.say(4, "70% speed             ");
-        } else {
+        } else if(!Hardware.checkButton(2)) {
             // Regular speed
             Hardware.drive.driveAtSpeed(Hardware.leftJoystick.getY(), Hardware.rightJoystick.getY());
             Hardware.txtout.say(4, "Regular drive         ");
         }
         if(Hardware.checkButton(3)){
             // Stop button
+            // This shouldn't be used. Ever.
             Hardware.drive.stop();
         }
 
