@@ -80,4 +80,12 @@ public class DriveSystem {
         lastRightSpeed = 0;
     }
     // </editor-fold>
+
+    /**
+     * Overrides default toString.
+     * @return The left and right motor speeds separated by a comma
+     */
+    public String toString() {
+        return Math.floor(Hardware.leftJag.getX() * 128) + "," + Math.floor(Hardware.rightJag.getX() * 128);
+    }
 }
