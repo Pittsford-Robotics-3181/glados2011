@@ -1,5 +1,7 @@
 package GLaDOS2011;
 
+import GLaDOS2011.util.Utils;
+
 /**
  * This is the drive system.
  * @author Ben
@@ -37,15 +39,15 @@ public class DriveSystem {
     public void driveAtSpeed(double leftSpeed, double rightSpeed) {
         // It's unknown whether PIDOutput is functional
         if (!linear) {
-            Hardware.leftJag.set(PIDOutput(leftSpeed, Hardware.LEFT));
-            Hardware.rightJag.set(PIDOutput(rightSpeed, Hardware.RIGHT));
+            lastLeftSpeed = PIDOutput(leftSpeed, Hardware.LEFT);
+            lastRightSpeed = PIDOutput(rightSpeed, Hardware.RIGHT);
         } else {
             lastLeftSpeed = Hardware.ramping(leftSpeed, lastLeftSpeed);
             lastRightSpeed = Hardware.ramping(rightSpeed, lastRightSpeed);
-            // Right motor is reversed
-            Hardware.leftJag.set(lastLeftSpeed);
-            Hardware.rightJag.set(-lastRightSpeed);
         }
+        // Right motor is reversed
+        Hardware.leftJag.set(lastLeftSpeed);
+        Hardware.rightJag.set(-lastRightSpeed);
     }
     // </editor-fold>
 
@@ -74,6 +76,8 @@ public class DriveSystem {
     public void stop() {
         Hardware.leftJag.set(0);
         Hardware.rightJag.set(0);
+        lastLeftSpeed = 0;
+        lastRightSpeed = 0;
     }
     // </editor-fold>
 }
