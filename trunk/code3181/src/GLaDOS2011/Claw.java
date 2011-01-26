@@ -10,7 +10,7 @@ public class Claw {
      * Roll the tube in the claw.
      * @param up TRUE to roll the other end of the tube up, FALSE to bring it down.
      */
-    public void roll(boolean up, double speed){
+    public static void roll(boolean up, double speed){
         if(up){
             Hardware.topClaw.set(0.7 * speed);
             Hardware.bottomClaw.set(speed);
@@ -23,7 +23,7 @@ public class Claw {
     /**
      * Stop the claw from doing something.
      */
-    public void stop(){
+    public static void stop(){
         Hardware.topClaw.set(0);
         Hardware.bottomClaw.set(0);
     }
@@ -32,7 +32,7 @@ public class Claw {
      * Control the Claw's take in / take out.
      * @param suck TRUE to suck it in.  FALSE to suck it out.
      */
-    public void tubeIn_Out(boolean suck, double speed){
+    public static void tubeIn_Out(boolean suck, double speed){
         if(suck){
             Hardware.topClaw.set(speed);
             Hardware.bottomClaw.set(-1.0 * speed);
