@@ -32,7 +32,7 @@ public class Claw {
      * Control the Claw's take in / take out.
      * @param suck TRUE to suck it in.  FALSE to suck it out.
      */
-    public void claw(boolean suck, double speed){
+    public void tubeIn_Out(boolean suck, double speed){
         if(suck){
             Hardware.topClaw.set(speed);
             Hardware.bottomClaw.set(-1.0 * speed);
