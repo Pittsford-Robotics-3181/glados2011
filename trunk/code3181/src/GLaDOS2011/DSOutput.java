@@ -29,9 +29,9 @@ public class DSOutput {
      * @param msg What message to display
      */
     public void say(int ln, String msg) {
-        // If the given message is too long, print an error instead
+        // If the given message is too long, truncate it
         if (msg.length() > 22) {
-            msg = "*ERROR: LINE TOO LONG*";
+            msg = msg.substring(0, 22);
             // If the given message is "", then clear the output line
 
         } else if (msg.equals("")) {

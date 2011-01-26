@@ -106,33 +106,33 @@ public class GLaDOS2011 extends IterativeRobot {
             // 70% speed button
             leftSpeed = Hardware.leftJoystick.getY() * .7;
             rightSpeed = Hardware.rightJoystick.getY() * .7;
-            message = "70% speed             ";
+            message = "70% speed     ";
         } else {
             // Regular speed
             leftSpeed = Hardware.leftJoystick.getY();
             rightSpeed = Hardware.rightJoystick.getY();
-            message = "Regular drive         ";
+            message = "Regular drive ";
         }
         // The low speed buttons will probably be removed soon
         if(Hardware.checkButton(2, Hardware.LEFT)){
             // Low speed button for testing
             leftSpeed = LOW_SPEED;
-            message = "Low speed             ";
+            message = "Low speed     ";
         }
         if(Hardware.checkButton(2, Hardware.RIGHT)){
             // Low speed button for testing
             rightSpeed = LOW_SPEED;
-            message = "Low speed             ";
+            message = "Low speed     ";
         }
         if(Hardware.checkButton(3)){
             // Stop button
             // This shouldn't be used.
             leftSpeed = 0;
             rightSpeed = 0;
-            message = "Stopped               ";
+            message = "Stopped       ";
         }
         Hardware.drive.driveAtSpeed(leftSpeed, rightSpeed);
-        Hardware.txtout.say(4, message);
+        Hardware.txtout.say(4, message + " " + Hardware.drive + "       ");
 
         // Calls method from lifter that controls the the forklift
         Lifter.controlLifter();
