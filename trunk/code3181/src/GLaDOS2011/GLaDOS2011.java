@@ -18,7 +18,7 @@ public class GLaDOS2011 extends IterativeRobot {
     // Driver station
     DriverStation driverStation;
     // Low speed for testing
-    final double LOW_SPEED = .1;
+    final double LOW_SPEED = .05;
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="public void robotInit()">
@@ -100,31 +100,41 @@ public class GLaDOS2011 extends IterativeRobot {
      */
     public void teleopPeriodic() {
         // Drive
+        double leftSpeed = 0;
+        double rightSpeed = 0;
+        String message = "";
+
+        if(Hardware.checkButton(1)){
+            // 70% speed button
+            leftSpeed = Hardware.leftJoystick.getY() * .7;
+            rightSpeed = Hardware.rightJoystick.getY() * .7;
+            message = "70% speed             ";
+        } else {
+            // Regular speed
+            leftSpeed = Hardware.leftJoystick.getY();
+            rightSpeed = Hardware.rightJoystick.getY();
+            message = "Regular drive         ";
+        }
         // The low speed buttons will probably be removed soon
         if(Hardware.checkButton(2, Hardware.LEFT)){
             // Low speed button for testing
-            Hardware.drive.driveAtSpeed(LOW_SPEED, 0);
-            Hardware.txtout.say(4, "Low speed left        ");
+            leftSpeed = LOW_SPEED;
+            message = "Low speed             ";
         }
         if(Hardware.checkButton(2, Hardware.RIGHT)){
             // Low speed button for testing
-            Hardware.drive.driveAtSpeed(0, LOW_SPEED);
-            Hardware.txtout.say(4, "Low speed right       ");
-        }
-        if(Hardware.checkButton(1)){
-            // 70% speed button
-            Hardware.drive.driveAtSpeed(Hardware.leftJoystick.getY() * .7, Hardware.rightJoystick.getY() * .7);
-            Hardware.txtout.say(4, "70% speed             ");
-        } else if(!Hardware.checkButton(2)) {
-            // Regular speed
-            Hardware.drive.driveAtSpeed(Hardware.leftJoystick.getY(), Hardware.rightJoystick.getY());
-            Hardware.txtout.say(4, "Regular drive         ");
+            rightSpeed = LOW_SPEED;
+            message = "Low speed             ";
         }
         if(Hardware.checkButton(3)){
             // Stop button
-            // This shouldn't be used. Ever.
-            Hardware.drive.stop();
+            // This shouldn't be used.
+            leftSpeed = 0;
+            rightSpeed = 0;
+            message = "Stopped               ";
         }
+        Hardware.drive.driveAtSpeed(leftSpeed, rightSpeed);
+        Hardware.txtout.say(4, message);
 
         // Calls method from lifter that controls the the forklift
         Lifter.controlLifter();
