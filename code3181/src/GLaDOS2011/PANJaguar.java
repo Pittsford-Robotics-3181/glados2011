@@ -42,7 +42,7 @@ public class PANJaguar {
                 CANJag.setPID(Kp, Ki, Kd);
                 CANJag.configMaxOutputVoltage(MAX_VOLTAGE);
                 CANJag.configFaultTime(FAULT_TIME);
-            } catch (CANTimeoutException e) {
+            } catch (CANTimeoutException ex) {
                 printError();
             }
         }
@@ -62,7 +62,7 @@ public class PANJaguar {
             }
             try {
                 CANJag.setX(value);
-            } catch (CANTimeoutException e) {
+            } catch (CANTimeoutException ex) {
                 printError();
             }
         }
@@ -78,7 +78,7 @@ public class PANJaguar {
         if(CANEnabled && CANJag != null){
             try {
                 returnVal = CANJag.getX();
-            } catch (CANTimeoutException e) {
+            } catch (CANTimeoutException ex) {
                 printError();
             }
         }
@@ -96,7 +96,7 @@ public class PANJaguar {
         }
         try {
             return CANJag.getOutputCurrent();
-        } catch (CANTimeoutException e) {
+        } catch (CANTimeoutException ex) {
             printError();
         }
         return 0;
@@ -114,7 +114,7 @@ public class PANJaguar {
         }
         try {
             return CANJag.getOutputVoltage();
-        } catch (CANTimeoutException e) {
+        } catch (CANTimeoutException ex) {
             printError();
         }
         return 0;

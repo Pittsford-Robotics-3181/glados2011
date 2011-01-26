@@ -15,8 +15,6 @@ public class GLaDOS2011 extends IterativeRobot {
     // <editor-fold defaultstate="collapsed" desc="Variables">
     // Autonomous mode
     int autonoMode = 0;
-    // Driver station
-    DriverStation driverStation;
     // Low speed for testing
     final double LOW_SPEED = .05;
     // </editor-fold>
@@ -27,7 +25,7 @@ public class GLaDOS2011 extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
-        driverStation = DriverStation.getInstance();
+        Hardware.driverStation = DriverStation.getInstance();
         Hardware.txtout.clearOutput();
         Hardware.txtout.say(1, "State:    DISABLED    ");
     }
