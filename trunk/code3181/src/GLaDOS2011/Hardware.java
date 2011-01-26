@@ -1,6 +1,7 @@
 package GLaDOS2011;
 
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Victor;
 
@@ -51,6 +52,7 @@ public class Hardware {
     // <editor-fold defaultstate="collapsed" desc="Intangible Hardware">
     public static DSOutput txtout = new DSOutput();
     public static DriveSystem drive = new DriveSystem();
+    public static DriverStation driverStation;
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="public static boolean Hardware.checkButton(int button)">
