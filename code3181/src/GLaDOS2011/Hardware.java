@@ -96,7 +96,7 @@ public class Hardware {
     }
 
     /**
-     * Ramps a given speed toward a target speed.
+     * Ramps a given speed toward a target speed with specified maximum gain.
      * @param targetSpeed The target speed
      * @param currentSpeed The current speed
      * @param maxGain The maximum allowed gain
