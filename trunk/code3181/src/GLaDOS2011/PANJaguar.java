@@ -56,7 +56,7 @@ public class PANJaguar {
      * @param value The value to set the motor(s) to
      */
     public void set(double value) {
-        PWMJag.set(Hardware.ramping(PWMJag.get(), value));
+        PWMJag.set(Hardware.ramping(value, PWMJag.get()));
         if(CANEnabled && CANJag != null){
             try {
                 CANJag.setX(value);

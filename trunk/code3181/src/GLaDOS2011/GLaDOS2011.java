@@ -28,7 +28,6 @@ public class GLaDOS2011 extends IterativeRobot {
         Hardware.driverStation = DriverStation.getInstance();
         Hardware.txtout.clearOutput();
         Hardware.txtout.say(1, "State:    DISABLED    ");
-        Hardware.gameTimer.start();
     }
     // </editor-fold>
 
@@ -50,6 +49,8 @@ public class GLaDOS2011 extends IterativeRobot {
         autonoMode = autonoMode + 1 * Utils.toInt(Hardware.autonoSwitches[2].get());
 
         Hardware.txtout.say(1, "State:  AUTONOMOUS " + autonoMode + "  ");
+
+        Hardware.gameTimer.start();
     }
     // </editor-fold>
 
@@ -134,7 +135,8 @@ public class GLaDOS2011 extends IterativeRobot {
             message = "Stopped       ";
         }
         Hardware.drive.driveAtSpeed(leftSpeed, rightSpeed);
-        Hardware.txtout.say(4, message + " " + Hardware.drive + "       ");
+        Hardware.txtout.say(4, message + "                    ");
+        Hardware.txtout.say(5, Hardware.drive+"                      ");
 
         // Calls method from lifter that controls the the forklift
         Lifter.controlLifter();
