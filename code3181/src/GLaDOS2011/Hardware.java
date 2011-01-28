@@ -45,8 +45,8 @@ public class Hardware {
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="Joysticks">
-    public static Joystick leftJoystick = new Joystick(2);
-    public static Joystick rightJoystick = new Joystick(1);
+    public static Joystick leftJoystick = new Joystick(1);
+    public static Joystick rightJoystick = new Joystick(2);
     // </editor-fold>
     // </editor-fold>
 
@@ -114,4 +114,36 @@ public class Hardware {
         currentSpeed += delta;
         return currentSpeed;
     }
+
+    // <editor-fold defaultstate="collapsed" desc="public double Hardware.PIDOutput(double target, int side)">
+
+    //PID constants
+    public static final double Kp = .05; // proportional constant
+    public static final double Ki = 0; //integral constant
+    public static final double Kd = 0; // derivative constant
+
+    // Arrays that contain values for left and right
+    static double[] previousError = {0, 0};
+    static double[] integral = {0, 0};
+    static double[] currentSpeed = {0, 0};
+
+    // Time between calls of periodic functions
+    static double deltat = .005;
+    /**
+     * This method uses the proportional, integral, derivative controller to
+     * ramp the current speed to the target speed.
+     * THIS METHOD IS NOT BEING USED RIGHT NOW.
+     * @param target The target speed
+     * @param side Which side the PID is affecting
+     * @return The ramped speed
+     */
+    public static double PIDOutput(double target, int side) {
+        double error = target - currentSpeed[side];
+        integral[side] = integral[side] + error * deltat;
+        double derivative = (error - previousError[side]) / deltat;
+        double output = Kp * error + Ki * integral[side] + Kd * derivative;
+        previousError[side] = error;
+        return currentSpeed[side] + output;
+    }
+    // </editor-fold>
 }
