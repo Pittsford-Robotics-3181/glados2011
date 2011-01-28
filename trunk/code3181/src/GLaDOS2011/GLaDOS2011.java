@@ -28,6 +28,7 @@ public class GLaDOS2011 extends IterativeRobot {
         Hardware.driverStation = DriverStation.getInstance();
         Hardware.txtout.clearOutput();
         Hardware.txtout.say(1, "State:    DISABLED    ");
+        Hardware.gameTimer.start();
     }
     // </editor-fold>
 
@@ -60,9 +61,6 @@ public class GLaDOS2011 extends IterativeRobot {
     public void autonomousPeriodic() {
         // Run the selected autonomous mode
         switch (autonoMode) {
-            case 0:
-                Autono0.run();
-                break;
             case 1:
                 Autono1.run();
                 break;
@@ -74,6 +72,10 @@ public class GLaDOS2011 extends IterativeRobot {
                 break;
             case 4:
                 Autono4.run();
+                break;
+            case 0:
+            default:
+                Autono0.run();
                 break;
         }
     }

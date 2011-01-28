@@ -3,6 +3,7 @@ package GLaDOS2011;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.Victor;
 
 /**
@@ -53,6 +54,7 @@ public class Hardware {
     public static DSOutput txtout = new DSOutput();
     public static DriveSystem drive = new DriveSystem();
     public static DriverStation driverStation;
+    public static Timer gameTimer = new Timer();
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="public static boolean Hardware.checkButton(int button)">
