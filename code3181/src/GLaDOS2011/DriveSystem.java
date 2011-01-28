@@ -1,7 +1,5 @@
 package GLaDOS2011;
 
-import GLaDOS2011.util.Utils;
-
 /**
  * This is the drive system.
  * @author Ben
@@ -9,8 +7,6 @@ import GLaDOS2011.util.Utils;
 public class DriveSystem {
 
     // <editor-fold defaultstate="collapsed" desc="Variables">
-    // Are we using linear ramping?
-    boolean linear = true;
 
     //PID constants
     public static final double Kp = .05; // proportional constant
@@ -37,15 +33,11 @@ public class DriveSystem {
      * @param rightSpeed The target right speed
      */
     public void driveAtSpeed(double leftSpeed, double rightSpeed) {
-        // It's unknown whether PIDOutput is functional
-        if (!linear) {
-            lastLeftSpeed = PIDOutput(leftSpeed, Hardware.LEFT);
-            lastRightSpeed = PIDOutput(rightSpeed, Hardware.RIGHT);
-        } else {
-            lastLeftSpeed = Hardware.ramping(leftSpeed, lastLeftSpeed);
-            lastRightSpeed = Hardware.ramping(rightSpeed, lastRightSpeed);
-        }
         // Right motor is reversed
+        if(Math.floor(Hardware.gameTimer.get())%5==0){
+            integral[0] = 0;
+            integral[1] = 0;
+        }
         Hardware.leftJag.set(lastLeftSpeed);
         Hardware.rightJag.set(-lastRightSpeed);
     }
@@ -55,6 +47,7 @@ public class DriveSystem {
     /**
      * This method uses the proportional, integral, derivative controller to
      * ramp the current speed to the target speed.
+     * THIS METHOD IS NOT BEING USED RIGHT NOW.
      * @param target The target speed
      * @param side Which side the PID is affecting
      * @return The ramped speed

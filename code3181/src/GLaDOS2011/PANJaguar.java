@@ -51,15 +51,13 @@ public class PANJaguar {
 
     // <editor-fold defaultstate="collapsed" desc="public void PANJaguar.set(double value)">
     /**
-     * Sets the motor(s) to the given value.
+     * Sets the motor(s) to the given value with linear ramping for PWM and
+     * built-in PID for CAN.
      * @param value The value to set the motor(s) to
      */
     public void set(double value) {
-        PWMJag.set(value);
-        if(CANEnabled){
-            if (CANJag == null){
-                return;
-            }
+        PWMJag.set(Hardware.ramping(PWMJag.get(), value));
+        if(CANEnabled && CANJag != null){
             try {
                 CANJag.setX(value);
             } catch (CANTimeoutException ex) {
