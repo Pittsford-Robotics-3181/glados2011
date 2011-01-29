@@ -170,6 +170,7 @@ public class Lifter {
    /**
     * Returns the state in a string.
     * @return A 4-letter String that signifies the lifterState.
+    * @author Chris Cheng
     */
    public static String getState(){
        switch(lifterState){
