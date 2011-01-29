@@ -7,7 +7,7 @@ package GLaDOS2011.autono;
 public class Autono4 {
     // <editor-fold defaultstate="collapsed" desc="public static void Autono4.run()">
     public static void run() {
-        AutonoSensors.moveOnLine();
+        Autono1.run();
     }
     // </editor-fold>
 }
