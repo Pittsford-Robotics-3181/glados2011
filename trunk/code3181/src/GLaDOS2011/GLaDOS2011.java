@@ -138,6 +138,7 @@ public class GLaDOS2011 extends IterativeRobot {
         Hardware.drive.driveAtSpeed(leftSpeed, rightSpeed);
         Hardware.txtout.say(4, message + "                    ");
         Hardware.txtout.say(5, Hardware.drive+"                      ");
+        Hardware.txtout.say(2, "Lifter State: "+Lifter.getState()+"    ");
 
         //Checks if switch for elbow is on.
         Arm.elbowCheck();
