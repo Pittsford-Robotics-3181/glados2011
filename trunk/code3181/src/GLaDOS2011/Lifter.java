@@ -96,30 +96,50 @@ public class Lifter {
     public static void controlLifter() {
       switch(lifterState) {
           case MANUAL_MODE:
-              if(Hardware.checkButton(11))
+              if(EnhancedIO.getDigital(1))
                   goToHeight(9.0);
 
-              else if(Hardware.checkButton(10))
+              else if(EnhancedIO.getDigital(2))
                   goToHeight(0.2);
+
+              else if(EnhancedIO.getDigital(3))
+                  lifterState = AUTO_FLOOR;
+
+              else if(EnhancedIO.getDigital(4))
+                  lifterState = AUTO_FIRST_PEG;
+
+              else if(EnhancedIO.getDigital(5))
+                  lifterState = AUTO_SECOND_PEG;
+
+              else if(EnhancedIO.getDigital(6))
+                  lifterState = AUTO_THIRD_PEG;
 
               else
                   Hardware.lifter.set(0.0);
               break;
 
           case AUTO_FLOOR:
+              if(EnhancedIO.getDigital(1) || EnhancedIO.getDigital(2))
+                  lifterState = MANUAL_MODE;
               goToHeight(0.2);
               abort();
               break;
 
           case AUTO_FIRST_PEG:
+               if(EnhancedIO.getDigital(1) || EnhancedIO.getDigital(2))
+                   lifterState = MANUAL_MODE;
               goToHeight(3.0);
               abort();
               break;
           case AUTO_SECOND_PEG:
+              if(EnhancedIO.getDigital(1) || EnhancedIO.getDigital(2))
+                   lifterState = MANUAL_MODE;
               goToHeight(6.0);
               abort();
               break;
           case AUTO_THIRD_PEG:
+              if(EnhancedIO.getDigital(1) || EnhancedIO.getDigital(2))
+                   lifterState = MANUAL_MODE;
               goToHeight(9.0);
               abort();
               break;
