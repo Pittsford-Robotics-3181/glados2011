@@ -1,7 +1,7 @@
 package GLaDOS2011.autono;
 
 import GLaDOS2011.Hardware;
-import GLaDOS2011.util.Utils;
+import GLaDOS2011.util.*;
 
 /**
  * Contains code that uses the tape sensors
@@ -9,7 +9,9 @@ import GLaDOS2011.util.Utils;
  * @author Ben
  */
 public class AutonoSensors {
+    // The last sensor value. Used so that we know what to do when all sensors are false.
     private static int lastCase;
+    
     // <editor-fold defaultstate="collapsed" desc="public static void AutonoSensors.moveOnLine()">
     /**
      * For use with Autonomous.  Keeps the robot moving along the line.
@@ -17,31 +19,61 @@ public class AutonoSensors {
     public static void moveOnLine(){
         // Get sensor values and print descriptive message to the driver station
         int sensorValue = getSensors();
-        Hardware.txtout.say(3, getSensorMessage());
+        Hardware.txtout.say(3, Utils.toBinary(sensorValue) + ": " + getSensorMessage());
         // Drive based on sensor values
         switch(sensorValue){
             case 1:
+                // Go forward
                 Hardware.drive.driveAtSpeed(.5, .5);
                 break;
             case 7:
+                // Stop
                 Hardware.drive.driveAtSpeed(0, 0);
                 break;
             case 0:
                 if(lastCase == 0 || lastCase == 1){
+                    // Go right
                     Hardware.drive.driveAtSpeed(.7, .3);
                 } else {
+                    // Go left
                     Hardware.drive.driveAtSpeed(.3, .7);
                 }
                 break;
             default:
+                // Go left
                 Hardware.drive.driveAtSpeed(.3, .7);
                 break;
         }
-        if(sensorValue != 0){
-            lastCase = getSensors();
+        if(sensorValue != 0 && lastCase != sensorValue){
+            // Log sensor data
+            FileActions.writeTapeSensors(sensorValue);
+            lastCase = sensorValue;
         }
     }
     // </editor-fold>
+
+    /**
+     * Picks a message that tells the drivers what we want to do, based on the
+     * current values of the sensors.
+     * @return A descriptive message about what we want to do
+     */
+    public static String getSensorMessage() {
+        switch(getSensors()){
+            case 1:
+                return "On, go forward        ";
+            case 7:
+                return "At T, stop            ";
+            case 0:
+                if(lastCase == 0 || lastCase == 1){
+                    return "Off, go right     ";
+                } else {
+                    return "Off, go left      ";
+                }
+            default:
+                return "Near, go left         ";
+        }
+    }
+
     // <editor-fold defaultstate="collapsed" desc="public int AutonoSensors.getSensors()">
     /**
      * Reads the current sensor values and returns the reading as an int.
@@ -58,22 +90,4 @@ public class AutonoSensors {
         return returnVal;
     }
     // </editor-fold>
-
-    public static String getSensorMessage() {
-        // Pick descriptive message
-        switch(getSensors()){
-            case 1:
-                return "On tape, go forward   ";
-            case 7:
-                return "At T, stop            ";
-            case 0:
-                if(lastCase == 0 || lastCase == 1){
-                    return "Off tape, go right    ";
-                } else {
-                    return "Off tape, go left     ";
-                }
-            default:
-                return "Near tape, go left    ";
-        }
-    }
 }

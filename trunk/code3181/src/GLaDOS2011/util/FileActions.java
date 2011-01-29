@@ -1,5 +1,6 @@
 package GLaDOS2011.util;
 
+import GLaDOS2011.Hardware;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -16,15 +17,25 @@ public class FileActions {
     
     // <editor-fold defaultstate="collapsed" desc="public static string FileActions.formatData(String data)">
     /**
-     * This method formats data from the sensors in preparation for writing to a log file.
-     * It is obviously not functional right now.
+     * This method formats data from the tape sensors and writes it to a log file.
      * @param data The data from the sensors
      * @return The formatted data
      */
-    public static String formatData(String data) {
-        return "";
+    public static void writeTapeSensors(int sensorValue) {
+        addLine("tapesensordata.txt", Hardware.gameTimer.get() + ": " + Utils.toBinary(sensorValue));
     }
     // </editor-fold>
+
+    /**
+     * Adds a new line to a file.
+     * @param line The line to add
+     * @param filename The file to use
+     */
+    public static void addLine(String filename, String line) {
+        String fileContents = readFile(filename);
+        writeFile(filename, fileContents + "\n" + line);
+    }
+
     // <editor-fold defaultstate="collapsed" desc="public static string FileActions.readFile(String filename)">
     /**
      * This method reads the file located at filename and returns its contents in a string.

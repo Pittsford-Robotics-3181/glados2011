@@ -19,8 +19,8 @@
    1   | Robot state
    2   | Lifter state
    3   | Tape sensors binary value
-   4   | Current drive type
-   5   | Motor speeds (-128 to 128)
+   4   | Current drive type and motor speeds (-128 to 128)
+   5   | ************
    6   | CAN Errors (not being used yet)
 
 ***Future Intention***
