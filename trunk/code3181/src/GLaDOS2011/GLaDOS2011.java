@@ -51,6 +51,7 @@ public class GLaDOS2011 extends IterativeRobot {
         Hardware.txtout.say(1, "State:  AUTONOMOUS " + autonoMode + "  ");
 
         Hardware.gameTimer.start();
+        Hardware.compressor.start();
     }
     // </editor-fold>
 
@@ -74,7 +75,6 @@ public class GLaDOS2011 extends IterativeRobot {
             case 4:
                 Autono4.run();
                 break;
-            case 0:
             default:
                 Autono0.run();
                 break;
@@ -92,6 +92,7 @@ public class GLaDOS2011 extends IterativeRobot {
         // Test lines
         for(int i=2; i<7; i++)
             Hardware.txtout.say(i, "This is line "+i+".");
+        Hardware.compressor.start();
     }
     // </editor-fold>
 

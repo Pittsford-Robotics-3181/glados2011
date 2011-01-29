@@ -17,20 +17,20 @@ public class AutonoSensors {
     public static void moveOnLine(){
         switch(getSensors()){
             case 1:
-                //drive forward
+                Hardware.drive.driveAtSpeed(.5, .5);
                 break;
             case 7:
-                //stop
+                Hardware.drive.driveAtSpeed(0, 0);
                 break;
             case 0:
                 if(lastCase == 0 || lastCase == 1){
-                    //go right
+                    Hardware.drive.driveAtSpeed(.7, .3);
                 } else {
-                    //go left
+                    Hardware.drive.driveAtSpeed(.3, .7);
                 }
                 break;
             default:
-                //go left
+                Hardware.drive.driveAtSpeed(.3, .7);
                 break;
         }
         lastCase = getSensors();

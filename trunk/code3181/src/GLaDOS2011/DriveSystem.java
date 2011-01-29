@@ -6,13 +6,6 @@ package GLaDOS2011;
  */
 public class DriveSystem {
 
-    // <editor-fold defaultstate="collapsed" desc="Variables">
-
-    // Placeholder speed values
-    double lastLeftSpeed = 0.0;
-    double lastRightSpeed = 0.0;
-    // </editor-fold>
-
     // <editor-fold defaultstate="collapsed" desc="public void DriveSystem.driveAtSpeed(double leftSpeed, double rightSpeed)">
     /**
      * This method sets the motor speeds to the given parameters.
@@ -20,11 +13,11 @@ public class DriveSystem {
      * @param rightSpeed The target right speed
      */
     public void driveAtSpeed(double leftSpeed, double rightSpeed) {
-        // Right motor is reversed
         if(Math.floor(Hardware.gameTimer.get())%5==0){
             Hardware.integral[0] = 0;
             Hardware.integral[1] = 0;
         }
+        // Right motor is reversed
         Hardware.leftJag.set(leftSpeed);
         Hardware.rightJag.set(-rightSpeed);
     }
@@ -37,8 +30,7 @@ public class DriveSystem {
     public void stop() {
         Hardware.leftJag.set(0);
         Hardware.rightJag.set(0);
-        lastLeftSpeed = 0;
-        lastRightSpeed = 0;
+        Hardware.compressor.stop();
     }
     // </editor-fold>
 
