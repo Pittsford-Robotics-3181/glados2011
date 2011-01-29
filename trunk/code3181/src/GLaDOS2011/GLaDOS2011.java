@@ -7,7 +7,6 @@ import edu.wpi.first.wpilibj.Dashboard;
 import edu.wpi.first.wpilibj.DigitalModule;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.Solenoid;
 
 /**
  * The main class for our robot
@@ -31,7 +30,7 @@ public class GLaDOS2011 extends IterativeRobot {
     public void robotInit() {
         Hardware.driverStation = DriverStation.getInstance();
         Hardware.txtout.clearOutput();
-        Hardware.txtout.say(1, "State:    DISABLED    ");
+        Hardware.txtout.say(1, "State:    DISABLED");
     }
     // </editor-fold>
 
@@ -39,26 +38,31 @@ public class GLaDOS2011 extends IterativeRobot {
     // <editor-fold defaultstate="collapsed" desc="public void autonomousInit()">
     /**
      * This function is run when autonomous mode begins. It determines which
-     * autonomous mode we are using.
+     * autonomous mode we are using and starts the timer and compressor.
      */
     public void autonomousInit() {
         Hardware.txtout.clearOutput();
         // Determine which autonomous mode we want and tell the drivers
         // The switches are the binary representation of the autonomous mode
+        autonoMode = 0;
         // Left worth 4
         autonoMode = autonoMode + 4 * Utils.toInt(Hardware.autonoSwitches[0].get());
         // Middle worth 2
         autonoMode = autonoMode + 2 * Utils.toInt(Hardware.autonoSwitches[1].get());
         // Right worth 1
         autonoMode = autonoMode + 1 * Utils.toInt(Hardware.autonoSwitches[2].get());
-
-        Hardware.txtout.say(1, "State:  AUTONOMOUS " + autonoMode + "  ");
-        if(!EnhancedIO.getDigital(11)){
-            Hardware.txtout.say(2, "MODE: DEAD RECKONING  ");
+        autonoMode = 2;
+        Hardware.txtout.say(1, "State:  AUTONOMOUS " + autonoMode);
+        // EnhancedIO causes a null pointer exception right now
+        /*if(!EnhancedIO.getDigital(11)){
+            Hardware.txtout.say(2, "MODE: DEAD RECKONING");
         } else {
-            Hardware.txtout.say(2, "MODE: SENSORS         ");
-        }
+            Hardware.txtout.say(2, "MODE: SENSORS");
+        }*/
+        
+        Hardware.gameTimer.reset();
         Hardware.gameTimer.start();
+
         Hardware.compressor.start();
     }
     // </editor-fold>
@@ -69,6 +73,9 @@ public class GLaDOS2011 extends IterativeRobot {
      * selected autonomous mode.
      */
     public void autonomousPeriodic() {
+
+        updateDashboard();
+
         // Run the selected autonomous mode
         switch (autonoMode) {
             case 1:
@@ -96,20 +103,22 @@ public class GLaDOS2011 extends IterativeRobot {
     // <editor-fold defaultstate="collapsed" desc="public void teleopInit()">
     public void teleopInit() {
         Hardware.txtout.clearOutput();
-        Hardware.txtout.say(1, "State:  TELEOPERATED  ");
+        Hardware.txtout.say(1, "State:  TELEOPERATED");
         // Test lines
         for(int i=2; i<7; i++)
-            Hardware.txtout.say(i, "This is line "+i+".");
+            Hardware.txtout.say(i, "This is line " + i + ".");
         Hardware.compressor.start();
     }
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="public void teleopPeriodic()">
     /**
-     * This function is called periodically during operator control
+     * This function is called periodically during operator control.
      */
     public void teleopPeriodic() {
-        // Drive
+
+        updateDashboard();
+
         double leftSpeed = 0;
         double rightSpeed = 0;
         String message = "";
@@ -118,33 +127,36 @@ public class GLaDOS2011 extends IterativeRobot {
             // 70% speed button
             leftSpeed = Hardware.leftJoystick.getY() * .7;
             rightSpeed = Hardware.rightJoystick.getY() * .7;
-            message = "70% speed     ";
+            message = "70% speed";
         } else {
             // Regular speed
             leftSpeed = Hardware.leftJoystick.getY();
             rightSpeed = Hardware.rightJoystick.getY();
-            message = "Regular drive ";
+            message = "Regular   ";
         }
         // The low speed buttons will probably be removed soon
         if(Hardware.checkButton(2, Hardware.LEFT)){
             // Low speed button for testing
             leftSpeed = LOW_SPEED;
-            message = "Low speed     ";
+            message = "Low speed ";
         }
         if(Hardware.checkButton(2, Hardware.RIGHT)){
             // Low speed button for testing
             rightSpeed = LOW_SPEED;
-            message = "Low speed     ";
+            message = "Low speed ";
         }
         if(Hardware.checkButton(3)){
             // Stop button
             // This shouldn't be used.
             leftSpeed = 0;
             rightSpeed = 0;
-            message = "Stopped       ";
+            message = "Stopped   ";
         }
+        // Actually drive
         Hardware.drive.driveAtSpeed(leftSpeed, rightSpeed);
-        Hardware.txtout.say(2, "Lifter State: " + Lifter.getState() + "    ");
+
+        // Print out useful messages
+        Hardware.txtout.say(2, "Lifter State: " + Lifter.getState());
         Hardware.txtout.say(4, message + Hardware.drive);
 
         //Checks if switch for elbow is on.
@@ -155,7 +167,7 @@ public class GLaDOS2011 extends IterativeRobot {
     // </editor-fold>
 
      /**
-      * Shows data on driver station dash board.
+      * Shows data on driver station dashboard.
       */
      void updateDashboard() {
         Dashboard lowDashData = DriverStation.getInstance().getDashboardPackerLow();
@@ -229,6 +241,7 @@ public class GLaDOS2011 extends IterativeRobot {
 
             byte thisBytes = 0;
             lowDashData.addByte(thisBytes);
+            // This next line causes an error, so the above two lines have replaced it.
             //lowDashData.addByte(Solenoid.getAll());
         }
         lowDashData.finalizeCluster();

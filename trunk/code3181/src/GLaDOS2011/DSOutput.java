@@ -24,21 +24,19 @@ public class DSOutput {
 
     // <editor-fold defaultstate="collapsed" desc="public void DSOutput.say(int ln, String msg)">
     /**
-     * Display a line of text without scrolling.  Max 22 characters / line.
+     * Display a line of text without scrolling.  Max 21 characters / line.
      * @param ln Which line to print in
      * @param msg What message to display
      */
     public void say(int ln, String msg) {
+        // DriverStationLCD.kLineLength=21
+        // Add 21 spaces to clear the rest of the line
+        msg += "                     ";
         // If the given message is too long, truncate it
-        if (msg.length() > 22) {
-            msg = msg.substring(0, 22);
-            // If the given message is "", then clear the output line
-
-        } else if (msg.equals("")) {
-            msg = "                      ";
-            // Determine which line to print on
-
+        if (msg.length() > 21) {
+            msg = msg.substring(0, 21);
         }
+
         switch (ln) {
             case (1):
                 output.println(DriverStationLCD.Line.kMain6, 1, msg);
