@@ -47,6 +47,7 @@ public class Hardware {
                                                    new DigitalInput(8),
                                                    new DigitalInput(9)};
     public static DigitalInput elbowSwitch = new DigitalInput(10);
+
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="Joysticks">
