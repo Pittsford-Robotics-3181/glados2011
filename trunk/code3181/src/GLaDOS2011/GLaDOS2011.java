@@ -53,7 +53,11 @@ public class GLaDOS2011 extends IterativeRobot {
         autonoMode = autonoMode + 1 * Utils.toInt(Hardware.autonoSwitches[2].get());
 
         Hardware.txtout.say(1, "State:  AUTONOMOUS " + autonoMode + "  ");
-
+        if(EnhancedIO.getDigital(11)){
+            Hardware.txtout.say(2, "MODE: DEAD RECKONING  ");
+        } else {
+            Hardware.txtout.say(2, "MODE: SENSORS         ");
+        }
         Hardware.gameTimer.start();
         Hardware.compressor.start();
     }
@@ -223,6 +227,8 @@ public class GLaDOS2011 extends IterativeRobot {
             }
             lowDashData.finalizeCluster();
 
+            byte thisBytes = 0;
+            lowDashData.addByte(thisBytes);
             //lowDashData.addByte(Solenoid.getAll());
         }
         lowDashData.finalizeCluster();
