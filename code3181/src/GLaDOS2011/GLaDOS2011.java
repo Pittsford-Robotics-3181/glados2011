@@ -139,8 +139,9 @@ public class GLaDOS2011 extends IterativeRobot {
         Hardware.txtout.say(4, message + "                    ");
         Hardware.txtout.say(5, Hardware.drive+"                      ");
 
-        // Calls method from lifter that controls the the forklift
-        Lifter.controlLifter();
+        //Checks if switch for elbow is on.
+        Arm.elbowCheck();
+
     }
     // </editor-fold>
     // </editor-fold>

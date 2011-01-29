@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.Victor;
+import edu.wpi.first.wpilibj.Solenoid;
 
 /**
  * This is the hardware wrapper for our bot.
@@ -23,6 +24,8 @@ public class Hardware {
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="Tangible Hardware">
+    public static Solenoid elbowOut = new Solenoid(6);
+    public static Solenoid elbowIn = new Solenoid(7);
     // <editor-fold defaultstate="collapsed" desc="Sensors">
     public static DigitalInput leftSensor = new DigitalInput(1);
     public static DigitalInput centerSensor = new DigitalInput(2);
@@ -43,6 +46,7 @@ public class Hardware {
     public static DigitalInput[] autonoSwitches = {new DigitalInput(7),
                                                    new DigitalInput(8),
                                                    new DigitalInput(9)};
+    public static DigitalInput elbowSwitch = new DigitalInput(10);
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="Joysticks">
