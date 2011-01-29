@@ -14,11 +14,20 @@
 
  
 *--------DSOutput lines & their usage--------*
+***Current***
+  Line | Usage
+   1   | Robot state
+   2   | Lifter state
+   3   | Tape sensors binary value
+   4   | Current drive type
+   5   | Motor speeds (-128 to 128)
+   6   | CAN Errors (not being used yet)
 
+***Future Intention***
   Line | Usage
    1   | Robot state
    2   | Lifter state
    3   | Tape sensors
-   4   | Current drive
+   4   | ************
    5   | Errors
    6   | Errors

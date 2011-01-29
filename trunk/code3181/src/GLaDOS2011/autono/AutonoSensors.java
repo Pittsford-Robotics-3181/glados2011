@@ -15,7 +15,11 @@ public class AutonoSensors {
      * For use with Autonomous.  Keeps the robot moving along the line.
      */
     public static void moveOnLine(){
-        switch(getSensors()){
+        // Get sensor values and print descriptive message to the driver station
+        int sensorValue = getSensors();
+        Hardware.txtout.say(3, getSensorMessage());
+        // Drive based on sensor values
+        switch(sensorValue){
             case 1:
                 Hardware.drive.driveAtSpeed(.5, .5);
                 break;
@@ -33,7 +37,9 @@ public class AutonoSensors {
                 Hardware.drive.driveAtSpeed(.3, .7);
                 break;
         }
-        lastCase = getSensors();
+        if(sensorValue != 0){
+            lastCase = getSensors();
+        }
     }
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="public int AutonoSensors.getSensors()">
@@ -53,5 +59,21 @@ public class AutonoSensors {
     }
     // </editor-fold>
 
-
+    public static String getSensorMessage() {
+        // Pick descriptive message
+        switch(getSensors()){
+            case 1:
+                return "On tape, go forward   ";
+            case 7:
+                return "At T, stop            ";
+            case 0:
+                if(lastCase == 0 || lastCase == 1){
+                    return "Off tape, go right    ";
+                } else {
+                    return "Off tape, go left     ";
+                }
+            default:
+                return "Near tape, go left    ";
+        }
+    }
 }
