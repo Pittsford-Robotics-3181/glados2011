@@ -67,7 +67,7 @@ public class Lifter {
    // <editor-fold defaultstate="collapsed" desc="public static void Lifter.controlLifter()">
    /**
     * controlLifter() is a event machine. By default the lifterState is set
-    * to MAUNUAL_MODE. Button one and two move the robot up and down. Buttons
+    * to MANUAL_MODE. Button one and two move the robot up and down. Buttons
     * three through six move the lifter to a designated height.
     */
 

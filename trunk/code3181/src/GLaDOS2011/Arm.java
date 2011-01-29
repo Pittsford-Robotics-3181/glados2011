@@ -29,28 +29,34 @@ public class Arm {
         }
     }
 
-    //Moves Elbow in.
-    public static void elbowIn()
+    /**
+     * Moves Elbow in.
+     */
+    public static void moveElbowIn()
     {
         Hardware.elbowIn.set(true);
         Hardware.elbowOut.set(false);
     }
 
-    //Moves Elbow out
-    public static void elbowOut()
+    /**
+     * Moves Elbow Out
+     */
+    public static void moveElbowOut()
     {
         Hardware.elbowIn.set(false);
         Hardware.elbowOut.set(true);
     }
 
-    //Checks if elbow button is on.  If so it moves the elbow to the out position.
-    //else it moves the elbow to the in position.
+    /**
+     * Checks if elbow button is on.  If so it moves the elbow to the out position.
+     * else it moves the elbow to the in position.
+     */
     public static void elbowCheck()
     {
         if(Hardware.elbowSwitch.get())
-            elbowOut();
+            moveElbowOut();
         else
-            elbowIn();
+            moveElbowIn();
     }
     // </editor-fold>
 }
