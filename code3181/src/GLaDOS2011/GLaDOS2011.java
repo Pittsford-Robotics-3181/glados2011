@@ -53,7 +53,7 @@ public class GLaDOS2011 extends IterativeRobot {
         autonoMode = autonoMode + 1 * Utils.toInt(Hardware.autonoSwitches[2].get());
 
         Hardware.txtout.say(1, "State:  AUTONOMOUS " + autonoMode + "  ");
-        if(EnhancedIO.getDigital(11)){
+        if(!EnhancedIO.getDigital(11)){
             Hardware.txtout.say(2, "MODE: DEAD RECKONING  ");
         } else {
             Hardware.txtout.say(2, "MODE: SENSORS         ");
