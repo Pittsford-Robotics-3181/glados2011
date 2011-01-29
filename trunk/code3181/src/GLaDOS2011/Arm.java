@@ -3,6 +3,7 @@ package GLaDOS2011;
 /**
  * This class contains code that deals with the arm.
  * @author devarakonda yagnavaL
+ * @author Eric Lee
  */
 public class Arm {
     /**
@@ -26,6 +27,30 @@ public class Arm {
             Hardware.arm.set(-1.0);
 
         }
+    }
+
+    //Moves Elbow in.
+    public static void elbowIn()
+    {
+        Hardware.elbowIn.set(true);
+        Hardware.elbowOut.set(false);
+    }
+
+    //Moves Elbow out
+    public static void elbowOut()
+    {
+        Hardware.elbowIn.set(false);
+        Hardware.elbowOut.set(true);
+    }
+
+    //Checks if elbow button is on.  If so it moves the elbow to the out position.
+    //else it moves the elbow to the in position.
+    public static void elbowCheck()
+    {
+        if(Hardware.elbowSwitch.get())
+            elbowOut();
+        else
+            elbowIn();
     }
     // </editor-fold>
 }
