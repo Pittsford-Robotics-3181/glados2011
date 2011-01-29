@@ -124,7 +124,7 @@ public class PANJaguar {
      * Prints an error to the driver station.
      */
     private void printError() {
-        Hardware.txtout.say(6, "CANJaguar error on #"+location);
+        Hardware.txtout.say(6, "CAN error on #"+location);
     }
     // </editor-fold>
 }
