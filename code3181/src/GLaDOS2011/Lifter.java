@@ -30,7 +30,7 @@ public class Lifter {
      * these values.
      * @param heightUpper The target height
      */
-    private static void goToHeight(double heightTarget) {
+    public static void goToHeight(double heightTarget) {
         double heightUpper = heightTarget + HEIGHT_TOLERANCE;
         double heightLower = heightTarget - HEIGHT_TOLERANCE;
 
