@@ -1,7 +1,5 @@
 package GLaDOS2011;
 
-import GLaDOS2011.Hardware;
-
 /**
  * This class contains code that deals with the arm.
  * @author devarakonda yagnavaL
