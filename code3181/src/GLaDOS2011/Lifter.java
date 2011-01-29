@@ -127,8 +127,7 @@ public class Lifter {
       }
    }
 
-   private static void checkZone()
-   {
+   private static void checkZone() {
        if(heightSensor > 6.0 && heightSensor < 9.0 )
            lifterZone = ZONE_THREE;
        if(heightSensor > 3.0 && heightSensor < 6.0)
@@ -167,4 +166,23 @@ public class Lifter {
        }
    }*/
    // </editor-fold>
+
+   /**
+    * Returns the state in a string.
+    * @return A 4-letter String that signifies the lifterState.
+    */
+   public static String getState(){
+       switch(lifterState){
+           case AUTO_FLOOR:
+               return "FLR ";
+           case AUTO_FIRST_PEG:
+               return "Peg1";
+           case AUTO_SECOND_PEG:
+               return "Peg2";
+           case AUTO_THIRD_PEG:
+               return "Peg3";
+           default:
+               return "MAN ";
+       }
+   }
 }
