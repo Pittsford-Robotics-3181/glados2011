@@ -1,5 +1,6 @@
 package GLaDOS2011;
 
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Joystick;
@@ -48,6 +49,8 @@ public class Hardware {
     public static Joystick leftJoystick = new Joystick(1);
     public static Joystick rightJoystick = new Joystick(2);
     // </editor-fold>
+
+    public static Compressor compressor = new Compressor(14, 1);
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="Intangible Hardware">
