@@ -53,12 +53,12 @@ public class GLaDOS2011 extends IterativeRobot {
         autonoMode = autonoMode + 1 * Utils.toInt(Hardware.autonoSwitches[2].get());
         autonoMode = 2;
         Hardware.txtout.say(1, "State:  AUTONOMOUS " + autonoMode);
-        // EnhancedIO causes a null pointer exception right now
-        /*if(!EnhancedIO.getDigital(11)){
+        
+        if(EnhancedIO.getDigital(11)){
             Hardware.txtout.say(2, "MODE: DEAD RECKONING");
         } else {
             Hardware.txtout.say(2, "MODE: SENSORS");
-        }*/
+        }
         
         Hardware.gameTimer.reset();
         Hardware.gameTimer.start();

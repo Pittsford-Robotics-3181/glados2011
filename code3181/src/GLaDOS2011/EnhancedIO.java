@@ -10,18 +10,23 @@ import edu.wpi.first.wpilibj.DriverStationEnhancedIO.EnhancedIOException;
  */
 public class EnhancedIO extends DriverStation {
     private static DriverStationEnhancedIO IO;
+
     /**
      * Constructor. Instantiates IO object.
      */
     public EnhancedIO() {
         IO = Hardware.driverStation.getEnhancedIO();
     }
+
     /**
      * Gets a digital input.
      * @param channel Which channel to get
      * @return The returned boolean from the DriverStation
      */
     public static boolean getDigital(int channel) {
+        if(IO == null){
+            return false;
+        }
         boolean returnVal = false;
         try {
             returnVal = IO.getDigital(channel);
@@ -30,12 +35,16 @@ public class EnhancedIO extends DriverStation {
         }
         return returnVal;
     }
+
     /**
      * Gets an analog input.
      * @param channel Which channel to get
      * @return The returned double from the DriverStation
      */
     public static double getAnalog(int channel) {
+        if(IO == null){
+            return 0;
+        }
         double returnVal = 0;
         try {
             returnVal = IO.getAnalogIn(channel);
@@ -44,12 +53,16 @@ public class EnhancedIO extends DriverStation {
         }
         return returnVal;
     }
+    
     /**
      * Sets a digital output.
      * @param channel Which channel to set
      * @param value The value to set
      */
     public static void setDigital(int channel, boolean value) {
+        if(IO == null){
+            return;
+        }
         try {
             IO.setDigitalOutput(channel, value);
         } catch (EnhancedIOException ex) {
