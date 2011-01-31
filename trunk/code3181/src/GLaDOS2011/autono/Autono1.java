@@ -9,7 +9,7 @@ import GLaDOS2011.*;
 public class Autono1 {
     // <editor-fold defaultstate="collapsed" desc="public static void Autono1.run()">
     public static void run() {
-        if(false){
+        if(!EnhancedIO.getDigital(11)){
             AutonoSensors.moveOnLine();
         } else {
             double timerValue = Hardware.gameTimer.get();
