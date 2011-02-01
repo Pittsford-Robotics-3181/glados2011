@@ -15,14 +15,11 @@ import edu.wpi.first.wpilibj.IterativeRobot;
  * @author Eric
  */
 public class GLaDOS2011 extends IterativeRobot {
-    // <editor-fold defaultstate="collapsed" desc="Variables">
     // Autonomous mode
     int autonoMode = 0;
     // Low speed for testing
     final double LOW_SPEED = .05;
-    // </editor-fold>
 
-    // <editor-fold defaultstate="collapsed" desc="public void robotInit()">
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
@@ -32,10 +29,7 @@ public class GLaDOS2011 extends IterativeRobot {
         Hardware.txtout.clearOutput();
         Hardware.txtout.say(1, "State:    DISABLED");
     }
-    // </editor-fold>
 
-    // <editor-fold defaultstate="collapsed" desc="Autonomous Methods">
-    // <editor-fold defaultstate="collapsed" desc="public void autonomousInit()">
     /**
      * This function is run when autonomous mode begins. It determines which
      * autonomous mode we are using and starts the timer and compressor.
@@ -65,9 +59,7 @@ public class GLaDOS2011 extends IterativeRobot {
 
         Hardware.compressor.start();
     }
-    // </editor-fold>
 
-    // <editor-fold defaultstate="collapsed" desc="public void autonomousPeriodic()">
     /**
      * This function is called periodically during autonomous. It runs the
      * selected autonomous mode.
@@ -95,12 +87,7 @@ public class GLaDOS2011 extends IterativeRobot {
                 break;
         }
     }
-    // </editor-fold>
-    // </editor-fold>
 
-    // <editor-fold defaultstate="collapsed" desc="Teleoperated Methods">
-
-    // <editor-fold defaultstate="collapsed" desc="public void teleopInit()">
     public void teleopInit() {
         Hardware.txtout.clearOutput();
         Hardware.txtout.say(1, "State:  TELEOPERATED");
@@ -109,9 +96,7 @@ public class GLaDOS2011 extends IterativeRobot {
             Hardware.txtout.say(i, "This is line " + i + ".");
         Hardware.compressor.start();
     }
-    // </editor-fold>
 
-    // <editor-fold defaultstate="collapsed" desc="public void teleopPeriodic()">
     /**
      * This function is called periodically during operator control.
      */
@@ -163,13 +148,13 @@ public class GLaDOS2011 extends IterativeRobot {
         Arm.elbowCheck();
 
     }
-    // </editor-fold>
-    // </editor-fold>
+    
 
-     /**
-      * Shows data on driver station dashboard.
-      */
-     void updateDashboard() {
+     // <editor-fold defaultstate="collapsed" desc="void GlaDOS2011.updateDashboard()">
+    /**
+     * Shows data on driver station dashboard.
+     */
+    void updateDashboard() {
         Dashboard lowDashData = DriverStation.getInstance().getDashboardPackerLow();
         lowDashData.addCluster();
         {
@@ -248,4 +233,5 @@ public class GLaDOS2011 extends IterativeRobot {
         lowDashData.commit();
 
     }
+    // </editor-fold>
 }

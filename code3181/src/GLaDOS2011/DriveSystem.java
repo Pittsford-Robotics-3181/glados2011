@@ -5,8 +5,6 @@ package GLaDOS2011;
  * @author Ben
  */
 public class DriveSystem {
-
-    // <editor-fold defaultstate="collapsed" desc="public void DriveSystem.driveAtSpeed(double leftSpeed, double rightSpeed)">
     /**
      * This method sets the motor speeds to the given parameters.
      * @param leftSpeed The target left speed
@@ -21,9 +19,7 @@ public class DriveSystem {
         Hardware.leftJag.set(leftSpeed);
         Hardware.rightJag.set(-rightSpeed);
     }
-    // </editor-fold>
 
-    // <editor-fold defaultstate="collapsed" desc="public void DriveSystem.stop()">
     /**
      * Stops the robot.
      */
@@ -32,7 +28,6 @@ public class DriveSystem {
         Hardware.rightJag.set(0);
         Hardware.compressor.stop();
     }
-    // </editor-fold>
 
     /**
      * Overrides default toString.

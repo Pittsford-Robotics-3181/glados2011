@@ -8,21 +8,15 @@ import edu.wpi.first.wpilibj.DriverStationLCD;
  * @author Ben
  */
 public class DSOutput {
-    
-    // <editor-fold defaultstate="collapsed" desc="Variables">
     static DriverStationLCD output;
-    // </editor-fold>
 
-    // <editor-fold defaultstate="collapsed" desc="Constructor">
     /**
      * Make a new DSOutput instance.  Not hard.
      */
     public DSOutput() {
         output = DriverStationLCD.getInstance();
     }
-    // </editor-fold>
 
-    // <editor-fold defaultstate="collapsed" desc="public void DSOutput.say(int ln, String msg)">
     /**
      * Display a line of text without scrolling.  Max 21 characters / line.
      * @param ln Which line to print in
@@ -60,9 +54,7 @@ public class DSOutput {
         // Show the message
         output.updateLCD();
     }
-    // </editor-fold>
 
-    // <editor-fold defaultstate="collapsed" desc="public void DSOutput.clearOutput()">
     /**
      * Clear the entire output box.
      */
@@ -74,5 +66,4 @@ public class DSOutput {
         say(5, "");
         say(6, "");
     }
-    // </editor-fold>
 }

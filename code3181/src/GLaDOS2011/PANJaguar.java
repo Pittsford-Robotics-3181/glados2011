@@ -9,7 +9,6 @@ import edu.wpi.first.wpilibj.can.CANTimeoutException;
  * @author Ben
  */
 public class PANJaguar {
-    // <editor-fold defaultstate="collapsed" desc="Variables">
     // The two Jaguars that will be created
     private Jaguar PWMJag;
     private CANJaguar CANJag;
@@ -25,9 +24,7 @@ public class PANJaguar {
     public static final double Kp = .05; // proportional constant
     public static final double Ki = 0; //integral constant
     public static final double Kd = 0; // derivative constant
-    // </editor-fold>
 
-    // <editor-fold defaultstate="collapsed" desc="Constructor">
     /**
      * Constructor that creates the two Jaguars: one PWM, one CAN
      * @param jagNumber The location of the Jaguar(s)
@@ -48,9 +45,7 @@ public class PANJaguar {
             }
         }
     }
-    // </editor-fold>
 
-    // <editor-fold defaultstate="collapsed" desc="public void PANJaguar.set(double value)">
     /**
      * Sets the motor(s) to the given value with linear ramping for PWM and
      * built-in PID for CAN.
@@ -66,7 +61,6 @@ public class PANJaguar {
             }
         }
     }
-    // </editor-fold>
 
     /**
      * Gets the current speed
@@ -84,7 +78,6 @@ public class PANJaguar {
         return returnVal;
     }
 
-    // <editor-fold defaultstate="collapsed" desc="public double PANJaguar.getOutputCurrent()">
     /**
      * Gets the current from the CANJaguar.
      * @return The current, if CAN is working; 0, otherwise
@@ -100,9 +93,7 @@ public class PANJaguar {
         }
         return 0;
     }
-    // </editor-fold>
 
-    // <editor-fold defaultstate="collapsed" desc="public double PANJaguar.getOutputVoltage()">
     /**
      * Gets the voltage from the CANJaguar.
      * @return The voltage, if CAN is working; 0, otherwise
@@ -118,14 +109,11 @@ public class PANJaguar {
         }
         return 0;
     }
-    // </editor-fold>
 
-    // <editor-fold defaultstate="collapsed" desc="private void PANJaguar.printError()">
     /**
      * Prints an error to the driver station.
      */
     private void printError() {
         Hardware.txtout.say(6, "CAN error on Jag "+location);
     }
-    // </editor-fold>
 }
