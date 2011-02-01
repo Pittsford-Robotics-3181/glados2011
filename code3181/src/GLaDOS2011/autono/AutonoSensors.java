@@ -18,7 +18,7 @@ public class AutonoSensors {
     public static void moveOnLine(){
         // Get sensor values and print descriptive message to the driver station
         int sensorValue = getSensors();
-        Hardware.txtout.say(3, Utils.toBinary(sensorValue) + ": " + getSensorMessage());
+        Hardware.txtout.say(3, (Hardware.leftSensor.get() ? "1" : "0") + (Hardware.centerSensor.get() ? "1" : "0") + (Hardware.rightSensor.get() ? "1" : "0") + ": " + getSensorMessage());
         // Drive based on sensor values
         switch(sensorValue){
             case 1:
