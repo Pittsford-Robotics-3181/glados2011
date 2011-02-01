@@ -30,10 +30,10 @@ public class Utils {
     /**
      * Checks if a value is small enough to be considered zero.
      * @param value The value to check
-     * @return 0, if value is less than .05; value, otherwise
+     * @return 0, if abs(value) is less than .05; value, otherwise
      */
     public static double checkForSmall(double value) {
-        if(value < .05)
+        if(Math.abs(value) < .05)
             return 0;
         return value;
     }

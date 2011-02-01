@@ -19,7 +19,7 @@ public class DriveSystem {
             Hardware.integral[1] = 0;
         }
 
-        // Make speeds zero if they are small enough (<.05)
+        // Make speeds zero if they are too small
         leftSpeed = Utils.checkForSmall(leftSpeed);
         rightSpeed = Utils.checkForSmall(rightSpeed);
 
