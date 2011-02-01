@@ -39,10 +39,12 @@ public class Hardware {
     public static Solenoid elbowIn = new Solenoid(7);
 
     // Motors
-    public static PANJaguar leftJag = new PANJaguar(6);
-    public static PANJaguar rightJag = new PANJaguar(7);
-    public static PANJaguar arm = new PANJaguar(5);
-    public static PANJaguar lifter = new PANJaguar(2);
+    public static PANJaguar leftMotorI = new PANJaguar(6);
+    public static PANJaguar leftMotorII = new PANJaguar(7);
+    public static PANJaguar rightMotorI = new PANJaguar(5);
+    public static PANJaguar rightMotorII = new PANJaguar(2);
+    public static PANJaguar arm = new PANJaguar(3);
+    public static PANJaguar lifter = new PANJaguar(4);
 
     public static Victor topClaw = new Victor(4,9);
     public static Victor bottomClaw = new Victor(4,8);
