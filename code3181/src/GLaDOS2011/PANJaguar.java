@@ -16,7 +16,7 @@ public class PANJaguar {
     // The channel and device number
     public int location;
     // Whether or not CAN is working
-    public boolean CANEnabled = false;
+    public boolean CANEnabled = true;
     // The maximum allowed voltage
     public final double MAX_VOLTAGE = 1.0;
     // The time the Jaguar waits before recovering from a fault
@@ -42,6 +42,7 @@ public class PANJaguar {
                 CANJag.setPID(Kp, Ki, Kd);
                 CANJag.configMaxOutputVoltage(MAX_VOLTAGE);
                 CANJag.configFaultTime(FAULT_TIME);
+                Hardware.txtout.say(5, "CAN working");
             } catch (CANTimeoutException ex) {
                 printError();
             }
@@ -124,7 +125,7 @@ public class PANJaguar {
      * Prints an error to the driver station.
      */
     private void printError() {
-        Hardware.txtout.say(6, "CAN error on #"+location);
+        Hardware.txtout.say(6, "CAN error on Jag "+location);
     }
     // </editor-fold>
 }

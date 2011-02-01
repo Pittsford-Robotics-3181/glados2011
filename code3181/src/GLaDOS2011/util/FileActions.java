@@ -14,7 +14,7 @@ import com.sun.squawk.microedition.io.FileConnection;
  * @author Ben
  */
 public class FileActions {
-    
+
     // <editor-fold defaultstate="collapsed" desc="public static string FileActions.formatData(String data)">
     /**
      * This method formats data from the tape sensors and writes it to a log file.
@@ -22,7 +22,7 @@ public class FileActions {
      * @return The formatted data
      */
     public static void writeTapeSensors(int sensorValue) {
-        addLine("tapesensordata.txt", Hardware.gameTimer.get() + ": " + Utils.toBinary(sensorValue));
+        addLine("C:/tapesensordata.txt", Hardware.gameTimer.get() + ": " + Utils.toBinary(sensorValue));
     }
     // </editor-fold>
 
