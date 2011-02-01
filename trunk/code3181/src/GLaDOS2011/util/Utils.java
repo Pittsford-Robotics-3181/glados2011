@@ -5,7 +5,6 @@ package GLaDOS2011.util;
  * @author Ben
  */
 public class Utils {
-    // <editor-fold defaultstate="collapsed" desc="public static int Utils.toInt(boolean bool)">
     /**
      * Converts a boolean to 0 or 1.
      * @param bool The boolean to convert
@@ -14,7 +13,6 @@ public class Utils {
     public static int toInt(boolean bool) {
         return bool ? 1 : 0;
     }
-    // </editor-fold>
 
     /**
      * Converts value to a 3-digit binary number.

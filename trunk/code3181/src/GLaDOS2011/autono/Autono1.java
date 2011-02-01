@@ -7,7 +7,6 @@ import GLaDOS2011.*;
  * @author Chris Cheng
  */
 public class Autono1 {
-    // <editor-fold defaultstate="collapsed" desc="public static void Autono1.run()">
     public static void run() {
         if(!EnhancedIO.getDigital(11)){
             AutonoSensors.moveOnLine();
@@ -27,5 +26,4 @@ public class Autono1 {
             }
         }
     }
-    // </editor-fold>
 }
