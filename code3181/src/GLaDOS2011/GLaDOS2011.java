@@ -30,6 +30,9 @@ public class GLaDOS2011 extends IterativeRobot {
         Hardware.txtout.say(1, "State:    DISABLED");
     }
 
+
+    //------------$*$*$*$*$*$*$*$*AUTONOMOUS METHODS*$*$*$*$*$*$*$*$------------//
+
     /**
      * This function is run when autonomous mode begins. It determines which
      * autonomous mode we are using and starts the timer and compressor.
@@ -87,6 +90,9 @@ public class GLaDOS2011 extends IterativeRobot {
                 break;
         }
     }
+
+
+    //------------$*$*$*$*$*$*$*$*TELEOP METHODS*$*$*$*$*$*$*$*$------------//
 
     public void teleopInit() {
         Hardware.txtout.clearOutput();
