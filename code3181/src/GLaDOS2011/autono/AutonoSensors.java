@@ -12,7 +12,6 @@ public class AutonoSensors {
     // The last sensor value. Used so that we know what to do when all sensors are false.
     private static int lastCase;
     
-    // <editor-fold defaultstate="collapsed" desc="public static void AutonoSensors.moveOnLine()">
     /**
      * For use with Autonomous.  Keeps the robot moving along the line.
      */
@@ -50,7 +49,6 @@ public class AutonoSensors {
             lastCase = sensorValue;
         }
     }
-    // </editor-fold>
 
     /**
      * Picks a message that tells the drivers what we want to do, based on the
@@ -74,7 +72,6 @@ public class AutonoSensors {
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="public int AutonoSensors.getSensors()">
     /**
      * Reads the current sensor values and returns the reading as an int.
      * @return The sensor values in binary form
@@ -89,5 +86,4 @@ public class AutonoSensors {
         returnVal = returnVal + 1 * Utils.toInt(Hardware.rightSensor.get());
         return returnVal;
     }
-    // </editor-fold>
 }
