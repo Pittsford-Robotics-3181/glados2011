@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.DriverStationEnhancedIO;
 import edu.wpi.first.wpilibj.DriverStationEnhancedIO.EnhancedIOException;
 
 /**
- *
+ * A method to get input from the Driver Station.
  * @author Ben
  */
 public class EnhancedIO extends DriverStation {

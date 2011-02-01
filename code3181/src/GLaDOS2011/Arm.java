@@ -17,6 +17,10 @@ public class Arm {
         Hardware.arm.set(speed);
     }
 
+    /**
+     * Moves the arm at full speed either up or down.
+     * @param up TRUE to bring the arm up.  FALSE to bring the arm down.
+     */
     public void setMovement(boolean up) {
         if (up) {
             Hardware.arm.set(1.0);
