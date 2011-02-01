@@ -23,6 +23,13 @@ public class Hardware {
     static final double RAMPING_CONSTANT = .015;
     // </editor-fold>
 
+    // <editor-fold defaultstate="collapsed" desc="Intangible Hardware">
+    public static DSOutput txtout = new DSOutput();
+    public static DriveSystem drive = new DriveSystem();
+    public static DriverStation driverStation;
+    public static Timer gameTimer = new Timer();
+    // </editor-fold>
+
     // <editor-fold defaultstate="collapsed" desc="Tangible Hardware">
     public static Solenoid elbowOut = new Solenoid(6);
     public static Solenoid elbowIn = new Solenoid(7);
@@ -33,12 +40,12 @@ public class Hardware {
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="Motors">
-    public static PANJaguar leftJag = new PANJaguar(10);
-    public static PANJaguar rightJag = new PANJaguar(2);
-    public static PANJaguar arm = new PANJaguar(4);
-    public static PANJaguar lifter = new PANJaguar(5);
+    public static PANJaguar leftJag = new PANJaguar(6);
+    public static PANJaguar rightJag = new PANJaguar(7);
+    public static PANJaguar arm = new PANJaguar(5);
+    public static PANJaguar lifter = new PANJaguar(2);
 
-    public static Victor topClaw = new Victor(4,7);
+    public static Victor topClaw = new Victor(4,9);
     public static Victor bottomClaw = new Victor(4,8);
     // </editor-fold>
 
@@ -56,13 +63,6 @@ public class Hardware {
     // </editor-fold>
 
     public static Compressor compressor = new Compressor(14, 1);
-    // </editor-fold>
-
-    // <editor-fold defaultstate="collapsed" desc="Intangible Hardware">
-    public static DSOutput txtout = new DSOutput();
-    public static DriveSystem drive = new DriveSystem();
-    public static DriverStation driverStation;
-    public static Timer gameTimer = new Timer();
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="public static boolean Hardware.checkButton(int button)">
