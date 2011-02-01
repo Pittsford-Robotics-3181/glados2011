@@ -14,7 +14,7 @@ public class Autono2 {
             double timerValue = Hardware.gameTimer.get();
             if(timerValue < 1){
                 Hardware.drive.driveAtSpeed(.75, .75);
-                Claw.roll(true, .5);
+                Claw.roll(.5);
             }else if(timerValue < 3){
                 Hardware.drive.driveAtSpeed(-0.1, 0.1);
                 Claw.stop();
@@ -26,7 +26,7 @@ public class Autono2 {
             }else if(timerValue < 5){
                 Lifter.goToHeight(9.0);
             }else if(timerValue < 7){
-                Claw.tubeIn_Out(false, .5);
+                Claw.tubeIn_Out(-0.5);
             }else{
                 Claw.stop();
             }

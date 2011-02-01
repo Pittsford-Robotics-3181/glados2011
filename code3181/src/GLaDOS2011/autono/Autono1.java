@@ -14,13 +14,13 @@ public class Autono1 {
             double timerValue = Hardware.gameTimer.get();
             if(timerValue < 1){
                 Hardware.drive.driveAtSpeed(.75, .75);
-                Claw.roll(true, .5);
+                Claw.roll(.5);
             }else if(timerValue < 3){
                 Hardware.drive.driveAtSpeed(0, 0);
                 Lifter.goToHeight(9.0);
                 Claw.stop();
             }else if(timerValue < 5){
-                Claw.tubeIn_Out(false, .5);
+                Claw.tubeIn_Out(-0.5);
             }else{
                 Claw.stop();
             }
