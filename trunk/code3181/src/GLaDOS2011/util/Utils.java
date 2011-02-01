@@ -26,4 +26,15 @@ public class Utils {
         returnString += value & 1;
         return returnString;
     }
+
+    /**
+     * Checks if a value is small enough to be considered zero.
+     * @param value The value to check
+     * @return 0, if value is less than .05; value, otherwise
+     */
+    public static double checkForSmall(double value) {
+        if(value < .05)
+            return 0;
+        return value;
+    }
 }

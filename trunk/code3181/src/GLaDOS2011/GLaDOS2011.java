@@ -18,7 +18,7 @@ public class GLaDOS2011 extends IterativeRobot {
     // Autonomous mode
     int autonoMode = 0;
     // Low speed for testing
-    final double LOW_SPEED = .05;
+    final double LOW_SPEED = .07;
 
     /**
      * This function is run when the robot is first started up and should be
