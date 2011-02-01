@@ -143,6 +143,9 @@ public class Lifter {
       }
    }
 
+   /**
+    * Checks to see which zone the lifter is in.
+    */
    private static void checkZone() {
        if(heightSensor > 6.0 && heightSensor < 9.0 )
            lifterZone = ZONE_THREE;
