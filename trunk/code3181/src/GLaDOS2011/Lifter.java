@@ -6,7 +6,6 @@ package GLaDOS2011;
  * A class for the lifter.
  */
 public class Lifter {
-   // <editor-fold defaultstate="collapsed" desc="Variables">
    public static double heightSensor; // temporary
    static double lifterSpeed = 0.3;
    static final double HEIGHT_TOLERANCE = 0.1;
@@ -22,9 +21,8 @@ public class Lifter {
    private static final int AUTO_SECOND_PEG = 3;
    private static final int AUTO_THIRD_PEG = 4;
    private static int lifterState = 0;
-   // </editor-fold>
 
-   // <editor-fold defaultstate="collapsed" desc="private static void Lifter.goToHeight(double heightUpper)">
+
     /**
      * Intakes two double values and moves the lifter to a location in between
      * these values.
@@ -51,9 +49,8 @@ public class Lifter {
             lifterState = MANUAL_MODE;
         }
     }
-    // </editor-fold>
 
-   // <editor-fold defaultstate="collapsed" desc="private static void Lifter.abort()">
+
     /**
      * If button seven is pressed the lift motor is set to stop
      */
@@ -62,9 +59,8 @@ public class Lifter {
             Hardware.lifter.set(0.0);
         }
     }
-    // </editor-fold>
 
-   // <editor-fold defaultstate="collapsed" desc="public static void Lifter.controlLifter()">
+
    /**
     * controlLifter() is a event machine. By default the lifterState is set
     * to MANUAL_MODE. Button one and two move the robot up and down. Buttons
@@ -185,7 +181,6 @@ public class Lifter {
 
        }
    }*/
-   // </editor-fold>
 
    /**
     * Returns the state in a string.

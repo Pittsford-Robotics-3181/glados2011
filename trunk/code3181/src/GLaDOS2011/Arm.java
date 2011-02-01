@@ -13,12 +13,10 @@ public class Arm {
      * @param speed Double ranging from -1.0 to 1.0
      *
      */
-    // <editor-fold defaultstate="collapsed" desc="public void setSpeed(double speed)">
     public void setSpeed(double speed) {
         Hardware.arm.set(speed);
     }
-    // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc="public void setMovement(boolean up)">
+
     public void setMovement(boolean up) {
         if (up) {
             Hardware.arm.set(1.0);
@@ -58,6 +56,5 @@ public class Arm {
         else
             moveElbowIn();
     }
-    // </editor-fold>
 }
 
