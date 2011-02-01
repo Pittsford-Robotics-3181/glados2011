@@ -9,7 +9,8 @@ import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.Solenoid;
 
 /**
- * This is the hardware wrapper for our bot.
+ * This is the hardware wrapper for our bot. Everything is static, allowing for
+ * easy access.
  * @author Chris Cheng
  * @author Ben
  * @author Eric Lee
@@ -17,22 +18,27 @@ import edu.wpi.first.wpilibj.Solenoid;
  */
 public class Hardware {
 
+    // Constants
     static final int LEFT = 0;
     static final int RIGHT = 1;
     static final double RAMPING_CONSTANT = .015;
 
+    // Pseudohardware
     public static DSOutput txtout = new DSOutput();
     public static DriveSystem drive = new DriveSystem();
     public static DriverStation driverStation;
     public static Timer gameTimer = new Timer();
 
-    public static Solenoid elbowOut = new Solenoid(6);
-    public static Solenoid elbowIn = new Solenoid(7);
-
+    // Digital inputs
     public static DigitalInput leftSensor = new DigitalInput(1);
     public static DigitalInput centerSensor = new DigitalInput(2);
     public static DigitalInput rightSensor = new DigitalInput(3);
 
+    // Solenoids
+    public static Solenoid elbowOut = new Solenoid(6);
+    public static Solenoid elbowIn = new Solenoid(7);
+
+    // Motors
     public static PANJaguar leftJag = new PANJaguar(6);
     public static PANJaguar rightJag = new PANJaguar(7);
     public static PANJaguar arm = new PANJaguar(5);
@@ -41,15 +47,23 @@ public class Hardware {
     public static Victor topClaw = new Victor(4,9);
     public static Victor bottomClaw = new Victor(4,8);
 
+    // Autonomous switches (may be changed in future to EnhancedIO)
     public static DigitalInput[] autonoSwitches = {new DigitalInput(7),
                                                    new DigitalInput(8),
                                                    new DigitalInput(9)};
+
+    // Limit switch for elbow
     public static DigitalInput elbowSwitch = new DigitalInput(10);
 
+    //Joystick
     public static Joystick leftJoystick = new Joystick(1);
     public static Joystick rightJoystick = new Joystick(2);
 
+    //Compressor
     public static Compressor compressor = new Compressor(14, 1);
+
+
+    //------------$*$*$*$*$*$*$*$*METHODS*$*$*$*$*$*$*$*$------------//
 
     /**
      * Checks if a specific button is pressed on either joystick
@@ -61,7 +75,6 @@ public class Hardware {
             return true;
         return false;
     }
-
 
     /**
      * Checks if a specific button is pressed on one specified joystick
@@ -107,6 +120,8 @@ public class Hardware {
     }
 
 
+    //------------$*$*$*$*$*$*$*$*PID CONTROL*$*$*$*$*$*$*$*$------------//
+
     //PID constants
     public static final double Kp = .05; // proportional constant
     public static final double Ki = 0; //integral constant
@@ -122,7 +137,7 @@ public class Hardware {
     /**
      * This method uses the proportional, integral, derivative controller to
      * ramp the current speed to the target speed.
-     * THIS METHOD IS NOT BEING USED RIGHT NOW.
+     * THIS METHOD IS NOT BEING USED RIGHT NOW. If you want to use this, REMOVE THIS LINE!
      * @param target The target speed
      * @param side Which side the PID is affecting
      * @return The ramped speed
