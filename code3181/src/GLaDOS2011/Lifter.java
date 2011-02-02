@@ -8,7 +8,7 @@ package GLaDOS2011;
 public class Lifter {
    public static double heightSensor; // temporary
    static double lifterSpeed = 0.3;
-   static final double HEIGHT_TOLERANCE = 0.1;
+   static final double HEIGHT_TOLERANCE = 0.2;
 
    private static int lifterZone;
    private static final int ZONE_THREE = 3;
@@ -29,6 +29,10 @@ public class Lifter {
      * @param heightUpper The target height
      */
     public static void goToHeight(double heightTarget) {
+
+        //converts ultrasonic output to feet
+        heightTarget = heightTarget * 512.0 / 12;
+
         double heightUpper = heightTarget + HEIGHT_TOLERANCE;
         double heightLower = heightTarget - HEIGHT_TOLERANCE;
 
