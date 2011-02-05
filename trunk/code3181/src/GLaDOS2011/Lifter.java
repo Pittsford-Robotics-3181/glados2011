@@ -94,6 +94,8 @@ public class Lifter {
     * three through six move the lifter to a designated height.
     */
     public static void controlLifter() {
+      checkState();
+      
       switch(lifterState) {
           case MANUAL_MODE:
               if(EnhancedIO.getDigital(1))
@@ -102,44 +104,26 @@ public class Lifter {
               else if(EnhancedIO.getDigital(2))
                   goToHeight(0.2);
 
-              else if(EnhancedIO.getDigital(3))
-                  lifterState = AUTO_FLOOR;
-
-              else if(EnhancedIO.getDigital(4))
-                  lifterState = AUTO_FIRST_PEG;
-
-              else if(EnhancedIO.getDigital(5))
-                  lifterState = AUTO_SECOND_PEG;
-
-              else if(EnhancedIO.getDigital(6))
-                  lifterState = AUTO_THIRD_PEG;
-
               else
                   Hardware.lifter.set(0.0);
               break;
 
           case AUTO_FLOOR:
-              if(EnhancedIO.getDigital(1) || EnhancedIO.getDigital(2))
-                  lifterState = MANUAL_MODE;
               goToHeight(0.2);
               abort();
               break;
 
           case AUTO_FIRST_PEG:
-               if(EnhancedIO.getDigital(1) || EnhancedIO.getDigital(2))
-                   lifterState = MANUAL_MODE;
               goToHeight(3.0);
               abort();
               break;
+
           case AUTO_SECOND_PEG:
-              if(EnhancedIO.getDigital(1) || EnhancedIO.getDigital(2))
-                   lifterState = MANUAL_MODE;
               goToHeight(6.0);
               abort();
               break;
+
           case AUTO_THIRD_PEG:
-              if(EnhancedIO.getDigital(1) || EnhancedIO.getDigital(2))
-                   lifterState = MANUAL_MODE;
               goToHeight(9.0);
               abort();
               break;
@@ -158,6 +142,28 @@ public class Lifter {
        if (heightSensor > 0.0 && heightSensor < 3.0)
            lifterZone = ZONE_ONE;
    }
+   
+   private static void checkState()
+   {
+       if(EnhancedIO.getDigital(1))
+           lifterState = MANUAL_MODE;
+
+       else if(EnhancedIO.getDigital(2))
+           lifterState = MANUAL_MODE;
+
+       else if(EnhancedIO.getDigital(3))
+           lifterState = AUTO_FLOOR;
+
+       else if(EnhancedIO.getDigital(4))
+           lifterState = AUTO_FIRST_PEG;
+
+       else if(EnhancedIO.getDigital(5))
+           lifterState = AUTO_SECOND_PEG;
+
+       else if(EnhancedIO.getDigital(6))
+           lifterState = AUTO_THIRD_PEG;
+   }
+
 
    /* SAVE FOR LATER
     private static void lifterAuto()
