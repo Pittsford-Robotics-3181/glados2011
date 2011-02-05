@@ -11,6 +11,7 @@ import GLaDOS2011.util.*;
 public class AutonoSensors {
     // The last sensor value. Used so that we know what to do when all sensors are false.
     private static int lastCase;
+    public static boolean atEnd = false;
     
     /**
      * For use with Autonomous.  Keeps the robot moving along the line.
@@ -27,6 +28,7 @@ public class AutonoSensors {
                 break;
             case 7:
                 // Stop
+                atEnd = true;
                 Hardware.drive.driveAtSpeed(0, 0);
                 break;
             case 0:
@@ -58,17 +60,17 @@ public class AutonoSensors {
     public static String getSensorMessage() {
         switch(getSensors()){
             case 1:
-                return "On, go forward        ";
+                return "On, go forward";
             case 7:
-                return "At T, stop            ";
+                return "At T, stop";
             case 0:
                 if(lastCase == 0 || lastCase == 1){
-                    return "Off, go right     ";
+                    return "Off, go right";
                 } else {
-                    return "Off, go left      ";
+                    return "Off, go left";
                 }
             default:
-                return "Near, go left         ";
+                return "Near, go left";
         }
     }
 

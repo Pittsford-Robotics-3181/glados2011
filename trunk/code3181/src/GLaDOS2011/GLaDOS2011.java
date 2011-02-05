@@ -102,6 +102,7 @@ public class GLaDOS2011 extends IterativeRobot {
         for(int i=2; i<7; i++)
             Hardware.txtout.say(i, "This is line " + i + ".");
         Hardware.compressor.start();
+        Hardware.gameTimer.start();
     }
 
     /**
@@ -115,34 +116,44 @@ public class GLaDOS2011 extends IterativeRobot {
         double rightSpeed = 0;
         String message = "";
 
+        // Gear shifting
+        if(Hardware.checkCurrentSpike()){
+            Hardware.shiftGear(2);
+        }else if(Hardware.checkButton(8)){
+            Hardware.shiftGear(1);
+        } else if(Hardware.checkButton(9)){
+            Hardware.shiftGear(2);
+        }
+
+        // Driving
         if(Hardware.checkButton(1)){
             // 70% speed button
             leftSpeed = Hardware.leftJoystick.getY() * .7;
             rightSpeed = Hardware.rightJoystick.getY() * .7;
-            message = "70% speed";
+            message = "70% speed  ";
         } else {
             // Regular speed
             leftSpeed = Hardware.leftJoystick.getY();
             rightSpeed = Hardware.rightJoystick.getY();
-            message = "Regular   ";
+            message = "Regular    ";
         }
         // The low speed buttons will probably be removed soon
         if(Hardware.checkButton(2, Hardware.LEFT)){
             // Low speed button for testing
             leftSpeed = LOW_SPEED;
-            message = "Low speed ";
+            message = "Low speed  ";
         }
         if(Hardware.checkButton(2, Hardware.RIGHT)){
             // Low speed button for testing
             rightSpeed = LOW_SPEED;
-            message = "Low speed ";
+            message = "Low speed  ";
         }
         if(Hardware.checkButton(3)){
             // Stop button
             // This shouldn't be used.
             leftSpeed = 0;
             rightSpeed = 0;
-            message = "Stopped   ";
+            message = "Stopped    ";
         }
         // Actually drive
         Hardware.drive.driveAtSpeed(leftSpeed, rightSpeed);

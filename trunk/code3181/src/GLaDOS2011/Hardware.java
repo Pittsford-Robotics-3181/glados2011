@@ -22,6 +22,10 @@ public class Hardware {
     static final int LEFT = 0;
     static final int RIGHT = 1;
     static final double RAMPING_CONSTANT = .015;
+    static final double MAX_CURRENT = 40.0;
+
+    // Other primitive
+    public static int gearMode = 1;
 
     // Pseudohardware
     public static DSOutput txtout = new DSOutput();
@@ -35,6 +39,8 @@ public class Hardware {
     public static DigitalInput rightSensor = new DigitalInput(3);
 
     // Solenoids
+    public static Solenoid leftGearShift = new Solenoid(3);
+    public static Solenoid rightGearShift = new Solenoid(4);
     public static Solenoid elbowOut = new Solenoid(6);
     public static Solenoid elbowIn = new Solenoid(7);
 
@@ -121,6 +127,28 @@ public class Hardware {
         return currentSpeed;
     }
 
+    /**
+     * Shifts the gear. We need more info on how the solenoids shift the gear.
+     * This probably won't work, but it's a start.
+     * @param mode Which gear to shift to
+     */
+    public static void shiftGear(int mode) {
+        boolean high = (mode == 1);
+        leftGearShift.set(high);
+        rightGearShift.set(high);
+        gearMode = mode;
+    }
+
+    /**
+     * See if one of the drive motors is drawing too much current.
+     * @return Whether there is a current spike
+     */
+    public static boolean checkCurrentSpike() {
+        return leftMotorI.getOutputCurrent() > MAX_CURRENT ||
+               leftMotorII.getOutputCurrent() > MAX_CURRENT ||
+               rightMotorI.getOutputCurrent() > MAX_CURRENT ||
+               rightMotorII.getOutputCurrent() > MAX_CURRENT;
+    }
 
     //------------$*$*$*$*$*$*$*$*PID CONTROL*$*$*$*$*$*$*$*$------------//
 

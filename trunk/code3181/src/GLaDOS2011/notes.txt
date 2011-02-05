@@ -6,8 +6,8 @@
   5: ************
   6: go up a lifter state
   7: go down a lifter state
-  8: ************
-  9: ************
+  8: shift to gear 1
+  9: shift to gear 2
   10: go to .2 meters
   11: go to 9 meters
 
