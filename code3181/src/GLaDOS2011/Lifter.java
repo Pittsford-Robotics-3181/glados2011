@@ -64,35 +64,11 @@ public class Lifter {
         }
     }
 
-
-  
-    /* SAVE FOR LATER... change name of method
-
-     * public static void Lifter()
-    {
-        if(lifterState != MANUAL_MODE)
-        {
-            if(Hardware.checkButton(6))
-                lifterState = lifterState + 1;
-            else if(Hardware.checkButton(7))
-                lifterState = lifterState - 1;
-            else if(Hardware.checkButton(11) || Hardware.checkButton(10))
-                lifterState = MANUAL_MODE;
-            controlLifter();
-        }
-        else
-        {
-            checkZone();
-            lifterAuto();
-            controlLifter();
-        }
-    }*/
-
     /**
-    * controlLifter() is a event machine. By default the lifterState is set
-    * to MANUAL_MODE. Button one and two move the robot up and down. Buttons
-    * three through six move the lifter to a designated height.
-    */
+     * controlLifter() is a event machine. By default the lifterState is set
+     * to MANUAL_MODE. Button one and two move the robot up and down. Buttons
+     * three through six move the lifter to a designated height.
+     */
     public static void controlLifter() {
       checkState();
       
@@ -220,6 +196,6 @@ public class Lifter {
     * @return The height in feet
     */
    public static double getHeight() {
-       return Math.sin(Hardware.gameTimer.get()/2)*9;
+       return Math.sin(Hardware.gameTimer.get()/1.5)*4+4;
    }
 }
