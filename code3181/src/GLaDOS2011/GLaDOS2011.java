@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.Dashboard;
 import edu.wpi.first.wpilibj.DigitalModule;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Solenoid;
 
 /**
  * The main class for our robot
@@ -158,7 +159,8 @@ public class GLaDOS2011 extends IterativeRobot {
 
      // <editor-fold defaultstate="collapsed" desc="void GlaDOS2011.updateDashboard()">
     /**
-     * Shows data on driver station dashboard.
+     * Shows data on driver station dashboard. For an explanation, see link:
+     * http://www.chiefdelphi.com/forums/showthread.php?t=90167
      */
     void updateDashboard() {
         Dashboard lowDashData = DriverStation.getInstance().getDashboardPackerLow();
@@ -230,10 +232,9 @@ public class GLaDOS2011 extends IterativeRobot {
             }
             lowDashData.finalizeCluster();
 
-            byte thisBytes = 0;
-            lowDashData.addByte(thisBytes);
-            // This next line causes an error, so the above two lines have replaced it.
-            //lowDashData.addByte(Solenoid.getAll());
+            lowDashData.addByte(Solenoid.getAllFromDefaultModule());
+
+            lowDashData.addDouble(Lifter.getHeight());
         }
         lowDashData.finalizeCluster();
         lowDashData.commit();
