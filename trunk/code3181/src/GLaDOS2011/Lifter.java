@@ -214,4 +214,12 @@ public class Lifter {
                return "MAN ";
        }
    }
+
+   /**
+    * Gets the current height of the lifter. Doesn't work right now.
+    * @return The height in feet
+    */
+   public static double getHeight() {
+       return Math.sin(Hardware.gameTimer.get()/2)*9;
+   }
 }
