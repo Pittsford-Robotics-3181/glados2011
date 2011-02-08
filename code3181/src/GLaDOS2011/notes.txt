@@ -19,9 +19,9 @@
    1   | Robot state
    2   | Auto: AutoMode | Teleop: Lifter state
    3   | Tape sensors binary value
-   4   | Current drive type and motor speeds (-128 to 128)
+   4   | ************
    5   | ************
-   6   | CAN Errors (not being used yet)
+   6   | CAN Errors
 
 ***Future Intention***
   Line | Usage
