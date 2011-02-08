@@ -118,11 +118,11 @@ public class GLaDOS2011 extends IterativeRobot {
 
         // Gear shifting
         if(Hardware.checkCurrentSpike()){
-            Hardware.shiftGear(2);
+            Hardware.drive.shiftGear(2);
         }else if(Hardware.checkButton(8)){
-            Hardware.shiftGear(1);
+            Hardware.drive.shiftGear(1);
         } else if(Hardware.checkButton(9)){
-            Hardware.shiftGear(2);
+            Hardware.drive.shiftGear(2);
         }
 
         // Driving
@@ -158,9 +158,8 @@ public class GLaDOS2011 extends IterativeRobot {
         // Actually drive
         Hardware.drive.driveAtSpeed(leftSpeed, rightSpeed);
 
-        // Print out useful messages
+        // Print out a useful message
         Hardware.txtout.say(2, "Lifter State: " + Lifter.getState());
-        Hardware.txtout.say(4, message + Hardware.drive);
 
         //Checks if switch for elbow is on.
         Arm.elbowCheck();

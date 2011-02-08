@@ -18,10 +18,12 @@ import edu.wpi.first.wpilibj.Solenoid;
  */
 public class Hardware {
 
+    //------------$*$*$*$*$*$*$*$*VARIABLES*$*$*$*$*$*$*$*$------------//
+
     // Constants
     static final int LEFT = 0;
     static final int RIGHT = 1;
-    static final double RAMPING_CONSTANT = .015;
+    static final double RAMPING_CONSTANT = .025;
     static final double MAX_CURRENT = 40.0;
 
     // Other primitive
@@ -129,18 +131,6 @@ public class Hardware {
     }
 
     /**
-     * Shifts the gear. We need more info on how the solenoids shift the gear.
-     * This probably won't work, but it's a start.
-     * @param mode Which gear to shift to
-     */
-    public static void shiftGear(int mode) {
-        boolean high = (mode == 1);
-        leftGearShift.set(high);
-        rightGearShift.set(high);
-        gearMode = mode;
-    }
-
-    /**
      * See if one of the drive motors is drawing too much current.
      * @return Whether there is a current spike
      */
@@ -149,36 +139,5 @@ public class Hardware {
                leftMotorII.getOutputCurrent() > MAX_CURRENT ||
                rightMotorI.getOutputCurrent() > MAX_CURRENT ||
                rightMotorII.getOutputCurrent() > MAX_CURRENT;
-    }
-
-    //------------$*$*$*$*$*$*$*$*PID CONTROL*$*$*$*$*$*$*$*$------------//
-
-    //PID constants
-    public static final double Kp = .05; // proportional constant
-    public static final double Ki = 0; //integral constant
-    public static final double Kd = 0; // derivative constant
-
-    // Arrays that contain values for left and right
-    static double[] previousError = {0, 0};
-    static double[] integral = {0, 0};
-    static double[] currentSpeed = {0, 0};
-
-    // Time between calls of periodic functions
-    static double deltat = .005;
-    /**
-     * This method uses the proportional, integral, derivative controller to
-     * ramp the current speed to the target speed.
-     * THIS METHOD IS NOT BEING USED RIGHT NOW. If you want to use this, REMOVE THIS LINE!
-     * @param target The target speed
-     * @param side Which side the PID is affecting
-     * @return The ramped speed
-     */
-    public static double PIDOutput(double target, int side) {
-        double error = target - currentSpeed[side];
-        integral[side] = integral[side] + error * deltat;
-        double derivative = (error - previousError[side]) / deltat;
-        double output = Kp * error + Ki * integral[side] + Kd * derivative;
-        previousError[side] = error;
-        return currentSpeed[side] + output;
     }
 }
