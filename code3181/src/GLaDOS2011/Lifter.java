@@ -10,11 +10,6 @@ public class Lifter {
    static double lifterSpeed = 0.3;
    static final double HEIGHT_TOLERANCE = 0.2;
 
-   private static int lifterZone;
-   private static final int ZONE_THREE = 3;
-   private static final int ZONE_TWO = 2;
-   private static final int ZONE_ONE = 1;
-
    private static final int MANUAL_MODE = 0;
    private static final int AUTO_FLOOR = 1;
    private static final int AUTO_FIRST_PEG = 2;
@@ -46,21 +41,26 @@ public class Lifter {
         //should move the lifter up.
         else if (heightLower > heightSensor) {
             Hardware.lifter.set(lifterSpeed);
-        } //If all other tests fail the motor is set to 0 which will stop the
-        //lifter.
+        } //If all other tests fail, stop the lifter.
         else {
-            Hardware.lifter.set(0.0);
-            lifterState = MANUAL_MODE;
+            stop();
         }
     }
 
+    /**
+     * Stop the lifter.
+     */
+    public static void stop() {
+            Hardware.lifter.set(0.0);
+            lifterState = MANUAL_MODE;
+    }
 
     /**
      * If button seven is pressed the lift motor is set to stop
      */
     private static void abort() {
         if (Hardware.checkButton(4)) {
-            Hardware.lifter.set(0.0);
+            stop();
         }
     }
 
@@ -81,7 +81,7 @@ public class Lifter {
                   goToHeight(0.2);
 
               else
-                  Hardware.lifter.set(0.0);
+                  stop();
               break;
 
           case AUTO_FLOOR:
@@ -108,17 +108,8 @@ public class Lifter {
    }
 
    /**
-    * Checks to see which zone the lifter is in.
+    * Sets lifterState to the current state, as read from the buttons.
     */
-   private static void checkZone() {
-       if(heightSensor > 6.0 && heightSensor < 9.0 )
-           lifterZone = ZONE_THREE;
-       if(heightSensor > 3.0 && heightSensor < 6.0)
-           lifterZone = ZONE_TWO;
-       if (heightSensor > 0.0 && heightSensor < 3.0)
-           lifterZone = ZONE_ONE;
-   }
-   
    private static void checkState()
    {
        if(EnhancedIO.getDigital(1))
@@ -140,40 +131,9 @@ public class Lifter {
            lifterState = AUTO_THIRD_PEG;
    }
 
-
-   /* SAVE FOR LATER
-    private static void lifterAuto()
-   {
-       switch(lifterZone)
-       {
-           case ZONE_THREE:
-               if(Hardware.checkButton(6))
-                   lifterState = AUTO_THIRD_PEG;
-               else if(Hardware.checkButton(7))
-                   lifterState = AUTO_SECOND_PEG;
-               break;
-
-           case ZONE_TWO:
-               if(Hardware.checkButton(6))
-                   lifterState = AUTO_SECOND_PEG;
-               else if(Hardware.checkButton(7))
-                   lifterState = AUTO_FIRST_PEG;
-               break;
-
-           case ZONE_ONE:
-               if(Hardware.checkButton(6))
-                   lifterState = AUTO_FIRST_PEG;
-               else if(Hardware.checkButton(7))
-                   lifterState = AUTO_FLOOR;
-               break;
-
-
-       }
-   }*/
-
    /**
     * Returns the state in a string.
-    * @return A 4-letter String that signifies the lifterState.
+    * @return A 4-letter string that signifies the lifter state.
     * @author Chris Cheng
     */
    public static String getState(){
@@ -197,5 +157,15 @@ public class Lifter {
     */
    public static double getHeight() {
        return Math.sin(Hardware.gameTimer.get()/1.5)*4+4;
+   }
+
+   /**
+    * Check if the lifter is at a height close enough to be considered the same
+    * as the target height.
+    * @param height The target height
+    * @return Whether or not the lifter is close enough
+    */
+   public static boolean closeEnough(double height){
+       return Math.abs(height - heightSensor) < HEIGHT_TOLERANCE;
    }
 }
