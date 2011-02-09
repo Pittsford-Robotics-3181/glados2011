@@ -6,7 +6,7 @@ package GLaDOS2011;
  * A class for the lifter.
  */
 public class Lifter {
-   public static double heightSensor; // temporary
+   public static double currentHeight; // temporary
    static double lifterSpeed = 0.3;
    static final double HEIGHT_TOLERANCE = 0.2;
 
@@ -24,9 +24,10 @@ public class Lifter {
      * @param heightUpper The target height
      */
     public static void goToHeight(double heightTarget) {
+        currentHeight = Hardware.heightSensor.getVoltage();
 
         //converts ultrasonic output to feet
-        heightTarget = heightTarget * 512.0 / 12;
+        currentHeight = currentHeight * 512.0 / 12;
 
         double heightUpper = heightTarget + HEIGHT_TOLERANCE;
         double heightLower = heightTarget - HEIGHT_TOLERANCE;
@@ -34,12 +35,12 @@ public class Lifter {
         //Checks if the the height of the lifter is greater than the largest
         //destination value. If so the motor is set to a negative value which
         //should move the lifter down.
-        if (heightUpper < heightSensor) {
+        if (heightUpper < currentHeight) {
             Hardware.lifter.set(-lifterSpeed);
         } //Checks if the height of the lifter is less than the smallest
         //destination value.  If so the motor is set to a positive value which
         //should move the lifter up.
-        else if (heightLower > heightSensor) {
+        else if (heightLower > currentHeight) {
             Hardware.lifter.set(lifterSpeed);
         } //If all other tests fail, stop the lifter.
         else {
@@ -157,6 +158,8 @@ public class Lifter {
     */
    public static double getHeight() {
        return Math.sin(Hardware.gameTimer.get()/1.5)*4+4;
+       // This next line will likely replace the above line
+       //return Hardware.heightSensor.getVoltage();
    }
 
    /**
@@ -166,6 +169,6 @@ public class Lifter {
     * @return Whether or not the lifter is close enough
     */
    public static boolean closeEnough(double height){
-       return Math.abs(height - heightSensor) < HEIGHT_TOLERANCE;
+       return Math.abs(height - currentHeight) < HEIGHT_TOLERANCE;
    }
 }
