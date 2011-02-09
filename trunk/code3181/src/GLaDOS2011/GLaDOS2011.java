@@ -161,6 +161,13 @@ public class GLaDOS2011 extends IterativeRobot {
         // Print out a useful message
         Hardware.txtout.say(2, "Lifter State: " + Lifter.getState());
 
+        // Check if the minibot is "unlocked"
+        if(Hardware.leftJoystick.getTwist()>0.75 || Hardware.rightJoystick.getTwist()>0.75) {
+            Minibot.unlocked = true;
+        } else {
+            Minibot.unlocked = false;
+        }
+
         //Checks if switch for elbow is on.
         Arm.elbowCheck();
 
@@ -244,7 +251,11 @@ public class GLaDOS2011 extends IterativeRobot {
 
             lowDashData.addByte(Solenoid.getAllFromDefaultModule());
 
+            //What height is the lifter?
             lowDashData.addDouble(Lifter.getHeight());
+
+            //Is the minibot unlocked by the driver?
+            lowDashData.addBoolean(Minibot.unlocked);
         }
         lowDashData.finalizeCluster();
         lowDashData.commit();

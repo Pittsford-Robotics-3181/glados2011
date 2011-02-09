@@ -11,6 +11,8 @@
   10: ************
   11: ************
 
+Joystick twists unlock the minibot.
+
 
  
 *--------DSOutput lines & their usage--------*
