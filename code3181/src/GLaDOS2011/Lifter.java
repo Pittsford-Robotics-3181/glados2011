@@ -27,7 +27,7 @@ public class Lifter {
         currentHeight = Hardware.heightSensor.getVoltage();
 
         //converts ultrasonic output to feet
-        currentHeight = currentHeight * 512.0 / 12;
+        currentHeight = currentHeight * 102.4 / 12.0;
 
         double heightUpper = heightTarget + HEIGHT_TOLERANCE;
         double heightLower = heightTarget - HEIGHT_TOLERANCE;
