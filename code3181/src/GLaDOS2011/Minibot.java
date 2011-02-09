@@ -5,10 +5,14 @@ package GLaDOS2011;
  * @author Chris Cheng
  */
 public class Minibot {
+    //Is the driver OK with deploying the minibot?
+    public static boolean unlocked;
     /**
      * Deploy the minibot.  Herp.
      */
     public static void deploy(){
-        Hardware.minibot.set(true);
+        if(unlocked) {
+            Hardware.minibot.set(true);
+        }
     }
 }
