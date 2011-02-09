@@ -6,16 +6,16 @@ package GLaDOS2011;
  * A class for the lifter.
  */
 public class Lifter {
-   public static double currentHeight; // temporary
-   static double lifterSpeed = 0.3;
-   static final double HEIGHT_TOLERANCE = 0.2;
+    public static double currentHeight;
+    public static double lifterSpeed = 0.3;
+    public static int lifterState = 0;
 
-   private static final int MANUAL_MODE = 0;
-   private static final int AUTO_FLOOR = 1;
-   private static final int AUTO_FIRST_PEG = 2;
-   private static final int AUTO_SECOND_PEG = 3;
-   private static final int AUTO_THIRD_PEG = 4;
-   private static int lifterState = 0;
+    private static final double HEIGHT_TOLERANCE = 0.15;
+    private static final int MANUAL_MODE = 0;
+    private static final int AUTO_FLOOR = 1;
+    private static final int AUTO_FIRST_PEG = 2;
+    private static final int AUTO_SECOND_PEG = 3;
+    private static final int AUTO_THIRD_PEG = 4;
 
 
     /**
@@ -52,8 +52,8 @@ public class Lifter {
      * Stop the lifter.
      */
     public static void stop() {
-            Hardware.lifter.set(0.0);
-            lifterState = MANUAL_MODE;
+        Hardware.lifter.set(0.0);
+        lifterState = MANUAL_MODE;
     }
 
     /**

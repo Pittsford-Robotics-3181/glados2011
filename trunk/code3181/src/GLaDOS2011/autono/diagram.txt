@@ -1,0 +1,23 @@
+=============Scoring Grid=============
+         1                  4
+    O    |    2        3    |    O
+    |    |    |        |    |    |
+    |    O    |        |    O    |
+    O    |    O        O    |    O
+    |    |    |        |    |    |
+    |    O    |        |    O    |
+    O    |    O        O    |    O
+    |    |    |        |    |    |
+--------------------------------------
+        ___  ___      ___  ___
+         |    |        |    |
+         |    |        |    |
+         |     \      /     |
+         |      \    /      |
+         |       \  /       |
+         |        \/        |
+         |        |         |
+         |        |         |
+         |        |         |
+         1       2,3        4
+Each number represents an autonomous mode (mode 0 is do nothing, i.e. don't move).

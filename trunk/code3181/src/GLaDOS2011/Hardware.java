@@ -40,6 +40,8 @@ public class Hardware {
     public static DigitalInput leftSensor = new DigitalInput(1);
     public static DigitalInput centerSensor = new DigitalInput(2);
     public static DigitalInput rightSensor = new DigitalInput(3);
+
+    // Analog input
     public static AnalogChannel heightSensor = new AnalogChannel(4);
 
     // Solenoids
