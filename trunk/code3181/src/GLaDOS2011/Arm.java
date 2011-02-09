@@ -7,32 +7,7 @@ package GLaDOS2011;
  */
 public class Arm {
     /**
-     * Objective of method = Arm movement based on motor's status quo
-     * Up if positive, down if negative; Motor movement controls arm movement
-     * Motor moves forward = Arm goes up; Motor moves backward = Arm goes down
-     * @param speed Double ranging from -1.0 to 1.0
-     *
-     */
-    public void setSpeed(double speed) {
-        Hardware.arm.set(speed);
-    }
-
-    /**
-     * Moves the arm at full speed either up or down.
-     * @param up TRUE to bring the arm up.  FALSE to bring the arm down.
-     */
-    public void setMovement(boolean up) {
-        if (up) {
-            Hardware.arm.set(1.0);
-
-        } else {
-            Hardware.arm.set(-1.0);
-
-        }
-    }
-
-    /**
-     * Moves Elbow in.
+     * Move elbow in.
      */
     public static void moveElbowIn()
     {
@@ -41,7 +16,7 @@ public class Arm {
     }
 
     /**
-     * Moves Elbow Out
+     * Move elbow out.
      */
     public static void moveElbowOut()
     {

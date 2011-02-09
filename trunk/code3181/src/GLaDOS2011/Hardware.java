@@ -1,5 +1,6 @@
 package GLaDOS2011;
 
+import edu.wpi.first.wpilibj.AnalogChannel;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -39,6 +40,7 @@ public class Hardware {
     public static DigitalInput leftSensor = new DigitalInput(1);
     public static DigitalInput centerSensor = new DigitalInput(2);
     public static DigitalInput rightSensor = new DigitalInput(3);
+    public static AnalogChannel heightSensor = new AnalogChannel(4);
 
     // Solenoids
     public static Solenoid leftGearShift = new Solenoid(3);
@@ -52,11 +54,11 @@ public class Hardware {
     public static PANJaguar leftMotorII = new PANJaguar(7);
     public static PANJaguar rightMotorI = new PANJaguar(5);
     public static PANJaguar rightMotorII = new PANJaguar(2);
-    public static PANJaguar arm = new PANJaguar(3);
-    public static PANJaguar lifter = new PANJaguar(4);
 
     public static Victor topClaw = new Victor(4,9);
     public static Victor bottomClaw = new Victor(4,8);
+    public static Victor lifter = new Victor(4,7);
+
 
     // Autonomous switches (may be changed in future to EnhancedIO)
     public static DigitalInput[] autonoSwitches = {new DigitalInput(7),
