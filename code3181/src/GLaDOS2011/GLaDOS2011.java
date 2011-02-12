@@ -172,9 +172,12 @@ public class GLaDOS2011 extends IterativeRobot {
             Minibot.unlocked = false;
         }
 
-        //Checks if switch for elbow is on.
-        Arm.elbowCheck();
+        // Control the arm, claw, and lifter
+        Arm.control();
+        Claw.control();
+        Lifter.control();
 
+        // Checks if switch for elbow is on.
     }
     
 

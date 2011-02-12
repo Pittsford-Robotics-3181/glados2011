@@ -66,11 +66,11 @@ public class Lifter {
     }
 
     /**
-     * controlLifter() is a event machine. By default the lifterState is set
-     * to MANUAL_MODE. Button one and two move the robot up and down. Buttons
+     * control() is a state machine. By default, lifterState is set to
+     * MANUAL_MODE. Buttons one and two move the robot up and down. Buttons
      * three through six move the lifter to a designated height.
      */
-    public static void controlLifter() {
+    public static void control() {
       checkState();
       
       switch(lifterState) {

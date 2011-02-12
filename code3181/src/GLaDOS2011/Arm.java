@@ -28,7 +28,7 @@ public class Arm {
      * Checks if elbow button is on.  If so, it moves the elbow to the out position.
      * Otherwise, it moves the elbow to the in position.
      */
-    public static void elbowCheck()
+    public static void control()
     {
         if(Hardware.elbowSwitch.get())
             moveElbowOut();
