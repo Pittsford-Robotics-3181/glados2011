@@ -10,7 +10,7 @@ public class Autono2 {
     public static void run() {
         if(!EnhancedIO.getDigital(11)){
             // Do stuff without dead reckoning
-            if(AutonoSensors.atEnd){
+            if(Sensors.atEnd){
                 if(Lifter.closeEnough(9.0)){
                     Lifter.stop();
                     Claw.tubeIn_Out(-.5);
@@ -18,7 +18,7 @@ public class Autono2 {
                     Lifter.goToHeight(9.0);
                 }
             } else {
-                AutonoSensors.moveOnLine();
+                Sensors.moveOnLine();
             }
         } else {
             // Do stuff with dead reckoning
