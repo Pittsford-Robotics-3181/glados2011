@@ -24,6 +24,8 @@ public class Hardware {
     // Constants
     static final int LEFT = 0;
     static final int RIGHT = 1;
+    static int LOW = 0;
+    static int HIGH = 1;
     static final double RAMPING_CONSTANT = .025;
     static final double MAX_CURRENT = 40.0;
 
