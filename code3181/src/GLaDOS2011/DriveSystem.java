@@ -26,11 +26,12 @@ public class DriveSystem {
 
     /**
      * Shifts the gear. We need more info on how the solenoids shift the gear.
+     * (Does high gear represent true, or false?)
      * This probably won't work, but it's a start.
      * @param mode Which gear to shift to
      */
     public void shiftGear(int mode) {
-        boolean high = (mode == 1);
+        boolean high = (mode == Hardware.HIGH);
         Hardware.leftGearShift.set(high);
         Hardware.rightGearShift.set(high);
         Hardware.gearMode = mode;

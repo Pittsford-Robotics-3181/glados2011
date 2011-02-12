@@ -5,18 +5,11 @@ import edu.wpi.first.wpilibj.DriverStationEnhancedIO;
 import edu.wpi.first.wpilibj.DriverStationEnhancedIO.EnhancedIOException;
 
 /**
- * A method to get input from the Driver Station.
+ * A way to get input from the Driver Station.
  * @author Ben
  */
 public class EnhancedIO extends DriverStation {
     private static DriverStationEnhancedIO IO;
-
-    /**
-     * Constructor. Instantiates IO object.
-     */
-    public EnhancedIO() {
-        IO = Hardware.driverStation.getEnhancedIO();
-    }
 
     /**
      * Gets a digital input.
@@ -24,7 +17,7 @@ public class EnhancedIO extends DriverStation {
      * @return The returned boolean from the DriverStation
      */
     public static boolean getDigital(int channel) {
-        if(IO == null){
+        if((IO = Hardware.driverStation.getEnhancedIO()) == null){
             return false;
         }
         boolean returnVal = false;
@@ -42,7 +35,7 @@ public class EnhancedIO extends DriverStation {
      * @return The returned double from the DriverStation
      */
     public static double getAnalog(int channel) {
-        if(IO == null){
+        if((IO = Hardware.driverStation.getEnhancedIO()) == null){
             return 0;
         }
         double returnVal = 0;
@@ -60,7 +53,7 @@ public class EnhancedIO extends DriverStation {
      * @param value The value to set
      */
     public static void setDigital(int channel, boolean value) {
-        if(IO == null){
+        if((IO = Hardware.driverStation.getEnhancedIO()) == null){
             return;
         }
         try {
