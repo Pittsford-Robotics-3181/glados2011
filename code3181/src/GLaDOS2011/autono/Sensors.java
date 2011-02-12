@@ -8,7 +8,7 @@ import GLaDOS2011.util.*;
  * @author Chris Cheng
  * @author Ben
  */
-public class AutonoSensors {
+public class Sensors {
     // The last sensor value. Used so that we know what to do when all sensors are false.
     private static int lastCase;
     public static boolean atEnd = false;
@@ -19,7 +19,7 @@ public class AutonoSensors {
     public static void moveOnLine(){
         // Get sensor values and print descriptive message to the driver station
         int sensorValue = getSensors();
-        Hardware.txtout.say(3, Utils.toBinary(sensorValue) + ": " + getSensorMessage());
+        printSensorData();
         // Drive based on sensor values
         switch(sensorValue){
             case 1:
@@ -87,5 +87,12 @@ public class AutonoSensors {
         // Right worth 1
         returnVal = returnVal + 1 * Utils.toInt(Hardware.rightSensor.get());
         return returnVal;
+    }
+
+    /**
+     * Print out a useful message.
+     */
+    public static void printSensorData() {
+        Hardware.txtout.say(3, Utils.toBinary(getSensors()) + ": " + getSensorMessage());
     }
 }
