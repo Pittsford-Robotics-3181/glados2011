@@ -31,4 +31,19 @@ public class Claw {
         Hardware.topClaw.set(speed);
         Hardware.bottomClaw.set(-1.0 * speed);
     }
+
+    /**
+     * Read the buttons and act accordingly
+     */
+    public static void control() {
+        if(EnhancedIO.getDigital(12)){
+            roll(.5);
+        } else if(EnhancedIO.getDigital(13)){
+            tubeIn_Out(.5);
+        } else if(EnhancedIO.getDigital(14)){
+            roll(.5);
+        } else if(EnhancedIO.getDigital(15)){
+            tubeIn_Out(-.5);
+        }
+    }
 }
