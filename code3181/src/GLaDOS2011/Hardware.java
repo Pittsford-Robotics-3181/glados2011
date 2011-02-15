@@ -47,8 +47,8 @@ public class Hardware {
     public static AnalogChannel heightSensor = new AnalogChannel(4);
 
     // Solenoids
-    public static Solenoid leftGearShift = new Solenoid(3);
-    public static Solenoid rightGearShift = new Solenoid(4);
+    public static Solenoid gearShiftOpen = new Solenoid(3);
+    public static Solenoid gearShiftClose = new Solenoid(4);
     public static Solenoid elbowOut = new Solenoid(6);
     public static Solenoid elbowIn = new Solenoid(7);
     public static Solenoid minibot = new Solenoid(8);

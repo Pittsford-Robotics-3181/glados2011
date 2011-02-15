@@ -25,15 +25,15 @@ public class DriveSystem {
     }
 
     /**
-     * Shifts the gear. We need more info on how the solenoids shift the gear.
-     * (Does high gear represent true, or false?)
-     * This probably won't work, but it's a start.
+     * Shifts the gear.
+     * We aren't sure which solenoids should do which actions, but they are easy
+     * to switch, so no worries.
      * @param mode Which gear to shift to
      */
     public void shiftGear(int mode) {
         boolean high = (mode == Hardware.HIGH);
-        Hardware.leftGearShift.set(high);
-        Hardware.rightGearShift.set(high);
+        Hardware.gearShiftOpen.set(high);
+        Hardware.gearShiftClose.set(!high);
         Hardware.gearMode = mode;
     }
 
@@ -45,13 +45,5 @@ public class DriveSystem {
         Hardware.leftMotorII.set(0);
         Hardware.rightMotorI.set(0);
         Hardware.rightMotorII.set(0);
-    }
-
-    /**
-     * Overrides default toString.
-     * @return The left and right motor speeds separated by a comma
-     */
-    public String toString() {
-        return (int) Math.floor(Hardware.leftMotorI.getX() * 128) + "," + (int) Math.floor(Hardware.rightMotorI.getX() * 128);
     }
 }
