@@ -10,16 +10,7 @@ public class Autono1 {
     public static void run() {
         if(!EnhancedIO.getDigital(11)){
             // Do stuff without dead reckoning
-            if(Sensors.atEnd){
-                if(Lifter.closeEnough(9.0)){
-                    Lifter.stop();
-                    Claw.tubeIn_Out(-.5);
-                } else {
-                    Lifter.goToHeight(9.0);
-                }
-            } else {
-                Sensors.moveOnLine();
-            }
+            Sensors.run(Peg.TOP+Peg.CENTER_OFFSET);
         } else {
             // Do stuff with dead reckoning
             double timerValue = Hardware.gameTimer.get();

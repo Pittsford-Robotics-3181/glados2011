@@ -1,6 +1,6 @@
 package GLaDOS2011.autono;
 
-import GLaDOS2011.Hardware;
+import GLaDOS2011.*;
 import GLaDOS2011.util.*;
 
 /**
@@ -12,7 +12,46 @@ public class Sensors {
     // The last sensor value. Used so that we know what to do when all sensors are false.
     private static int lastCase;
     public static boolean atEnd = false;
-    
+
+    /**
+     * Operate the lifter, arm and claw to hang in autonomous on the lower top pegs.
+     */
+    public static void run() {
+        // If at the "T"
+        if(Sensors.atEnd){
+            // If at the target height
+            if(Lifter.closeEnough(Peg.TOP)){
+                Lifter.stop();
+                Claw.tubeIn_Out(-.5);
+            } else {
+                Lifter.goToHeight(Peg.TOP);
+            }
+        } else {
+            // Move along the line
+            Sensors.moveOnLine();
+        }
+    }
+
+    /**
+     * Operate the lifter, arm and claw to hang in autonomous on the lower top pegs.
+     * @param height The target height
+     */
+    public static void run(double height) {
+        // If at the "T"
+        if(Sensors.atEnd){
+            // If at the target height
+            if(Lifter.closeEnough(height)){
+                Lifter.stop();
+                Claw.tubeIn_Out(-.5);
+            } else {
+                Lifter.goToHeight(height);
+            }
+        } else {
+            // Move along the line
+            Sensors.moveOnLine();
+        }
+    }
+
     /**
      * For use with Autonomous.  Keeps the robot moving along the line.
      */

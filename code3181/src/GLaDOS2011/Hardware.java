@@ -59,9 +59,9 @@ public class Hardware {
     public static PANJaguar rightMotorI = new PANJaguar(5);
     public static PANJaguar rightMotorII = new PANJaguar(2);
 
+    public static Victor lifter = new Victor(4,10);
     public static Victor topClaw = new Victor(4,9);
     public static Victor bottomClaw = new Victor(4,8);
-    public static Victor lifter = new Victor(4,7);
 
 
     // Autonomous switches (may be changed in future to EnhancedIO)
