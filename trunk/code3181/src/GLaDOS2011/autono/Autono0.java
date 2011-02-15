@@ -6,6 +6,6 @@ package GLaDOS2011.autono;
  */
 public class Autono0 {
     public static void run() {
-
+        // Do nothing
     }
 }
