@@ -263,6 +263,9 @@ public class GLaDOS2011 extends IterativeRobot {
 
             //Is the minibot unlocked by the driver?
             lowDashData.addBoolean(Minibot.unlocked);
+
+            //Shape mode
+            lowDashData.addByte((byte) Hanging.mode);
         }
         lowDashData.finalizeCluster();
         lowDashData.commit();

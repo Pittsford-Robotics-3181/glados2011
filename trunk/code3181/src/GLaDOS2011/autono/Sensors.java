@@ -20,11 +20,11 @@ public class Sensors {
         // If at the "T"
         if(Sensors.atEnd){
             // If at the target height
-            if(Lifter.closeEnough(Peg.TOP)){
+            if(Lifter.closeEnough(Hanging.TOP)){
                 Lifter.stop();
                 Claw.tubeIn_Out(-.5);
             } else {
-                Lifter.goToHeight(Peg.TOP);
+                Lifter.goToHeight(Hanging.TOP);
             }
         } else {
             // Move along the line
