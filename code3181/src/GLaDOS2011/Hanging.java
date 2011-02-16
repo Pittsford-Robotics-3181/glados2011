@@ -26,9 +26,9 @@ public class Hanging {
     public static void updateMode() {
         if(EnhancedIO.getDigital(9))
             mode = TRIANGLE;
-        else if(EnhancedIO.getDigital(9))
+        else if(EnhancedIO.getDigital(10))
             mode = CIRCLE;
-        else if(EnhancedIO.getDigital(9))
+        else if(EnhancedIO.getDigital(11))
             mode = SQUARE;
     }
 }
