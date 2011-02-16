@@ -12,11 +12,17 @@ public class EnhancedIO extends DriverStation {
     private static DriverStationEnhancedIO IO;
 
     /**
-     * Gets a digital input.
+     * Get a digital input.
      * @param channel Which channel to get
      * @return The returned boolean from the DriverStation
      */
     public static boolean getDigital(int channel) {
+        // temporary fix because EnhancedIO doesn't work and we want 11 to return true
+        if(channel==11)
+            return true;
+        // temporary fix because this method causes an exception
+        if(1==1)
+            return false;
         if((IO = Hardware.driverStation.getEnhancedIO()) == null){
             return false;
         }
@@ -30,7 +36,7 @@ public class EnhancedIO extends DriverStation {
     }
 
     /**
-     * Gets an analog input.
+     * Get an analog input.
      * @param channel Which channel to get
      * @return The returned double from the DriverStation
      */
@@ -48,7 +54,7 @@ public class EnhancedIO extends DriverStation {
     }
     
     /**
-     * Sets a digital output.
+     * Set a digital output.
      * @param channel Which channel to set
      * @param value The value to set
      */
@@ -58,6 +64,38 @@ public class EnhancedIO extends DriverStation {
         }
         try {
             IO.setDigitalOutput(channel, value);
+        } catch (EnhancedIOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    /**
+     * Set an analog output.
+     * @param channel Which channel to set
+     * @param value The value to set
+     */
+    public static void setAnalog(int channel, double value) {
+        if((IO = Hardware.driverStation.getEnhancedIO()) == null){
+            return;
+        }
+        try {
+            IO.setAnalogOut(channel, value);
+        } catch (EnhancedIOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    /**
+     * Set an LED to be on or off.
+     * @param channel Which channel to set
+     * @param value The value to set
+     */
+    public static void setLED(int channel, boolean value) {
+        if((IO = Hardware.driverStation.getEnhancedIO()) == null){
+            return;
+        }
+        try {
+            IO.setLED(channel, value);
         } catch (EnhancedIOException ex) {
             ex.printStackTrace();
         }

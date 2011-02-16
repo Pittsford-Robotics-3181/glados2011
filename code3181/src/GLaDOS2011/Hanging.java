@@ -2,7 +2,7 @@ package GLaDOS2011;
 
 /**
  * Contains peg heights as constants, as we can't use enums.
- * @author lowenstein benjamin
+ * @author Ben
  */
 public class Hanging {
     // Peg heights
