@@ -54,10 +54,10 @@ public class Hardware {
     public static Solenoid minibot = new Solenoid(8);
 
     // Motors
-    public static PANJaguar leftMotorI = new PANJaguar(6);
+    public static PANJaguar leftMotorI = new PANJaguar(2);
     public static PANJaguar leftMotorII = new PANJaguar(7);
     public static PANJaguar rightMotorI = new PANJaguar(5);
-    public static PANJaguar rightMotorII = new PANJaguar(2);
+    public static PANJaguar rightMotorII = new PANJaguar(6);
 
     public static Victor lifter = new Victor(4,10);
     public static Victor topClaw = new Victor(4,9);
