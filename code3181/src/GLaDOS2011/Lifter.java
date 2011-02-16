@@ -70,38 +70,46 @@ public class Lifter {
      * MANUAL_MODE. Buttons one and two move the robot up and down. Buttons
      * three through six move the lifter to a designated height.
      */
-    public static void control() {
+    public static void controlLifter() {
       checkState();
       
       switch(lifterState) {
           case MANUAL_MODE:
               if(EnhancedIO.getDigital(1))
-                  goToHeight(9.0);
+                  goToHeight(Hanging.TOP);
 
               else if(EnhancedIO.getDigital(2))
-                  goToHeight(0.2);
+                  goToHeight(Hanging.FLOOR);
 
               else
                   stop();
               break;
 
           case AUTO_FLOOR:
-              goToHeight(0.2);
+              goToHeight(Hanging.FLOOR);
               abort();
               break;
 
           case AUTO_FIRST_PEG:
-              goToHeight(3.0);
+              if(Hanging.mode == Hanging.CIRCLE)
+                  goToHeight(Hanging.BOTTOM + Hanging.CENTER_OFFSET);
+              else
+              goToHeight(Hanging.BOTTOM);
               abort();
               break;
 
           case AUTO_SECOND_PEG:
-              goToHeight(6.0);
+              if(Hanging.mode == Hanging.CIRCLE)
+                  goToHeight(Hanging.MIDDLE + Hanging.CIRCLE);
+              goToHeight(Hanging.MIDDLE);
               abort();
               break;
 
           case AUTO_THIRD_PEG:
-              goToHeight(9.0);
+              if(Hanging.mode == Hanging.CIRCLE)
+                  goToHeight(Hanging.TOP + Hanging.CENTER_OFFSET);
+              else
+              goToHeight(Hanging.TOP);
               abort();
               break;
 
