@@ -100,7 +100,7 @@ public class Lifter {
 
           case AUTO_SECOND_PEG:
               if(Hanging.mode == Hanging.CIRCLE)
-                  goToHeight(Hanging.MIDDLE + Hanging.CIRCLE);
+                  goToHeight(Hanging.MIDDLE + Hanging.CENTER_OFFSET);
               goToHeight(Hanging.MIDDLE);
               abort();
               break;
