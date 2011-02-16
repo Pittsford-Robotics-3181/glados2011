@@ -10,7 +10,7 @@ public class Autono1 {
     public static void run() {
         if(!EnhancedIO.getDigital(11)){
             // Do stuff without dead reckoning
-            Sensors.run(Peg.TOP+Peg.CENTER_OFFSET);
+            Sensors.run(Hanging.TOP+Hanging.CENTER_OFFSET);
         } else {
             // Do stuff with dead reckoning
             double timerValue = Hardware.gameTimer.get();
