@@ -16,9 +16,9 @@ Joystick twists unlock the minibot.
 *------Box Buttons------*
     * Actual buttons:
         * Not-peg lifter heights
-            1:  Slot
-            2:  Home
-            3:  Floor
+IN          1:  Slot
+IN          2:  Home
+IN          3:  Floor
         * Tube kind
 IN          4:  Triangle
 IN          5:  Circle

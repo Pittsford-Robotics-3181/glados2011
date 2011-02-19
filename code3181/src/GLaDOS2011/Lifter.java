@@ -16,7 +16,8 @@ public class Lifter {
     private static final int AUTO_FIRST_PEG = 2;
     private static final int AUTO_SECOND_PEG = 3;
     private static final int AUTO_THIRD_PEG = 4;
-    private static final int SLOT = 5;
+    private static final int FEEDER_SLOT = 5;
+    private static final int HOME = 6;
 
 
     /**
@@ -88,7 +89,6 @@ public class Lifter {
 
           case AUTO_FLOOR:
               goToHeight(Hanging.FLOOR);
-              abort();
               break;
 
           case AUTO_FIRST_PEG:
@@ -96,14 +96,12 @@ public class Lifter {
                   goToHeight(Hanging.BOTTOM + Hanging.CENTER_OFFSET);
               else
               goToHeight(Hanging.BOTTOM);
-              abort();
               break;
 
           case AUTO_SECOND_PEG:
               if(Hanging.mode == Hanging.CIRCLE)
                   goToHeight(Hanging.MIDDLE + Hanging.CENTER_OFFSET);
               goToHeight(Hanging.MIDDLE);
-              abort();
               break;
 
           case AUTO_THIRD_PEG:
@@ -111,13 +109,15 @@ public class Lifter {
                   goToHeight(Hanging.TOP + Hanging.CENTER_OFFSET);
               else
               goToHeight(Hanging.TOP);
-              abort();
               break;
 
-          case SLOT:
-              goToHeight(Hanging.SLOT_HEIGHT);
-              abort();
-              break ;
+          case FEEDER_SLOT:
+              goToHeight(Hanging.SLOT);
+              break;
+
+          case HOME:
+              goToHeight(Hanging.FLOOR);
+              break;
 
       }
    }
@@ -145,7 +145,9 @@ public class Lifter {
        else if(EnhancedIO.getBoxButton(12))
            lifterState = AUTO_THIRD_PEG;
        else if(EnhancedIO.getBoxButton(1))
-           lifterState = SLOT;
+           lifterState = FEEDER_SLOT;
+       else if(EnhancedIO.getBoxButton(2))
+           lifterState = HOME;
    }
 
    /**
