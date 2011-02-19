@@ -75,10 +75,10 @@ public class Lifter {
       
       switch(lifterState) {
           case MANUAL_MODE:
-              if(EnhancedIO.getDigital(1))
+              if(EnhancedIO.getBoxButton(16))
                   goToHeight(Hanging.TOP);
 
-              else if(EnhancedIO.getDigital(2))
+              else if(EnhancedIO.getBoxButton(17))
                   goToHeight(Hanging.FLOOR);
 
               else

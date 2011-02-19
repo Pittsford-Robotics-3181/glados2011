@@ -13,6 +13,31 @@
 
 Joystick twists unlock the minibot.
 
+*------Box Buttons------*
+    * Actual buttons:
+        * Not-peg lifter heights
+            1:  Slot
+            2:  Home
+            3:  Floor
+        * Tube kind
+IN          4:  Triangle
+IN          5:  Circle
+IN          6:  Square
+        * Claw Control
+IN          7:  Roll downwards
+IN          8:  Suck in
+IN          9:  Roll upwards
+IN          10: Spit out
+IN      11: Release minibot (really two buttons on the same input)
+        * Lifter height control
+            12: Top
+            13: Middle
+            14: Bottom
+    * From Toggles:
+IN      15: Arm control
+        * Elevator
+IN          16: Manual Up
+IN          17: Manual Down
 
  
 *--------DSOutput lines & their usage--------*

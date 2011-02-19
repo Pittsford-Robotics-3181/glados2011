@@ -30,10 +30,10 @@ public class Arm {
      */
     public static void control()
     {
-        if(Hardware.elbowSwitch.get())
-            moveElbowOut();
-        else
+        if(EnhancedIO.getBoxButton(15))
             moveElbowIn();
+        else
+            moveElbowOut();
     }
 }
 
