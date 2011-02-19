@@ -180,12 +180,20 @@ public class GLaDOS2011 extends IterativeRobot {
             Minibot.unlocked = false;
         }
 
+        // Update the alnalog signals from the Cypress Box.
+        EnhancedIO.updateAnas();
+
         // Control the arm, claw, and lifter
         Arm.control();
         Claw.control();
         Lifter.controlLifter();
 
         // Checks if switch for elbow is on.
+
+        // Check if Minibot is to be deployed.
+        if(EnhancedIO.getBoxButton(11)){
+            Minibot.deploy();
+        }
     }
     
 

@@ -36,13 +36,13 @@ public class Claw {
      * Read the buttons and act accordingly
      */
     public static void control() {
-        if(EnhancedIO.getDigital(12)){
+        if(EnhancedIO.getBoxButton(9)){
             roll(.5);
-        } else if(EnhancedIO.getDigital(13)){
+        } else if(EnhancedIO.getBoxButton(8)){
             tubeIn_Out(.5);
-        } else if(EnhancedIO.getDigital(14)){
-            roll(.5);
-        } else if(EnhancedIO.getDigital(15)){
+        } else if(EnhancedIO.getBoxButton(7)){
+            roll(-.5);
+        } else if(EnhancedIO.getBoxButton(10)){
             tubeIn_Out(-.5);
         }
     }
