@@ -16,6 +16,7 @@ public class Lifter {
     private static final int AUTO_FIRST_PEG = 2;
     private static final int AUTO_SECOND_PEG = 3;
     private static final int AUTO_THIRD_PEG = 4;
+    private static final int SLOT = 5;
 
 
     /**
@@ -113,6 +114,11 @@ public class Lifter {
               abort();
               break;
 
+          case SLOT:
+              goToHeight(Hanging.SLOT_HEIGHT);
+              abort();
+              break ;
+
       }
    }
 
@@ -121,23 +127,25 @@ public class Lifter {
     */
    private static void checkState()
    {
-       if(EnhancedIO.getDigital(1))
+       if(EnhancedIO.getBoxButton(16))
            lifterState = MANUAL_MODE;
 
-       else if(EnhancedIO.getDigital(2))
+       else if(EnhancedIO.getBoxButton(17))
            lifterState = MANUAL_MODE;
 
-       else if(EnhancedIO.getDigital(3))
+       else if(EnhancedIO.getBoxButton(3))
            lifterState = AUTO_FLOOR;
 
-       else if(EnhancedIO.getDigital(4))
+       else if(EnhancedIO.getBoxButton(14))
            lifterState = AUTO_FIRST_PEG;
 
-       else if(EnhancedIO.getDigital(5))
+       else if(EnhancedIO.getBoxButton(13))
            lifterState = AUTO_SECOND_PEG;
 
-       else if(EnhancedIO.getDigital(6))
+       else if(EnhancedIO.getBoxButton(12))
            lifterState = AUTO_THIRD_PEG;
+       else if(EnhancedIO.getBoxButton(1))
+           lifterState = SLOT;
    }
 
    /**

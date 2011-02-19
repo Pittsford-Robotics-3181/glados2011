@@ -10,6 +10,7 @@ public class Hanging {
     public static final double BOTTOM = 2.5;
     public static final double MIDDLE = 5.0;
     public static final double TOP = 7.5;
+    public static final double SLOT_HEIGHT = 4.0;
     public static final double CENTER_OFFSET = .3;
 
     // Shape constants
