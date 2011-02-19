@@ -158,6 +158,14 @@ public class GLaDOS2011 extends IterativeRobot {
             rightSpeed = 0;
             message = "Stopped    ";
         }
+        if(Hardware.checkButton(10, Hardware.LEFT)){
+            // Turns off compressor
+            Hardware.compressor.stop();
+        }
+        if(Hardware.checkButton(11, Hardware.LEFT)){
+            // Turns on compressor
+            Hardware.compressor.start();
+        }
         // Actually drive
         Hardware.drive.driveAtSpeed(leftSpeed, rightSpeed);
 
