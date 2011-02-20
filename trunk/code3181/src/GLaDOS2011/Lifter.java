@@ -38,11 +38,13 @@ public class Lifter {
         //destination value. If so the motor is set to a negative value which
         //should move the lifter down.
         if (heightUpper < currentHeight) {
+            Hardware.liftBreak.set(false);
             Hardware.lifter.set(-lifterSpeed);
         } //Checks if the height of the lifter is less than the smallest
         //destination value.  If so the motor is set to a positive value which
         //should move the lifter up.
         else if (heightLower > currentHeight) {
+            Hardware.liftBreak.set(false);
             Hardware.lifter.set(lifterSpeed);
         } //If all other tests fail, stop the lifter.
         else {

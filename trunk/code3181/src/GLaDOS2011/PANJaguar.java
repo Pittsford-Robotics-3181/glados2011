@@ -17,7 +17,7 @@ public class PANJaguar {
     // Whether or not CAN is working
     public boolean CANEnabled = true;
     // The maximum allowed voltage
-    public final double MAX_VOLTAGE = 1.0;
+    public final double MAX_VOLTAGE = 12.0;
     // The time the Jaguar waits before recovering from a fault
     public final double FAULT_TIME = 0.5;
     //PID constants
