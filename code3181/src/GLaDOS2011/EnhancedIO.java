@@ -51,7 +51,7 @@ public class EnhancedIO extends DriverStation {
         try {
             returnVal = IO.getAnalogIn(channel);
         } catch (EnhancedIOException ex) {
-            ex.printStackTrace();
+//          ex.printStackTrace();
         }
         return returnVal;
     }
