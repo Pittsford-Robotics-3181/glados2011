@@ -55,6 +55,7 @@ public class Lifter {
      */
     public static void stop() {
         Hardware.lifter.set(0.0);
+        Hardware.liftBreak.set(true);
         lifterState = MANUAL_MODE;
     }
 
