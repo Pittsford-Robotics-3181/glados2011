@@ -52,6 +52,7 @@ public class Hardware {
     public static Solenoid elbowOut = new Solenoid(6);
     public static Solenoid elbowIn = new Solenoid(7);
     public static Solenoid minibot = new Solenoid(8);
+    public static Solenoid liftBreak = new Solenoid(1);
 
     // Motors
     public static PANJaguar leftMotorI = new PANJaguar(2);
