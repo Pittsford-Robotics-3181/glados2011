@@ -49,7 +49,14 @@ public class EnhancedIO extends DriverStation {
         }
         double returnVal = 0;
         try {
-            returnVal = IO.getAnalogIn(channel);
+            if ( returnVal == 0 )
+            {
+                returnVal = 0;
+            }
+            else
+            {
+               returnVal = IO.getAnalogIn(channel);
+            }
         } catch (EnhancedIOException ex) {
 //          ex.printStackTrace();
         }
