@@ -117,29 +117,12 @@ public class GLaDOS2011 extends IterativeRobot {
         String message = "";
 
         // Shift gear based on driver input or current spike (which overrides driver)
-        int gear = Hardware.gearMode;
-        if(Hardware.checkButton(8)){
-            gear = Hardware.HIGH;
-        } else if(Hardware.checkButton(9)){
-            gear = Hardware.LOW;
+        if(Hardware.checkButton(1) && Hardware.gearMode == Hardware.LOW){
+            Hardware.drive.shiftGear(Hardware.HIGH);
+        } else if(!Hardware.checkButton(1) && Hardware.gearMode == Hardware.HIGH) {
+            Hardware.drive.shiftGear(Hardware.LOW);
         }
-        if(Hardware.checkCurrentSpike()){
-            gear = Hardware.LOW;
-        }
-        Hardware.drive.shiftGear(gear);
 
-        // Pick how to interpret (or not interpret) the joystick input.
-        if(Hardware.checkButton(1)){
-            // 70% speed button
-            leftSpeed = Hardware.leftJoystick.getY() * .7;
-            rightSpeed = Hardware.rightJoystick.getY() * .7;
-            message = "70% speed  ";
-        } else {
-            // Regular speed
-            leftSpeed = Hardware.leftJoystick.getY();
-            rightSpeed = Hardware.rightJoystick.getY();
-            message = "Regular    ";
-        }
         // The low speed buttons will probably be removed soon
         if(Hardware.checkButton(2, Hardware.LEFT)){
             // Low speed button for testing
@@ -176,7 +159,7 @@ public class GLaDOS2011 extends IterativeRobot {
         Sensors.printSensorData();
 
         // Check if the minibot is "unlocked"
-        if(Hardware.leftJoystick.getTwist()>0.75 || Hardware.rightJoystick.getTwist()>0.75) {
+        if(Hardware.leftJoystick.getTwist()<-0.75 || Hardware.rightJoystick.getTwist()<-0.75) {
             Minibot.unlocked = true;
         } else {
             Minibot.unlocked = false;
