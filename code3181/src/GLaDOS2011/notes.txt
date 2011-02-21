@@ -1,15 +1,15 @@
 *--------BUTTONS--------*
-  1: 70% speed
+  1: Held: High gear.  Released: Low gear.
   2: drive slowly
   3: stop the drive
   4: lifter abort
   5: ************
   6: ************
   7: ************
-  8: shift to gear 1
-  9: shift to gear 2
-  10: ************
-  11: ************
+  8: ************
+  9: ************
+  10: Left: Manual Compressor Off
+  11: Left: Manual Compressor On
 
 Joystick twists unlock the minibot.
 
