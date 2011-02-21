@@ -63,6 +63,9 @@ public class Hardware {
     public static Victor lifter = new Victor(4,10);
     public static Victor topClaw = new Victor(4,9);
     public static Victor bottomClaw = new Victor(4,8);
+    
+    public static Victor leftDrive = new Victor(4,1);
+    public static Victor rightDrive = new Victor(4,3);
 
 
     // Autonomous switches (may be changed in future to EnhancedIO)
