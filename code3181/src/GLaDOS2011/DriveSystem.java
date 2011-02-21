@@ -1,7 +1,5 @@
 package GLaDOS2011;
 
-import GLaDOS2011.util.*;
-
 /**
  * This is the drive system.
  * @author Ben
@@ -13,15 +11,14 @@ public class DriveSystem {
      * @param rightSpeed The target right speed
      */
     public void driveAtSpeed(double leftSpeed, double rightSpeed) {
-        // Make speeds zero if they are too small
-        leftSpeed = Utils.checkForSmall(leftSpeed);
-        rightSpeed = Utils.checkForSmall(rightSpeed);
-
         // Right motor is reversed
+        Hardware.leftDrive.set(leftSpeed);
+        Hardware.rightDrive.set(-rightSpeed);
         Hardware.leftMotorI.set(leftSpeed);
         Hardware.leftMotorII.set(leftSpeed);
         Hardware.rightMotorI.set(-rightSpeed);
         Hardware.rightMotorII.set(-rightSpeed);
+
     }
 
     /**
@@ -41,6 +38,8 @@ public class DriveSystem {
      * Stops the robot.
      */
     public void stop() {
+        Hardware.leftDrive.set(0);
+        Hardware.rightDrive.set(0);
         Hardware.leftMotorI.set(0);
         Hardware.leftMotorII.set(0);
         Hardware.rightMotorI.set(0);

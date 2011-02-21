@@ -123,17 +123,7 @@ public class GLaDOS2011 extends IterativeRobot {
             Hardware.drive.shiftGear(Hardware.LOW);
         }
 
-        // The low speed buttons will probably be removed soon
-        if(Hardware.checkButton(2, Hardware.LEFT)){
-            // Low speed button for testing
-            leftSpeed = LOW_SPEED;
-            message = "Low speed  ";
-        }
-        if(Hardware.checkButton(2, Hardware.RIGHT)){
-            // Low speed button for testing
-            rightSpeed = LOW_SPEED;
-            message = "Low speed  ";
-        }
+        // Pick how to interpret (or not interpret) the joystick input.
         if(Hardware.checkButton(3)){
             // Stop button
             // This shouldn't be used.
