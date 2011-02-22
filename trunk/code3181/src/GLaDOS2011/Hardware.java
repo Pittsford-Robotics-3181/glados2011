@@ -8,6 +8,8 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.Jaguar;
+import edu.wpi.first.wpilibj.Relay;
 
 /**
  * This is the hardware wrapper for our bot. Everything is static, allowing for
@@ -26,7 +28,7 @@ public class Hardware {
     static final int RIGHT = 1;
     static int LOW = 0;
     static int HIGH = 1;
-    static final double RAMPING_CONSTANT = .025;
+    static final double RAMPING_CONSTANT = .75;
     static final double MAX_CURRENT = 40.0;
 
     // Other primitive
@@ -49,23 +51,21 @@ public class Hardware {
     // Solenoids
     public static Solenoid gearShiftOpen = new Solenoid(3);
     public static Solenoid gearShiftClose = new Solenoid(4);
-    public static Solenoid elbowOut = new Solenoid(6);
+    public static Solenoid elbowOut = new Solenoid(5);
     public static Solenoid elbowIn = new Solenoid(7);
     public static Solenoid minibot = new Solenoid(8);
-    public static Solenoid liftBreak = new Solenoid(1);
+
+    // Relays
+    public static Relay liftBreak = new Relay(6);
 
     // Motors
-    public static PANJaguar leftMotorI = new PANJaguar(2);
-    public static PANJaguar leftMotorII = new PANJaguar(7);
-    public static PANJaguar rightMotorI = new PANJaguar(5);
-    public static PANJaguar rightMotorII = new PANJaguar(6);
 
-    public static Victor lifter = new Victor(4,10);
+    public static Jaguar lifter = new Jaguar(10);
     public static Victor topClaw = new Victor(4,9);
     public static Victor bottomClaw = new Victor(4,8);
     
     public static Victor leftDrive = new Victor(4,1);
-    public static Victor rightDrive = new Victor(4,3);
+    public static Jaguar rightDrive = new Jaguar(4,3);
 
 
     // Autonomous switches (may be changed in future to EnhancedIO)
@@ -111,11 +111,12 @@ public class Hardware {
 
     /**
      * Ramps a given speed toward a target speed.
+     * *** Not Used as of 21-Feb-2011 ***
      * @param targetSpeed The target speed
      * @param currentSpeed The current speed
      * @return The speed to be set
      */
-    public static double ramping(double targetSpeed, double currentSpeed) {
+    public static double xramping(double targetSpeed, double currentSpeed) {
         double delta = targetSpeed - currentSpeed;
         if (Math.abs(delta) > RAMPING_CONSTANT) {
             delta = ((delta < 0) ? -1 : 1) * RAMPING_CONSTANT;
@@ -126,12 +127,13 @@ public class Hardware {
 
     /**
      * Ramps a given speed toward a target speed with specified maximum gain.
+     * *** NOT USED as of 21-Feb-2011
      * @param targetSpeed The target speed
      * @param currentSpeed The current speed
      * @param maxGain The maximum allowed gain
      * @return The speed to be set
      */
-    public static double ramping(double targetSpeed, double currentSpeed, double maxGain) {
+    public static double xramping(double targetSpeed, double currentSpeed, double maxGain) {
         double delta = targetSpeed - currentSpeed;
         if (Math.abs(delta) > maxGain) {
             delta = ((delta < 0) ? -1 : 1) * maxGain;
@@ -140,14 +142,4 @@ public class Hardware {
         return currentSpeed;
     }
 
-    /**
-     * See if one of the drive motors is drawing too much current.
-     * @return Whether there is a current spike
-     */
-    public static boolean checkCurrentSpike() {
-        return leftMotorI.getOutputCurrent() > MAX_CURRENT ||
-               leftMotorII.getOutputCurrent() > MAX_CURRENT ||
-               rightMotorI.getOutputCurrent() > MAX_CURRENT ||
-               rightMotorII.getOutputCurrent() > MAX_CURRENT;
-    }
 }

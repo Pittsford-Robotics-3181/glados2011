@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.DriverStationEnhancedIO.EnhancedIOException;
  */
 public class EnhancedIO extends DriverStation {
     private static DriverStationEnhancedIO IO;
-    private static double Ana5;
+    private static double Ana2;
     private static double Ana3;
     private static double Ana1;
 
@@ -117,7 +117,7 @@ public class EnhancedIO extends DriverStation {
     public static void updateAnas() {
         Ana1 = getAnalog(1);
         Ana3 = getAnalog(3);
-        Ana5 = getAnalog(5);
+        Ana2 = getAnalog(2);
     }
 
     /**
@@ -131,22 +131,22 @@ public class EnhancedIO extends DriverStation {
         }
         switch(button){
             case(1):
-                if(Ana5 > 0.20 && Ana5 < 0.86) return true;
+                if(Ana2 > 0.20 && Ana2 < 0.86) return true;
                 else return false;
             case(2):
-                if(Ana5 > 0.74 && Ana5 < 1.40) return true;
+                if(Ana2 > 0.74 && Ana2 < 1.40) return true;
                 else return false;
             case(3):
-                if(Ana5 > 1.27 && Ana5 < 1.93) return true;
+                if(Ana2 > 1.27 && Ana2 < 1.93) return true;
                 else return false;
             case(4):
-                if(Ana5 > 1.81 && Ana5 < 2.47) return true;
+                if(Ana2 > 1.81 && Ana2 < 2.47) return true;
                 else return false;
             case(5):
-                if(Ana5 > 2.34 && Ana5 < 3.00) return true;
+                if(Ana2 > 2.34 && Ana2 < 3.00) return true;
                 else return false;
             case(6):
-                if(Ana5 > 2.89 && Ana5 < 3.55) return true;
+                if(Ana2 > 2.89 && Ana2 < 3.55) return true;
                 else return false;
             case(7):
                 if(Ana3 > 0.47 && Ana3 < 1.13) return true;
