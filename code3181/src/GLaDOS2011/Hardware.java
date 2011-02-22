@@ -81,7 +81,7 @@ public class Hardware {
     public static Joystick rightJoystick = new Joystick(2);
 
     //Compressor
-    public static Compressor compressor = new Compressor(14, 1);
+    public static Compressor compressor = new Compressor(14, 2);
 
 
     //------------$*$*$*$*$*$*$*$*METHODS*$*$*$*$*$*$*$*$------------//
