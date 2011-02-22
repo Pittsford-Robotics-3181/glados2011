@@ -18,8 +18,6 @@ import edu.wpi.first.wpilibj.Solenoid;
 public class GLaDOS2011 extends IterativeRobot {
     // Autonomous mode
     int autonoMode = 0;
-    // Low speed for testing
-    final double LOW_SPEED = .15;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -112,11 +110,11 @@ public class GLaDOS2011 extends IterativeRobot {
 
         updateDashboard();
 
-        double leftSpeed = 0;
-        double rightSpeed = 0;
+        double leftSpeed = Hardware.leftJoystick.getY();
+        double rightSpeed = Hardware.rightJoystick.getY();
         String message = "";
 
-        // Shift gear based on driver input or current spike (which overrides driver)
+        // Shift gear based on driver input
         if(Hardware.checkButton(1) && Hardware.gearMode == Hardware.LOW){
             Hardware.drive.shiftGear(Hardware.HIGH);
         } else if(!Hardware.checkButton(1) && Hardware.gearMode == Hardware.HIGH) {
@@ -141,7 +139,7 @@ public class GLaDOS2011 extends IterativeRobot {
             Hardware.compressor.start();
         }
         // Actually drive
-        Hardware.drive.driveAtSpeed(leftSpeed, rightSpeed);
+        Hardware.drive.driveAtSpeed(leftSpeed, rightSpeed/2);
 
         // Print out useful messages
         Hardware.txtout.say(4, message + leftSpeed + "," + rightSpeed);

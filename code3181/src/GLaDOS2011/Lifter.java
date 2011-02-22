@@ -1,5 +1,7 @@
 package GLaDOS2011;
 
+import edu.wpi.first.wpilibj.Relay;
+
 /**
  * This class contains code for the lifter mechanism.
  * @author Eric Lee
@@ -38,13 +40,13 @@ public class Lifter {
         //destination value. If so the motor is set to a negative value which
         //should move the lifter down.
         if (heightUpper < currentHeight) {
-            Hardware.liftBreak.set(false);
+            Hardware.liftBreak.set(Relay.Value.kForward);
             Hardware.lifter.set(-lifterSpeed);
         } //Checks if the height of the lifter is less than the smallest
         //destination value.  If so the motor is set to a positive value which
         //should move the lifter up.
         else if (heightLower > currentHeight) {
-            Hardware.liftBreak.set(false);
+            Hardware.liftBreak.set(Relay.Value.kForward);
             Hardware.lifter.set(lifterSpeed);
         } //If all other tests fail, stop the lifter.
         else {
@@ -57,7 +59,7 @@ public class Lifter {
      */
     public static void stop() {
         Hardware.lifter.set(0.0);
-        Hardware.liftBreak.set(true);
+        Hardware.liftBreak.set(Relay.Value.kOff);
         lifterState = MANUAL_MODE;
     }
 
@@ -178,9 +180,9 @@ public class Lifter {
     * @return The height in feet
     */
    public static double getHeight() {
-       return Math.sin(Hardware.gameTimer.get()/1.5)*4+4;
+    //   return Math.sin(Hardware.gameTimer.get()/1.5)*4+4;
        // This next line will likely replace the above line
-       //return Hardware.heightSensor.getVoltage();
+       return Hardware.heightSensor.getVoltage();
    }
 
    /**

@@ -14,10 +14,6 @@ public class DriveSystem {
         // Right motor is reversed
         Hardware.leftDrive.set(leftSpeed);
         Hardware.rightDrive.set(-rightSpeed);
-        Hardware.leftMotorI.set(leftSpeed);
-        Hardware.leftMotorII.set(leftSpeed);
-        Hardware.rightMotorI.set(-rightSpeed);
-        Hardware.rightMotorII.set(-rightSpeed);
 
     }
 
@@ -40,9 +36,5 @@ public class DriveSystem {
     public void stop() {
         Hardware.leftDrive.set(0);
         Hardware.rightDrive.set(0);
-        Hardware.leftMotorI.set(0);
-        Hardware.leftMotorII.set(0);
-        Hardware.rightMotorI.set(0);
-        Hardware.rightMotorII.set(0);
     }
 }
