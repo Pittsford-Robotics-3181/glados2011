@@ -36,14 +36,16 @@ public class Claw {
      * Read the buttons and act accordingly
      */
     public static void control() {
-        if(EnhancedIO.getBoxButton(9)){
+        if(GLaDOS2011.getBoxButton(9)){
             roll(.5);
-        } else if(EnhancedIO.getBoxButton(8)){
+        } else if(GLaDOS2011.getBoxButton(8)){
             tubeIn_Out(.5);
-        } else if(EnhancedIO.getBoxButton(7)){
+        } else if(GLaDOS2011.getBoxButton(7)){
             roll(-.5);
-        } else if(EnhancedIO.getBoxButton(10)){
+        } else if(GLaDOS2011.getBoxButton(10)){
             tubeIn_Out(-.5);
+        } else {
+            stop();
         }
     }
 }

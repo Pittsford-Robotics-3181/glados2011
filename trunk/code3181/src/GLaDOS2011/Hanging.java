@@ -25,11 +25,11 @@ public class Hanging {
      * Updates the shape mode for hanging
      */
     public static void updateMode() {
-        if(EnhancedIO.getBoxButton(4))
+        if(GLaDOS2011.getBoxButton(4))
             mode = TRIANGLE;
-        else if(EnhancedIO.getBoxButton(5))
+        else if(GLaDOS2011.getBoxButton(5))
             mode = CIRCLE;
-        else if(EnhancedIO.getBoxButton(6))
+        else if(GLaDOS2011.getBoxButton(6))
             mode = SQUARE;
     }
 }

@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.AnalogChannel;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.DriverStationEnhancedIO;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.Victor;
@@ -37,7 +38,8 @@ public class Hardware {
     // Pseudohardware
     public static DSOutput txtout = new DSOutput();
     public static DriveSystem drive = new DriveSystem();
-    public static DriverStation driverStation;
+    public static DriverStation driverStation ;
+    public static    DriverStationEnhancedIO dseio;
     public static Timer gameTimer = new Timer();
 
     // Digital inputs
@@ -60,7 +62,7 @@ public class Hardware {
 
     // Motors
 
-    public static Jaguar lifter = new Jaguar(10);
+    public static Jaguar lifter = new Jaguar(4,10);
     public static Victor topClaw = new Victor(4,9);
     public static Victor bottomClaw = new Victor(4,8);
     

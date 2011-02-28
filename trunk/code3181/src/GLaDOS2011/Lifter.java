@@ -5,12 +5,14 @@ import edu.wpi.first.wpilibj.Relay;
 /**
  * This class contains code for the lifter mechanism.
  * @author Eric Lee
+ * @author Chris Cheng
  * A class for the lifter.
  */
 public class Lifter {
     public static double currentHeight;
     public static double lifterSpeed = 0.3;
     public static int lifterState = 0;
+    public static double destination = 0.0; //Diagnostics variable
 
     private static final double HEIGHT_TOLERANCE = 0.15;
     private static final int MANUAL_MODE = 0;
@@ -29,29 +31,41 @@ public class Lifter {
      */
     public static void goToHeight(double heightTarget) {
         currentHeight = Hardware.heightSensor.getVoltage();
+        destination = heightTarget;
 
         //converts ultrasonic output to feet
-        currentHeight = currentHeight * 102.4 / 12.0;
+
 
         double heightUpper = heightTarget + HEIGHT_TOLERANCE;
         double heightLower = heightTarget - HEIGHT_TOLERANCE;
 
+        //If a claw button is being pressed, do NOT move the elevator.
+        if(GLaDOS2011.getBoxButton(7) || GLaDOS2011.getBoxButton(8) || GLaDOS2011.getBoxButton(9) || GLaDOS2011.getBoxButton(10)) {
+            stop();
+        }
         //Checks if the the height of the lifter is greater than the largest
         //destination value. If so the motor is set to a negative value which
         //should move the lifter down.
         if (heightUpper < currentHeight) {
-            Hardware.liftBreak.set(Relay.Value.kForward);
-            Hardware.lifter.set(-lifterSpeed);
+            goUp();
         } //Checks if the height of the lifter is less than the smallest
         //destination value.  If so the motor is set to a positive value which
         //should move the lifter up.
         else if (heightLower > currentHeight) {
-            Hardware.liftBreak.set(Relay.Value.kForward);
-            Hardware.lifter.set(lifterSpeed);
+            goDown();
         } //If all other tests fail, stop the lifter.
         else {
             stop();
         }
+    }
+
+    private static void goUp(){
+            Hardware.liftBreak.set(Relay.Value.kForward);
+            Hardware.lifter.set(-lifterSpeed);
+    }
+    private static void goDown(){
+            Hardware.liftBreak.set(Relay.Value.kForward);
+            Hardware.lifter.set(lifterSpeed*2);
     }
 
     /**
@@ -82,14 +96,15 @@ public class Lifter {
       
       switch(lifterState) {
           case MANUAL_MODE:
-              if(EnhancedIO.getBoxButton(16))
-                  goToHeight(Hanging.TOP);
-
-              else if(EnhancedIO.getBoxButton(17))
-                  goToHeight(Hanging.FLOOR);
-
-              else
+              if(GLaDOS2011.getBoxButton(16)){ //Elevator Up
+                  goUp();
+              }
+              else if(GLaDOS2011.getBoxButton(17)){ //Elevator Down
+                  goDown();
+              }
+              else {
                   stop();
+              }
               break;
 
           case AUTO_FLOOR:
@@ -130,29 +145,32 @@ public class Lifter {
    /**
     * Sets lifterState to the current state, as read from the buttons.
     */
-   private static void checkState()
-   {
-       if(EnhancedIO.getBoxButton(16))
+   private static void checkState(){
+       if(GLaDOS2011.getBoxButton(16)){
            lifterState = MANUAL_MODE;
+           System.out.print("Going up!");
+       }
 
-       else if(EnhancedIO.getBoxButton(17))
+       else if(GLaDOS2011.getBoxButton(17)){
            lifterState = MANUAL_MODE;
-
-       else if(EnhancedIO.getBoxButton(3))
+           System.out.print("Going down!");
+       }
+       else if(GLaDOS2011.getBoxButton(3))
            lifterState = AUTO_FLOOR;
 
-       else if(EnhancedIO.getBoxButton(14))
+       else if(GLaDOS2011.getBoxButton(14))
            lifterState = AUTO_FIRST_PEG;
 
-       else if(EnhancedIO.getBoxButton(13))
+       else if(GLaDOS2011.getBoxButton(13))
            lifterState = AUTO_SECOND_PEG;
 
-       else if(EnhancedIO.getBoxButton(12))
+       else if(GLaDOS2011.getBoxButton(12))
            lifterState = AUTO_THIRD_PEG;
-       else if(EnhancedIO.getBoxButton(1))
+       else if(GLaDOS2011.getBoxButton(1))
            lifterState = FEEDER_SLOT;
-       else if(EnhancedIO.getBoxButton(2))
+       else if(GLaDOS2011.getBoxButton(2))
            lifterState = HOME;
+
    }
 
    /**
@@ -182,7 +200,7 @@ public class Lifter {
    public static double getHeight() {
     //   return Math.sin(Hardware.gameTimer.get()/1.5)*4+4;
        // This next line will likely replace the above line
-       return Hardware.heightSensor.getVoltage();
+       return Hardware.heightSensor.getVoltage() * 102.4 / 12.0;
    }
 
    /**
