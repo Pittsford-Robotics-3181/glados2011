@@ -37,13 +37,13 @@ public class Claw {
      */
     public static void control() {
         if(GLaDOS2011.getBoxButton(9)){
-            roll(.5);
+            roll(1);
         } else if(GLaDOS2011.getBoxButton(8)){
-            tubeIn_Out(.5);
+            tubeIn_Out(1);
         } else if(GLaDOS2011.getBoxButton(7)){
-            roll(-.5);
+            roll(-1);
         } else if(GLaDOS2011.getBoxButton(10)){
-            tubeIn_Out(-.5);
+            tubeIn_Out(-1);
         } else {
             stop();
         }
