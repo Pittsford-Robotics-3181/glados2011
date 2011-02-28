@@ -6,7 +6,6 @@ import edu.wpi.first.wpilibj.AnalogModule;
 import edu.wpi.first.wpilibj.Dashboard;
 import edu.wpi.first.wpilibj.DigitalModule;
 import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.DriverStationEnhancedIO;
 import edu.wpi.first.wpilibj.DriverStationEnhancedIO.EnhancedIOException;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Solenoid;
@@ -28,8 +27,6 @@ public class GLaDOS2011 extends IterativeRobot {
     public static boolean Digital4;
     public static boolean Digital6;
     public static boolean Digital8;
-
-
 
 
     /**
@@ -138,7 +135,6 @@ public class GLaDOS2011 extends IterativeRobot {
             Digital6 = Hardware.dseio.getDigital(6);
             Digital8 = Hardware.dseio.getDigital(8);
         } catch (EnhancedIOException ex) {
-
            System.out.println(ex);
         }
     }
@@ -150,13 +146,13 @@ public class GLaDOS2011 extends IterativeRobot {
 
         updateDashboard();
         try{
-        Ana1 = Hardware.dseio.getAnalogIn(1);
-        Ana3 = Hardware.dseio.getAnalogIn(3);
-        Ana2 = Hardware.dseio.getAnalogIn(2);
-        Digital2 = Hardware.dseio.getDigital(2);
-        Digital4 = Hardware.dseio.getDigital(4);
-        Digital6 = Hardware.dseio.getDigital(6);
-        Digital8 = Hardware.dseio.getDigital(8);
+            Ana1 = Hardware.dseio.getAnalogIn(1);
+            Ana3 = Hardware.dseio.getAnalogIn(3);
+            Ana2 = Hardware.dseio.getAnalogIn(2);
+            Digital2 = Hardware.dseio.getDigital(2);
+            Digital4 = Hardware.dseio.getDigital(4);
+            Digital6 = Hardware.dseio.getDigital(6);
+            Digital8 = Hardware.dseio.getDigital(8);
         } catch (EnhancedIOException ex) {
            System.out.println(ex);
         }
@@ -198,20 +194,20 @@ public class GLaDOS2011 extends IterativeRobot {
         Hardware.txtout.say(2, "Lifter State: " + Lifter.getState());
         Hardware.txtout.say(5, "Lifter Speed: " + Hardware.lifter.get());
         Hardware.txtout.say(6, "Lifter Mode:  " + Hanging.mode );
-        Sensors.printSensorData();
+        Autonomous.printSensorData();
+
 /****************************** END DRIVE CODE ******************************************/
 
 
 
-       //System.out.print("Button Up:" + getBoxButton(17) + " Button Down:" + getBoxButton(16) + "\n");
+        //System.out.print("Button Up:" + getBoxButton(17) + " Button Down:" + getBoxButton(16) + "\n");
 
         // Check if the minibot is "unlocked"
-        if(Hardware.leftJoystick.getTwist()<-0.75 || Hardware.rightJoystick.getTwist()<-0.75) {
+        if(Hardware.leftJoystick.getTwist() < -0.75 || Hardware.rightJoystick.getTwist() < -0.75) {
             Minibot.unlocked = true;
         } else {
             Minibot.unlocked = false;
         }
-
 
         // Control the arm, claw, and lifter
         Arm.control();

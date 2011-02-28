@@ -10,10 +10,12 @@ import edu.wpi.first.wpilibj.Relay;
  */
 public class Lifter {
     public static double currentHeight;
+    // THIS SPEED PROBABLY NEEDS TO BE CHANGED.                                                                                         *
     public static double lifterSpeed = 0.3;
     public static int lifterState = 0;
     public static double destination = 0.0; //Diagnostics variable
 
+    // HEIGHT_TOLERANCE PROBABLY NEEDS TO BE CHANGED.                                                                                   *
     private static final double HEIGHT_TOLERANCE = 0.15;
     private static final int MANUAL_MODE = 0;
     private static final int AUTO_FLOOR = 1;
@@ -198,8 +200,6 @@ public class Lifter {
     * @return The height in feet
     */
    public static double getHeight() {
-    //   return Math.sin(Hardware.gameTimer.get()/1.5)*4+4;
-       // This next line will likely replace the above line
        return Hardware.heightSensor.getVoltage() * 102.4 / 12.0;
    }
 

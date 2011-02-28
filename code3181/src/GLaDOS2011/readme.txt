@@ -1,5 +1,7 @@
 //------------$*$*$*$*$*$*$*$*FOR PROGRAMMERS*$*$*$*$*$*$*$*$------------//
 
+THIS INFORMATION MAY NOT BE RELIABLE!!!
+
 Note: if you have access to Javadocs, read those for a more in-depth explanation
 of our classes, methods, and fields.
 
@@ -73,8 +75,13 @@ CONSEQUENCES OF YOUR ACTIONS. Understand exactly what is happening.
 
 //------------$*$*$*$*$*$*$*$*FOR DRIVERS*$*$*$*$*$*$*$*$------------//
 
+There are probably better places to learn this stuff, so make sure that you have
+checked with anyone who might have this information. They probably will have a
+better explanation, along with lots of pretty pictures.
+
 First of all, READ NOTES.TXT!!! This file tells you EXACTLY what every joystick
-button and every line of text on the driver station does. This is IMPORTANT.
+button, every box button, and every line of text on the driver station does.
+This is IMPORTANT.
 
 We are using tank drive. The left joystick controls the left motors, the right
 joystick controls the right motors.
