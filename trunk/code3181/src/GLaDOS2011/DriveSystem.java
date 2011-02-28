@@ -14,13 +14,13 @@ public class DriveSystem {
         // Right motor is reversed
         Hardware.leftDrive.set(leftSpeed);
         Hardware.rightDrive.set(-rightSpeed);
-
     }
 
     /**
      * Shifts the gear.
      * We aren't sure which solenoids should do which actions, but they are easy
      * to switch, so no worries.
+     * THIS NEEDS FIXING.                                                                                                                *
      * @param mode Which gear to shift to
      */
     public void shiftGear(int mode) {
@@ -30,11 +30,4 @@ public class DriveSystem {
         Hardware.gearMode = mode;
     }
 
-    /**
-     * Stops the robot.
-     */
-//    public void stop() {
-//        Hardware.leftDrive.set(0);
-//        Hardware.rightDrive.set(0);
-//    }
 }

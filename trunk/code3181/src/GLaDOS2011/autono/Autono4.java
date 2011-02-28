@@ -6,7 +6,7 @@ package GLaDOS2011.autono;
  */
 public class Autono4 {
     public static void run() {
-        //Autono4 is essetially a duplicate of Autono1, so...
+        //Autono4 is essentially a duplicate of Autono1, so...
         Autono1.run();
     }
 }

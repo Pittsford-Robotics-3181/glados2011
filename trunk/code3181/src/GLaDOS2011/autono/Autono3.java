@@ -10,7 +10,7 @@ public class Autono3 {
     public static void run() {
         if(false){
             // Do stuff without dead reckoning
-            Sensors.run();
+            Autonomous.run();
         } else {
             // Do stuff with dead reckoning
             double timerValue = Hardware.gameTimer.get();

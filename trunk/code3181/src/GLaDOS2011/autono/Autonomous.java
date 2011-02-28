@@ -8,7 +8,7 @@ import GLaDOS2011.util.*;
  * @author Chris Cheng
  * @author Ben
  */
-public class Sensors {
+public class Autonomous {
     // The last sensor value. Used so that we know what to do when all sensors are false.
     private static int lastCase;
     public static boolean atEnd = false;
@@ -18,7 +18,7 @@ public class Sensors {
      */
     public static void run() {
         // If at the "T"
-        if(Sensors.atEnd){
+        if(atEnd){
             // If at the target height
             if(Lifter.closeEnough(Hanging.TOP)){
                 Lifter.stop();
@@ -28,7 +28,7 @@ public class Sensors {
             }
         } else {
             // Move along the line
-            Sensors.moveOnLine();
+            Autonomous.moveOnLine();
         }
     }
 
@@ -38,7 +38,7 @@ public class Sensors {
      */
     public static void run(double height) {
         // If at the "T"
-        if(Sensors.atEnd){
+        if(atEnd){
             // If at the target height
             if(Lifter.closeEnough(height)){
                 Lifter.stop();
@@ -48,12 +48,13 @@ public class Sensors {
             }
         } else {
             // Move along the line
-            Sensors.moveOnLine();
+            Autonomous.moveOnLine();
         }
     }
 
     /**
-     * For use with Autonomous.  Keeps the robot moving along the line.
+     * Makes the robot follow the tape to a peg.
+     * THE SPEEDS IN THIS METHOD PROBABLY NEED TO BE CHANGED.                                                                           *
      */
     public static void moveOnLine(){
         // Get sensor values and print descriptive message to the driver station
@@ -90,6 +91,8 @@ public class Sensors {
             lastCase = sensorValue;
         }
     }
+
+    //------------$*$*$*$*$*$*$*$*SENSOR CODE*$*$*$*$*$*$*$*$------------//
 
     /**
      * Picks a message that tells the drivers what we want to do, based on the
