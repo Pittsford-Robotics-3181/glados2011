@@ -8,7 +8,7 @@ import GLaDOS2011.*;
  */
 public class Autono1 {
     public static void run() {
-        if(!EnhancedIO.getDigital(11)){
+        if(false){
             // Do stuff without dead reckoning
             Sensors.run(Hanging.TOP+Hanging.CENTER_OFFSET);
         } else {

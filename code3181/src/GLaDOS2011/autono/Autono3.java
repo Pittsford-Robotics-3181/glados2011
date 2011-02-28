@@ -8,11 +8,11 @@ import GLaDOS2011.*;
  */
 public class Autono3 {
     public static void run() {
-        if(!EnhancedIO.getDigital(11)){
+        if(false){
             // Do stuff without dead reckoning
             Sensors.run();
         } else {
-            // Do stuff without dead reckoning
+            // Do stuff with dead reckoning
             double timerValue = Hardware.gameTimer.get();
             if(timerValue < 1){
                 Hardware.drive.driveAtSpeed(.75, .75);

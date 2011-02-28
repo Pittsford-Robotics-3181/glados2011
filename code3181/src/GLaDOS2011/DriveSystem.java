@@ -33,8 +33,8 @@ public class DriveSystem {
     /**
      * Stops the robot.
      */
-    public void stop() {
-        Hardware.leftDrive.set(0);
-        Hardware.rightDrive.set(0);
-    }
+//    public void stop() {
+//        Hardware.leftDrive.set(0);
+//        Hardware.rightDrive.set(0);
+//    }
 }

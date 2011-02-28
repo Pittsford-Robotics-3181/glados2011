@@ -39,7 +39,7 @@ public class Arm {
      * Otherwise, it moves the elbow to the in position.
      */
     public static void control() {
-        if(EnhancedIO.getBoxButton(15)){
+        if(GLaDOS2011.getBoxButton(15)){
             extendTimer.start();
             if(extendTimer.get() < 1.0 || Lifter.getHeight() < 2.0){
                 moveElbowOut();
