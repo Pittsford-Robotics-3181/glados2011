@@ -20,13 +20,13 @@ public class GLaDOS2011 extends IterativeRobot {
     // Autonomous mode
     int autonoMode = 0;
 
-    public static double Ana2;
-    public static double Ana3;
-    public static double Ana1;
-    public static boolean Digital2;
-    public static boolean Digital4;
-    public static boolean Digital6;
-    public static boolean Digital8;
+    public static double ana2;
+    public static double ana3;
+    public static double ana1;
+    public static boolean digital2; // Arm control
+    public static boolean digital4; // Three-way toggle for lifter
+    public static boolean digital6; // Three-way toggle for lifter
+    public static boolean digital8; // Deploy minibot
 
 
     /**
@@ -68,23 +68,12 @@ public class GLaDOS2011 extends IterativeRobot {
         } else {
             Hardware.txtout.say(2, "MODE: SENSORS");
         }
-        
-        Hardware.gameTimer.reset();
-        Hardware.gameTimer.start();
 
         Hardware.compressor.start();
+        Hardware.gameTimer.start();
+        Hardware.gameTimer.reset();
 
-        try{
-            Ana1 = Hardware.dseio.getAnalogIn(1);
-            Ana3 = Hardware.dseio.getAnalogIn(3);
-            Ana2 = Hardware.dseio.getAnalogIn(2);
-            Digital2 = Hardware.dseio.getDigital(2);
-            Digital4 = Hardware.dseio.getDigital(4);
-            Digital6 = Hardware.dseio.getDigital(6);
-            Digital8 = Hardware.dseio.getDigital(8);
-        } catch (EnhancedIOException ex) {
-            System.out.println(ex);
-        }
+        updateEnhancedIO();
     }
 
     /**
@@ -121,22 +110,11 @@ public class GLaDOS2011 extends IterativeRobot {
     public void teleopInit() {
         Hardware.txtout.clearOutput();
         Hardware.txtout.say(1, "State:  TELEOPERATED");
-        // Test lines
-        for(int i=2; i<7; i++)
-            Hardware.txtout.say(i, "This is line " + i + ".");
+
         Hardware.compressor.start();
         Hardware.gameTimer.start();
-        try{
-            Ana1 = Hardware.dseio.getAnalogIn(1);
-            Ana3 = Hardware.dseio.getAnalogIn(3);
-            Ana2 = Hardware.dseio.getAnalogIn(2);
-            Digital2 = Hardware.dseio.getDigital(2);
-            Digital4 = Hardware.dseio.getDigital(4);
-            Digital6 = Hardware.dseio.getDigital(6);
-            Digital8 = Hardware.dseio.getDigital(8);
-        } catch (EnhancedIOException ex) {
-           System.out.println(ex);
-        }
+
+        updateEnhancedIO();
     }
 
     /**
@@ -145,19 +123,9 @@ public class GLaDOS2011 extends IterativeRobot {
     public void teleopPeriodic() {
 
         updateDashboard();
-        try{
-            Ana1 = Hardware.dseio.getAnalogIn(1);
-            Ana3 = Hardware.dseio.getAnalogIn(3);
-            Ana2 = Hardware.dseio.getAnalogIn(2);
-            Digital2 = Hardware.dseio.getDigital(2);
-            Digital4 = Hardware.dseio.getDigital(4);
-            Digital6 = Hardware.dseio.getDigital(6);
-            Digital8 = Hardware.dseio.getDigital(8);
-        } catch (EnhancedIOException ex) {
-           System.out.println(ex);
-        }
+        updateEnhancedIO();
 
-/****************************** BEGIN DRIVE CODE ******************************************/
+        //**************** BEGIN DRIVE CODE ****************//
         double leftSpeed = Hardware.leftJoystick.getY();
         double rightSpeed = Hardware.rightJoystick.getY();
         String message = "";
@@ -196,7 +164,7 @@ public class GLaDOS2011 extends IterativeRobot {
         Hardware.txtout.say(6, "Lifter Mode:  " + Hanging.mode );
         Autonomous.printSensorData();
 
-/****************************** END DRIVE CODE ******************************************/
+        //**************** END DRIVE CODE ****************//
 
 
 
@@ -316,56 +284,80 @@ public class GLaDOS2011 extends IterativeRobot {
     // </editor-fold>
 
 
+    /**
+     * Update the analog and digital inputs from the EnhancedIO module.
+     */
+    public void updateEnhancedIO() {
+        try{
+            ana1 = Hardware.dseio.getAnalogIn(1);
+            ana3 = Hardware.dseio.getAnalogIn(3);
+            ana2 = Hardware.dseio.getAnalogIn(2);
+            digital2 = Hardware.dseio.getDigital(2);
+            digital4 = Hardware.dseio.getDigital(4);
+            digital6 = Hardware.dseio.getDigital(6);
+            digital8 = Hardware.dseio.getDigital(8);
+        } catch (EnhancedIOException ex) {
+            System.out.println(ex);
+        }
+    }
+
+    /**
+     * This checks whether a specific button on the button box is being pressed
+     * (this can also check the toggle switches). It is unclear why the bounds
+     * for Ana2 overlap.
+     * @param button Which button (or toggle) to check
+     * @return Whether the button is being pressed, or the toggle is true.
+     */
     public static boolean getBoxButton(int button) {
 
         switch(button){
             case(1):
-                if(Ana2 > 0.20 && Ana2 < 0.86) return true;
+                if(ana2 > 0.20 && ana2 < 0.86) return true;
                 else return false;
             case(2):
-                if(Ana2 > 0.74 && Ana2 < 1.40) return true;
+                if(ana2 > 0.74 && ana2 < 1.40) return true;
                 else return false;
             case(3):
-                if(Ana2 > 1.27 && Ana2 < 1.93) return true;
+                if(ana2 > 1.27 && ana2 < 1.93) return true;
                 else return false;
             case(4):
-                if(Ana2 > 1.81 && Ana2 < 2.47) return true;
+                if(ana2 > 1.81 && ana2 < 2.47) return true;
                 else return false;
             case(5):
-                if(Ana2 > 2.34 && Ana2 < 3.00) return true;
+                if(ana2 > 2.34 && ana2 < 3.00) return true;
                 else return false;
             case(6):
-                if(Ana2 > 2.89 && Ana2 < 3.55) return true;
+                if(ana2 > 2.89 && ana2 < 3.55) return true;
                 else return false;
             case(7):
-                if(Ana3 > 0.47 && Ana3 < 1.13) return true;
+                if(ana3 > 0.47 && ana3 < 1.13) return true;
                 else return false;
             case(8):
-                if(Ana3 > 1.27 && Ana3 < 1.93) return true;
+                if(ana3 > 1.27 && ana3 < 1.93) return true;
                 else return false;
             case(9):
-                if(Ana3 > 2.08 && Ana3 < 2.74) return true;
+                if(ana3 > 2.08 && ana3 < 2.74) return true;
                 else return false;
             case(10):
-                if(Ana3 > 2.88 && Ana3 < 3.54) return true;
+                if(ana3 > 2.88 && ana3 < 3.54) return true;
                 else return false;
             case(11):
-                return !Digital8;
+                return !digital8;
             case(12):
-                if(Ana1 > 0.72 && Ana1 < 1.38) return true;
+                if(ana1 > 0.72 && ana1 < 1.38) return true;
                 else return false;
             case(13):
-                if(Ana1 > 1.77 && Ana1 < 2.43) return true;
+                if(ana1 > 1.77 && ana1 < 2.43) return true;
                 else return false;
             case(14):
-                if(Ana1 > 2.83 && Ana1 < 3.49) return true;
+                if(ana1 > 2.83 && ana1 < 3.49) return true;
                 else return false;
             case(15):
-                return !Digital2;
+                return !digital2;
             case(16):
-                return !Digital4;
+                return !digital4;
             case(17):
-                return !Digital6;
+                return !digital6;
             default:
                 return false;
         }
