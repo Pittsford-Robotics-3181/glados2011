@@ -23,7 +23,7 @@ Joystick twists unlock the minibot.
             4:  Triangle
             5:  Circle
             6:  Square
-        * Claw Control
+        * Claw control
             7:  Roll downwards
             8:  Suck in
             9:  Roll upwards
@@ -33,11 +33,11 @@ Joystick twists unlock the minibot.
             12: Top
             13: Middle
             14: Bottom
-    * From Toggles:
+    * From toggles:
         15: Arm control
-        * Elevator
-            16: Manual Up
-            17: Manual Down
+        * Lifter
+            16: Manual up
+            17: Manual down
 
  
 *--------DSOutput lines & their usage--------*

@@ -212,7 +212,7 @@ public class GLaDOS2011 extends IterativeRobot {
         // Control the arm, claw, and lifter
         Arm.control();
         Claw.control();
-        Lifter.controlLifter();
+        Lifter.control();
         Hanging.updateMode();
         // Checks if switch for elbow is on.
 
