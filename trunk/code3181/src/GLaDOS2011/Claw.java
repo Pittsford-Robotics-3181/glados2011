@@ -24,10 +24,10 @@ public class Claw {
     }
 
     /**
-     * Control the Claw's take in / take out.
-     * @param speed The speed at which to suck or spit the tube - a double from -1.0 to 1.0.  Negative spits, Positive sucks.
+     * Control the claw's sucking/spitting.
+     * @param speed The speed at which to suck or spit the tube - a double from -1.0 to 1.0.  Negative spits, positive sucks.
      */
-    public static void tubeIn_Out(double speed){
+    public static void tubeInOut(double speed){
         Hardware.topClaw.set(speed);
         Hardware.bottomClaw.set(-1.0 * speed);
     }
@@ -39,11 +39,11 @@ public class Claw {
         if(GLaDOS2011.getBoxButton(9)){
             roll(1);
         } else if(GLaDOS2011.getBoxButton(8)){
-            tubeIn_Out(1);
+            tubeInOut(1);
         } else if(GLaDOS2011.getBoxButton(7)){
             roll(-1);
         } else if(GLaDOS2011.getBoxButton(10)){
-            tubeIn_Out(-1);
+            tubeInOut(-1);
         } else {
             stop();
         }

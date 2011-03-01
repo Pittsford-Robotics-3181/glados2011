@@ -20,17 +20,17 @@ public class GLaDOS2011 extends IterativeRobot {
     // Autonomous mode
     int autonoMode = 0;
 
-    public static double ana2;
-    public static double ana3;
-    public static double ana1;
+    public static double ana2; // Buttons 1-6
+    public static double ana3; // Buttons 7-10
+    public static double ana1; // Buttons 12-14
     public static boolean digital2; // Arm control
     public static boolean digital4; // Three-way toggle for lifter
     public static boolean digital6; // Three-way toggle for lifter
-    public static boolean digital8; // Deploy minibot
+    public static boolean digital8; // Minibot deployment
 
 
     /**
-     * This function is run when the robot is first started up and should be
+     * This function is run when the robot starts up and should be
      * used for any initialization code.
      */
     public void robotInit() {
@@ -47,7 +47,8 @@ public class GLaDOS2011 extends IterativeRobot {
 
     /**
      * This function is run when autonomous mode begins. It determines which
-     * autonomous mode we are using and starts the timer and compressor.
+     * autonomous mode we are using and starts the timer and compressor. It also
+     * updating the EnhancedIO inputs.
      */
     public void autonomousInit() {
         Hardware.txtout.clearOutput();
@@ -107,6 +108,10 @@ public class GLaDOS2011 extends IterativeRobot {
 
     //------------$*$*$*$*$*$*$*$*TELEOP METHODS*$*$*$*$*$*$*$*$------------//
 
+    /**
+     * This function is run when teleop mode begins. It starts the timer and
+     * compressor and updates the EnhancedIO inputs.
+     */
     public void teleopInit() {
         Hardware.txtout.clearOutput();
         Hardware.txtout.say(1, "State:  TELEOPERATED");
@@ -121,7 +126,7 @@ public class GLaDOS2011 extends IterativeRobot {
      * This function is called periodically during operator control.
      */
     public void teleopPeriodic() {
-
+        
         updateDashboard();
         updateEnhancedIO();
 
@@ -155,7 +160,7 @@ public class GLaDOS2011 extends IterativeRobot {
             Hardware.compressor.start();
         }
         // Actually drive
-        Hardware.drive.driveAtSpeed(leftSpeed, rightSpeed/2);
+        Hardware.drive.driveAtSpeed(leftSpeed, rightSpeed);
 
         // Print out useful messages
         Hardware.txtout.say(4, message + leftSpeed + "," + rightSpeed);
@@ -182,7 +187,6 @@ public class GLaDOS2011 extends IterativeRobot {
         Claw.control();
         Lifter.control();
         Hanging.updateMode();
-        // Checks if switch for elbow is on.
 
         // Check if Minibot is to be deployed.
         if(getBoxButton(11)){
@@ -304,7 +308,7 @@ public class GLaDOS2011 extends IterativeRobot {
     /**
      * This checks whether a specific button on the button box is being pressed
      * (this can also check the toggle switches). It is unclear why the bounds
-     * for Ana2 overlap.
+     * for ana2 overlap.
      * @param button Which button (or toggle) to check
      * @return Whether the button is being pressed, or the toggle is true.
      */

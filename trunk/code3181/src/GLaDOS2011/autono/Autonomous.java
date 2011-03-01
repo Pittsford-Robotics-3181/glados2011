@@ -22,7 +22,7 @@ public class Autonomous {
             // If at the target height
             if(Lifter.closeEnough(Hanging.TOP)){
                 Lifter.stop();
-                Claw.tubeIn_Out(-.5);
+                Claw.tubeInOut(-.5);
             } else {
                 Lifter.goToHeight(Hanging.TOP);
             }
@@ -42,7 +42,7 @@ public class Autonomous {
             // If at the target height
             if(Lifter.closeEnough(height)){
                 Lifter.stop();
-                Claw.tubeIn_Out(-.5);
+                Claw.tubeInOut(-.5);
             } else {
                 Lifter.goToHeight(height);
             }

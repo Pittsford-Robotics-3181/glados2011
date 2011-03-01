@@ -28,7 +28,7 @@ public class Autono2 {
             }else if(timerValue < 5){
                 Lifter.goToHeight(9.0);
             }else if(timerValue < 7){
-                Claw.tubeIn_Out(-0.5);
+                Claw.tubeInOut(-0.5);
             }else{
                 Claw.stop();
             }
