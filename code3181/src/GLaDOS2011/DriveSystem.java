@@ -20,7 +20,7 @@ public class DriveSystem {
      * Shifts the gear.
      * We aren't sure which solenoids should do which actions, but they are easy
      * to switch, so no worries.
-     * THIS NEEDS FIXING.                                                                                                                *
+     * THIS PROBABLY NEEDS FIXING.                                                                                                       *
      * @param mode Which gear to shift to
      */
     public void shiftGear(int mode) {
