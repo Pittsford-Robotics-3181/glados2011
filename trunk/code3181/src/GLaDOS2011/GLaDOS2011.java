@@ -83,16 +83,16 @@ public class GLaDOS2011 extends IterativeRobot {
         // Determine which autonomous mode we want and tell the drivers
         // The switches are the binary representation of the autonomous mode
         autonoMode = 0;
-        if(Utils.checkForSmall(AccelX) == 0 && Utils.checkForSmall(AccelY) > 0 && Utils.checkForSmall(AccelZ) == 0)
+        if(Utils.checkForSmall(AccelX,.4) == 0 && Utils.checkForSmall(AccelY,.4) != 0 && Utils.checkForSmall(AccelZ,.4) == 0)
             autonoMode = 1;
-        else if(Utils.checkForSmall(AccelY) == 0 && Utils.checkForSmall(AccelZ) == 0){
-            if(Utils.checkForSmall(AccelX) < 0)
+        else if(Utils.checkForSmall(AccelY,.4) == 0 && Utils.checkForSmall(AccelZ,.4) == 0){
+            if(Utils.checkForSmall(AccelX,.4) < 0)
                 autonoMode = 2;
-            else if(Utils.checkForSmall(AccelX) > 0)
+            else if(Utils.checkForSmall(AccelX,.4) > 0)
                 autonoMode = 3;
         }
+
         Hardware.txtout.say(1, "State:  AUTONOMOUS " + autonoMode);
-        
         if(true){
             Hardware.txtout.say(2, "MODE: DEAD RECKONING");
         } else {
