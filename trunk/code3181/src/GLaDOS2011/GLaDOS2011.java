@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.Dashboard;
 import edu.wpi.first.wpilibj.DigitalModule;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStationEnhancedIO.EnhancedIOException;
+import edu.wpi.first.wpilibj.DriverStationEnhancedIO.tAccelChannel;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Solenoid;
 
@@ -27,6 +28,10 @@ public class GLaDOS2011 extends IterativeRobot {
     public static boolean digital4; // Three-way toggle for lifter
     public static boolean digital6; // Three-way toggle for lifter
     public static boolean digital8; // Minibot deployment
+    // Accelerometer values
+    public static double AccelX;
+    public static double AccelY;
+    public static double AccelZ;
 
 
     /**
@@ -40,7 +45,27 @@ public class GLaDOS2011 extends IterativeRobot {
         Hardware.driverStation = DriverStation.getInstance();
         Hardware.dseio = Hardware.driverStation.getEnhancedIO();
         System.out.println("Init......");
-   }
+    }
+
+    /**
+     * This function is called periodically during disabled. It determines the
+     * autonomous mode that we want, based on the Cypress accelerometer.
+     */
+    public void disabledPeriodic() {
+        updateEnhancedIO();
+
+        // Determine which autonomous mode we want and tell the drivers
+        autonoMode = 0;
+        if(Utils.checkForSmall(AccelX) == 0 && Utils.checkForSmall(AccelY) > 0 && Utils.checkForSmall(AccelZ) == 0)
+            autonoMode = 1;
+        else if(Utils.checkForSmall(AccelY) == 0 && Utils.checkForSmall(AccelZ) == 0){
+            if(Utils.checkForSmall(AccelX) < 0)
+                autonoMode = 2;
+            else if(Utils.checkForSmall(AccelX) > 0)
+                autonoMode = 3;
+        }
+        Hardware.txtout.say(2, "Autonomous mode " + autonoMode);
+    }
 
 
     //------------$*$*$*$*$*$*$*$*AUTONOMOUS METHODS*$*$*$*$*$*$*$*$------------//
@@ -52,16 +77,20 @@ public class GLaDOS2011 extends IterativeRobot {
      */
     public void autonomousInit() {
         Hardware.txtout.clearOutput();
+
+        updateEnhancedIO();
+
         // Determine which autonomous mode we want and tell the drivers
         // The switches are the binary representation of the autonomous mode
         autonoMode = 0;
-        // Left worth 4
-        autonoMode = autonoMode + 4 * Utils.toInt(Hardware.autonoSwitches[0].get());
-        // Middle worth 2
-        autonoMode = autonoMode + 2 * Utils.toInt(Hardware.autonoSwitches[1].get());
-        // Right worth 1
-        autonoMode = autonoMode + 1 * Utils.toInt(Hardware.autonoSwitches[2].get());
-        autonoMode = 2;
+        if(Utils.checkForSmall(AccelX) == 0 && Utils.checkForSmall(AccelY) > 0 && Utils.checkForSmall(AccelZ) == 0)
+            autonoMode = 1;
+        else if(Utils.checkForSmall(AccelY) == 0 && Utils.checkForSmall(AccelZ) == 0){
+            if(Utils.checkForSmall(AccelX) < 0)
+                autonoMode = 2;
+            else if(Utils.checkForSmall(AccelX) > 0)
+                autonoMode = 3;
+        }
         Hardware.txtout.say(1, "State:  AUTONOMOUS " + autonoMode);
         
         if(true){
@@ -73,8 +102,6 @@ public class GLaDOS2011 extends IterativeRobot {
         Hardware.compressor.start();
         Hardware.gameTimer.start();
         Hardware.gameTimer.reset();
-
-        updateEnhancedIO();
     }
 
     /**
@@ -84,6 +111,7 @@ public class GLaDOS2011 extends IterativeRobot {
     public void autonomousPeriodic() {
 
         updateDashboard();
+        Autonomous.printSensorData();
 
         // Run the selected autonomous mode
         switch (autonoMode) {
@@ -300,6 +328,9 @@ public class GLaDOS2011 extends IterativeRobot {
             digital4 = Hardware.dseio.getDigital(4);
             digital6 = Hardware.dseio.getDigital(6);
             digital8 = Hardware.dseio.getDigital(8);
+            AccelX = Hardware.dseio.getAcceleration(tAccelChannel.kAccelX);
+            AccelY = Hardware.dseio.getAcceleration(tAccelChannel.kAccelY);
+            AccelZ = Hardware.dseio.getAcceleration(tAccelChannel.kAccelZ);
         } catch (EnhancedIOException ex) {
             System.out.println(ex);
         }

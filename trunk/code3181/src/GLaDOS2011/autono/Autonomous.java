@@ -53,13 +53,13 @@ public class Autonomous {
     }
 
     /**
-     * Makes the robot follow the tape to a peg.
+     * Make the robot follow a tape line on the floor.
      * THE SPEEDS IN THIS METHOD PROBABLY NEED TO BE CHANGED.                                                                           *
      */
     public static void moveOnLine(){
         // Get sensor values and print descriptive message to the driver station
         int sensorValue = getSensors();
-        printSensorData();
+        
         // Drive based on sensor values
         switch(sensorValue){
             case 1:
@@ -86,8 +86,6 @@ public class Autonomous {
                 break;
         }
         if(sensorValue != 0 && lastCase != sensorValue){
-            // Log sensor data (causes a runtime exception)
-            //FileActions.writeTapeSensors(sensorValue);
             lastCase = sensorValue;
         }
     }
