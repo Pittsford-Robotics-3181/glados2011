@@ -62,18 +62,12 @@ public class Hardware {
 
     // Motors
 
-    public static Jaguar lifter = new Jaguar(4,10);
+    public static Jaguar lifter = new Jaguar(4,5);
     public static Victor topClaw = new Victor(4,9);
     public static Victor bottomClaw = new Victor(4,8);
     
     public static Victor leftDrive = new Victor(4,1);
     public static Jaguar rightDrive = new Jaguar(4,3);
-
-
-    // Autonomous switches (may be changed in future to EnhancedIO)
-    public static DigitalInput[] autonoSwitches = {new DigitalInput(7),
-                                                   new DigitalInput(8),
-                                                   new DigitalInput(9)};
 
     // Limit switch for elbow
     public static DigitalInput elbowSwitch = new DigitalInput(10);
