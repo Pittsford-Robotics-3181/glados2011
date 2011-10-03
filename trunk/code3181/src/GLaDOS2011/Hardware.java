@@ -33,7 +33,7 @@ public class Hardware {
     static final double MAX_CURRENT = 40.0;
 
     // Other primitive
-    public static int gearMode = 1;
+    public static int gearMode = 0;
 
     // Pseudohardware
     public static DSOutput txtout = new DSOutput();
@@ -48,7 +48,7 @@ public class Hardware {
     public static DigitalInput rightSensor = new DigitalInput(3);
 
     // Analog input
-    public static AnalogChannel heightSensor = new AnalogChannel(4);
+    // public static AnalogChannel heightSensor = new AnalogChannel(4); //Disabled for now due to faulty hardware.
 
     // Solenoids
     public static Solenoid gearShift = new Solenoid(1);
