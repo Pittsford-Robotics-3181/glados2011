@@ -133,6 +133,6 @@ public class Autonomous {
      * Print out a useful message.
      */
     public static void printSensorData() {
-        Hardware.txtout.say(3, Utils.toBinary(getSensors()) + ": " + getSensorMessage());
+        //Hardware.txtout.say(3, Utils.toBinary(getSensors()) + ": " + getSensorMessage());
     }
 }

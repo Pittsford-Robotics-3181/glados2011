@@ -10,11 +10,11 @@ import edu.wpi.first.wpilibj.Relay;
  */
 public class Lifter {
     public static double currentHeight;
-    // THIS SPEED PROBABLY NEEDS TO BE CHANGED.                                                                                         *
-    public static double lifterSpeed = 0.5;
     public static int lifterState = 0;
     public static double destination = 0.0; //Diagnostics variable
 
+    // THIS SPEED PROBABLY NEEDS TO BE CHANGED.                                                                                         *
+    public static final double LIFTER_SPEED = 0.5;
     // HEIGHT_TOLERANCE PROBABLY NEEDS TO BE CHANGED.                                                                                   *
     private static final double HEIGHT_TOLERANCE = 0.15;
     private static final int MANUAL_MODE = 0;
@@ -24,6 +24,9 @@ public class Lifter {
     private static final int AUTO_THIRD_PEG = 4;
     private static final int FEEDER_SLOT = 5;
     private static final int HOME = 6;
+
+    //public static boolean liftBreakOn = true;
+    //public static double endTime;
 
 
     /**
@@ -60,25 +63,83 @@ public class Lifter {
      * This is probably the going down method
      */
     private static void goUp(){
+/*           if(liftBreakOn){
+                //If this is the first call of this method, set an end time
+                endTime = Hardware.gameTimer.get()+100*1000; // get() returns microseconds, apparently
+            }
+
+            liftBreakOn = false;*/
             Hardware.liftBreak.set(Relay.Value.kForward);
-            Hardware.lifter.set(-lifterSpeed);
+
+            //if(Hardware.gameTimer.get() > endTime){
+                Hardware.lifter.set(-LIFTER_SPEED);
+            //}
     }
 
     /*
      * This is probably the going up method
      */
     private static void goDown(){
+/*            if(liftBreakOn){
+                //If this is the first call of this method, set an end time
+                endTime = Hardware.gameTimer.get()+100*1000; // get() returns microseconds, apparently
+            }
+
+            liftBreakOn = false;*/
             Hardware.liftBreak.set(Relay.Value.kForward);
-            Hardware.lifter.set(lifterSpeed*2);
+
+            //if(Hardware.gameTimer.get() > endTime){
+                Hardware.lifter.set(LIFTER_SPEED*2);
+            //}
+
+    }    private static void goUpSlowly(){
+/*           if(liftBreakOn){
+                //If this is the first call of this method, set an end time
+                endTime = Hardware.gameTimer.get()+100*1000; // get() returns microseconds, apparently
+            }
+
+            liftBreakOn = false;*/
+            Hardware.liftBreak.set(Relay.Value.kForward);
+
+            //if(Hardware.gameTimer.get() > endTime){
+                Hardware.lifter.set(-LIFTER_SPEED/2);
+            //}
+    }
+
+    /*
+     * This is probably the going up method
+     */
+    private static void goDownSlowly(){
+/*            if(liftBreakOn){
+                //If this is the first call of this method, set an end time
+                endTime = Hardware.gameTimer.get()+100*1000; // get() returns microseconds, apparently
+            }
+
+            liftBreakOn = false;*/
+            Hardware.liftBreak.set(Relay.Value.kForward);
+
+            //if(Hardware.gameTimer.get() > endTime){
+                Hardware.lifter.set(LIFTER_SPEED);
+            //}
+
     }
 
     /**
      * Stop the lifter.
      */
     public static void stop() {
+/*        if(!liftBreakOn){
+                //If this is the first call of this method, set an end time
+            endTime = Hardware.gameTimer.get()+50*1000; // get() returns microseconds, apparently
+        }
+*/
         Hardware.lifter.set(0.0);
-        Hardware.liftBreak.set(Relay.Value.kOff);
-        lifterState = MANUAL_MODE;
+        //liftBreakOn = true;
+        
+        //if(Hardware.gameTimer.get() > endTime){
+            Hardware.liftBreak.set(Relay.Value.kOff);
+            lifterState = MANUAL_MODE;
+        //}
     }
 
     /**
@@ -99,46 +160,72 @@ public class Lifter {
           case MANUAL_MODE:
               if(GLaDOS2011.getBoxButton(16)){ // lifter up
                   goUp();
+                  Hardware.txtout.say(3,"Going up");
               }
               else if(GLaDOS2011.getBoxButton(17)){ // lifter down
                   goDown();
+                  Hardware.txtout.say(3,"Going down");
+              }
+              else if(GLaDOS2011.getBoxButton(14)){ // lifter down
+                  goUpSlowly();
+                  Hardware.txtout.say(3,"Going up slowly");
+              }
+              else if(GLaDOS2011.getBoxButton(12)){ // lifter down
+                  goDownSlowly();
+                  Hardware.txtout.say(3,"Going down slowly");
               }
               else {
                   stop();
+                  Hardware.txtout.say(3,"Stopping");
               }
               break;
 
           case AUTO_FLOOR:
               goToHeight(Hanging.FLOOR);
+              Hardware.txtout.say(3,"Floor");
               break;
 
           case AUTO_FIRST_PEG:
-              if(Hanging.mode == Hanging.CIRCLE)
+              if(Hanging.mode == Hanging.CIRCLE){
                   goToHeight(Hanging.BOTTOM + Hanging.CENTER_OFFSET);
-              else
+                  Hardware.txtout.say(3,"1st peg: circle");
+              }
+              else{
                 goToHeight(Hanging.BOTTOM);
+                Hardware.txtout.say(3,"1st peg: other");
+              }
               break;
 
           case AUTO_SECOND_PEG:
-              if(Hanging.mode == Hanging.CIRCLE)
+              if(Hanging.mode == Hanging.CIRCLE){
                   goToHeight(Hanging.MIDDLE + Hanging.CENTER_OFFSET);
-              else
+                  Hardware.txtout.say(3,"2nd peg: circle");
+              }
+              else{
                   goToHeight(Hanging.MIDDLE);
+                  Hardware.txtout.say(3,"2nd peg: other");
+              }
               break;
 
           case AUTO_THIRD_PEG:
-              if(Hanging.mode == Hanging.CIRCLE)
+              if(Hanging.mode == Hanging.CIRCLE){
                   goToHeight(Hanging.TOP + Hanging.CENTER_OFFSET);
-              else
+                  Hardware.txtout.say(3,"3rd peg: circle");
+              }
+              else{
                   goToHeight(Hanging.TOP);
+                  Hardware.txtout.say(3,"3rd peg: other");
+              }
               break;
 
           case FEEDER_SLOT:
               goToHeight(Hanging.SLOT);
+              Hardware.txtout.say(3,"Feeder");
               break;
 
           case HOME:
               goToHeight(Hanging.FLOOR);
+              Hardware.txtout.say(3,"Home=floor");
               break;
 
       }
@@ -157,21 +244,24 @@ public class Lifter {
            lifterState = MANUAL_MODE;
            System.out.print("Going down!");
        }
-       else if(GLaDOS2011.getBoxButton(3))
-           lifterState = AUTO_FLOOR;
-
-       else if(GLaDOS2011.getBoxButton(14))
-           lifterState = AUTO_FIRST_PEG;
-
+       else if(GLaDOS2011.getBoxButton(14)){
+           lifterState = MANUAL_MODE;
+           System.out.print("Going down!");
+       }
+       else if(GLaDOS2011.getBoxButton(12)){
+           lifterState = MANUAL_MODE;
+           System.out.print("Going up!");
+       }/*
        else if(GLaDOS2011.getBoxButton(13))
            lifterState = AUTO_SECOND_PEG;
 
-       else if(GLaDOS2011.getBoxButton(12))
-           lifterState = AUTO_THIRD_PEG;
+       else if(GLaDOS2011.getBoxButton(3))
+           lifterState = AUTO_FLOOR;
+
        else if(GLaDOS2011.getBoxButton(1))
            lifterState = FEEDER_SLOT;
        else if(GLaDOS2011.getBoxButton(2))
-           lifterState = HOME;
+           lifterState = HOME;*/
 
    }
 

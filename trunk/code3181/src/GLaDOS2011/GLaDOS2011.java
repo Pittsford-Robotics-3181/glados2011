@@ -45,6 +45,8 @@ public class GLaDOS2011 extends IterativeRobot {
         Hardware.driverStation = DriverStation.getInstance();
         Hardware.dseio = Hardware.driverStation.getEnhancedIO();
         System.out.println("Init......");
+        Hardware.minibotIn.set(true);
+        Hardware.minibotOut.set(false);
     }
 
     /**
@@ -83,9 +85,7 @@ public class GLaDOS2011 extends IterativeRobot {
         // Determine which autonomous mode we want and tell the drivers
         // The switches are the binary representation of the autonomous mode
         autonoMode = 0;
-        if(Utils.checkForSmall(AccelX,.4) == 0 && Utils.checkForSmall(AccelY,.4) != 0 && Utils.checkForSmall(AccelZ,.4) == 0)
-            autonoMode = 1;
-        else if(Utils.checkForSmall(AccelY,.4) == 0 && Utils.checkForSmall(AccelZ,.4) == 0){
+        if(Utils.checkForSmall(AccelY,.4) == 0 && Utils.checkForSmall(AccelZ,.4) == 0){
             if(Utils.checkForSmall(AccelX,.4) < 0)
                 autonoMode = 2;
             else if(Utils.checkForSmall(AccelX,.4) > 0)
@@ -98,6 +98,7 @@ public class GLaDOS2011 extends IterativeRobot {
         } else {
             Hardware.txtout.say(2, "MODE: SENSORS");
         }
+        Hardware.txtout.say(4, "Accel:" + ((Utils.checkForSmall(AccelX, .4)==0)?0:1) + "," + ((Utils.checkForSmall(AccelY, .4)==0)?0:1) + "," + ((Utils.checkForSmall(AccelZ, .4)==0)?0:1));
 
         Hardware.compressor.start();
         Hardware.gameTimer.start();
@@ -126,6 +127,9 @@ public class GLaDOS2011 extends IterativeRobot {
                 break;
             case 4:
                 Autono4.run();
+                break;
+            case 5:
+                Autono5.run();
                 break;
             default:
                 Autono0.run();
@@ -216,9 +220,11 @@ public class GLaDOS2011 extends IterativeRobot {
         Lifter.control();
         Hanging.updateMode();
 
-        // Check if Minibot is to be deployed.
+        // Check if Minibot is to be deployed or retracted.
         if(getBoxButton(11)){
             Minibot.deploy();
+        }else if(Hardware.checkButton(6) || Hardware.checkButton(10) || Hardware.checkButton(11)){
+            Minibot.retract();
         }
     }
     

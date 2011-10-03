@@ -25,8 +25,9 @@ public class DriveSystem {
      */
     public void shiftGear(int mode) {
         boolean high = (mode == Hardware.HIGH);
-        Hardware.gearShiftOpen.set(high);
-        Hardware.gearShiftClose.set(!high);
+        Hardware.gearShift.set(high);
+        //Hardware.gearShiftOpen.set(high);
+        //Hardware.gearShiftClose.set(!high);
         Hardware.gearMode = mode;
     }
 

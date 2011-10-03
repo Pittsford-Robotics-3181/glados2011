@@ -51,18 +51,18 @@ public class Hardware {
     public static AnalogChannel heightSensor = new AnalogChannel(4);
 
     // Solenoids
-    public static Solenoid gearShiftOpen = new Solenoid(3);
-    public static Solenoid gearShiftClose = new Solenoid(4);
-    public static Solenoid elbowOut = new Solenoid(5);
-    public static Solenoid elbowIn = new Solenoid(7);
-    public static Solenoid minibot = new Solenoid(8);
+    public static Solenoid gearShift = new Solenoid(1);
+    public static Solenoid elbowIn = new Solenoid(4);
+    public static Solenoid elbowOut = new Solenoid(3);
+    public static Solenoid minibotIn = new Solenoid(8);
+    public static Solenoid minibotOut = new Solenoid(7);
 
     // Relays
     public static Relay liftBreak = new Relay(6);
 
     // Motors
 
-    public static Jaguar lifter = new Jaguar(4,5);
+    public static Victor lifter = new Victor(4,5);
     public static Victor topClaw = new Victor(4,9);
     public static Victor bottomClaw = new Victor(4,8);
     
