@@ -168,9 +168,7 @@ public class GLaDOS2011 extends IterativeRobot {
         String message = "";
 
         // Shift gear based on driver input
-        if(Hardware.checkButton(1) && Hardware.gearMode == Hardware.LOW){
-            Hardware.drive.shiftGear(Hardware.HIGH);
-        } else if(!Hardware.checkButton(1) && Hardware.gearMode == Hardware.HIGH) {
+        if(Hardware.gearMode == Hardware.HIGH) {
             Hardware.drive.shiftGear(Hardware.LOW);
         }
 

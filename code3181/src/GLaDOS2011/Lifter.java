@@ -290,7 +290,8 @@ public class Lifter {
     * @return The height in feet
     */
    public static double getHeight() {
-       return Hardware.heightSensor.getVoltage() * 102.4 / 12.0;
+       return 0.0;
+       //    return Hardware.heightSensor.getVoltage() * 102.4 / 12.0;
    }
 
    /**
