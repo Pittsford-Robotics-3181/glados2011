@@ -4,7 +4,7 @@
   3: Stop the drive
   4: Lifter abort
   5: ************
-  6: ************
+  6: Minibot arm retract
   7: ************
   8: ************
   9: ************

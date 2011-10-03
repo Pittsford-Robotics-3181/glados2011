@@ -12,7 +12,16 @@ public class Minibot {
      */
     public static void deploy(){
         if(unlocked) {
-            Hardware.minibot.set(true);
+            Hardware.minibotIn.set(false);
+            Hardware.minibotOut.set(true);
         }
+    }
+
+    /**
+     * Retracts the arm.
+     */
+    public static void retract(){
+        Hardware.minibotIn.set(true);
+        Hardware.minibotOut.set(false);
     }
 }

@@ -11,8 +11,8 @@ public class Claw {
      * @param speed The speed at which to roll the tube - a double from -1.0 to 1.0.  Negative rolls downward, Positive rolls upward.
      */
     public static void roll(double speed){
-        Hardware.topClaw.set(0.7 * speed);
-        Hardware.bottomClaw.set(speed);
+        Hardware.topClaw.set(-0.7 * speed);
+        Hardware.bottomClaw.set(-speed);
     }
 
     /**
@@ -28,8 +28,8 @@ public class Claw {
      * @param speed The speed at which to suck or spit the tube - a double from -1.0 to 1.0.  Negative spits, positive sucks.
      */
     public static void tubeInOut(double speed){
-        Hardware.topClaw.set(speed);
-        Hardware.bottomClaw.set(-1.0 * speed);
+        Hardware.topClaw.set(-1.0 * speed);
+        Hardware.bottomClaw.set(speed);
     }
 
     /**
