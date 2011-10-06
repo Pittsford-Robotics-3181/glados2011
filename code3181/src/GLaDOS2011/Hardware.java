@@ -63,9 +63,7 @@ public class Hardware {
     public static Relay liftBreak = new Relay(6);
 
     // Motors
-    // TODO: prevent the lifter from being able to move... period.
-
-    public static Victor lifter = new Victor(4,5);
+    
     public static Victor topClaw = new Victor(4,9);
     public static Victor bottomClaw = new Victor(4,8);
     

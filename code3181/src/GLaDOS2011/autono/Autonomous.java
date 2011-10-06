@@ -20,12 +20,7 @@ public class Autonomous {
         // If at the "T"
         if(atEnd){
             // If at the target height
-            if(Lifter.closeEnough(Hanging.TOP)){
-                Lifter.stop();
-                Claw.tubeInOut(-.5);
-            } else {
-                Lifter.goToHeight(Hanging.TOP);
-            }
+            Claw.tubeInOut(-.5);
         } else {
             // Move along the line
             Autonomous.moveOnLine();
@@ -40,12 +35,7 @@ public class Autonomous {
         // If at the "T"
         if(atEnd){
             // If at the target height
-            if(Lifter.closeEnough(height)){
-                Lifter.stop();
-                Claw.tubeInOut(-.5);
-            } else {
-                Lifter.goToHeight(height);
-            }
+            Claw.tubeInOut(-.5);
         } else {
             // Move along the line
             Autonomous.moveOnLine();

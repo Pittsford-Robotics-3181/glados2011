@@ -41,7 +41,7 @@ public class Arm {
     public static void control() {
         if(GLaDOS2011.getBoxButton(15)){
             extendTimer.start();
-            if(extendTimer.get() < 1.0 || Lifter.getHeight() < 2.0){
+            if(extendTimer.get() < 1.0){
                 moveElbowOut();
             } else {
                 stopArm();
