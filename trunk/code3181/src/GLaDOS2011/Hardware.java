@@ -22,6 +22,8 @@ import edu.wpi.first.wpilibj.Relay;
  */
 public class Hardware {
 
+    //OBJECTIVE: add vision.
+
     //------------$*$*$*$*$*$*$*$*VARIABLES*$*$*$*$*$*$*$*$------------//
 
     // Constants
@@ -61,6 +63,7 @@ public class Hardware {
     public static Relay liftBreak = new Relay(6);
 
     // Motors
+    //OBJECTIVE: prevent the lifter from being able to move... period.
 
     public static Victor lifter = new Victor(4,5);
     public static Victor topClaw = new Victor(4,9);
