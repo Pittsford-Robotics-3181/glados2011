@@ -24,9 +24,7 @@ public class Autono2 {
                 Hardware.drive.driveAtSpeed(.75, .75);
             }else if(timerValue < 4.5){
                 Hardware.drive.driveAtSpeed(0.1, -0.1);
-                Lifter.goToHeight(9.0);
             }else if(timerValue < 5){
-                Lifter.goToHeight(9.0);
             }else if(timerValue < 7){
                 Claw.tubeInOut(-0.5);
             }else{

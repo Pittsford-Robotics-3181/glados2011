@@ -19,7 +19,6 @@ public class Autono1 {
                 Claw.roll(.5);
             }else if(timerValue < 3){
                 Hardware.drive.driveAtSpeed(0, 0);
-                Lifter.goToHeight(9.0);
                 Claw.stop();
             }else if(timerValue < 5){
                 Claw.tubeInOut(-0.5);

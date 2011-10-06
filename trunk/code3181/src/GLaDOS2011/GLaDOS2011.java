@@ -194,9 +194,7 @@ public class GLaDOS2011 extends IterativeRobot {
 
         // Print out useful messages
         Hardware.txtout.say(4, message + leftSpeed + "," + rightSpeed);
-        Hardware.txtout.say(2, "Lifter State: " + Lifter.getState());
-        Hardware.txtout.say(5, "Lifter Speed: " + Hardware.lifter.get());
-        Hardware.txtout.say(6, "Lifter Mode:  " + Hanging.mode );
+        Hardware.txtout.say(2, "Lifter State: BROKEN");
         Autonomous.printSensorData();
 
         //**************** END DRIVE CODE ****************//
@@ -215,7 +213,6 @@ public class GLaDOS2011 extends IterativeRobot {
         // Control the arm, claw, and lifter
         Arm.control();
         Claw.control();
-        Lifter.control();
         Hanging.updateMode();
 
         // Check if Minibot is to be deployed or retracted.
@@ -305,7 +302,7 @@ public class GLaDOS2011 extends IterativeRobot {
             lowDashData.addByte(Solenoid.getAllFromDefaultModule());
 
             //What height is the lifter?
-            lowDashData.addDouble(Lifter.getHeight());
+            lowDashData.addDouble(0.0);
 
             //Is the minibot unlocked by the driver?
             lowDashData.addBoolean(Minibot.unlocked);
