@@ -40,7 +40,7 @@ public class Hardware {
     // Pseudohardware
     public static DSOutput txtout = new DSOutput();
     public static DriveSystem drive = new DriveSystem();
-    public static DriverStation driverStation ;
+    public static DriverStation driverStation;
     public static DriverStationEnhancedIO dseio;
     public static Timer gameTimer = new Timer();
 

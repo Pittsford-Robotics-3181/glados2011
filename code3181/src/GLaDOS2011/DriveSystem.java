@@ -13,7 +13,7 @@ public class DriveSystem {
     public void driveAtSpeed(double leftSpeed, double rightSpeed) {
         // Right motor is reversed
         Hardware.leftDrive.set(leftSpeed);
-        Hardware.rightDrive.set(-rightSpeed);
+        Hardware.rightDrive.set(-(rightSpeed*0.95));
     }
 
     /**
