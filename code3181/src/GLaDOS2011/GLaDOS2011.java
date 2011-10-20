@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.Solenoid;
  * @author Chris Cheng
  * @author Ben
  * @author Eric
+ * @author Liam
  */
 public class GLaDOS2011 extends IterativeRobot {
     // Autonomous mode
